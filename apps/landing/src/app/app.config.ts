@@ -3,8 +3,8 @@ import {
   provideBrowserGlobalErrorListeners,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { appRoutes } from './app.routes';
+import { LANDING_ROUTES } from './app.routes';
 
-export const appConfig: ApplicationConfig = {
-  providers: [provideBrowserGlobalErrorListeners(), provideRouter(appRoutes)],
+export const LANDING_CONFIG: ApplicationConfig = {
+  providers: [provideBrowserGlobalErrorListeners(), provideRouter(LANDING_ROUTES)],
 };
