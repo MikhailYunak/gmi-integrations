@@ -8,7 +8,7 @@ import { UiKit } from '@gmi-integrations/ui-kit';
   template: `
     <h1 class="text-3xl font-bold underline">Hello world!</h1>
     <ui-kit />
-    <router-outlet></router-outlet>
+    <router-outlet />
   `,
 })
 export class App {}

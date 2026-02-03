@@ -80,3 +80,12 @@ And join the Nx community:
 - [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
 - [Our Youtube channel](https://www.youtube.com/@nxdevtools)
 - [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+## Полное обновление зависимостей
+
+полное обновление зависимостей можно делать только после обновления NX
+
+-   npm install -g npm-check-updates
+-   ncu -u
+-   npm update --legacy-peer-deps
+-   npm install --legacy-peer-deps
