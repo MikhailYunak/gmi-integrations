@@ -1,0 +1,28 @@
+:root {
+  // Primary
+  --primary-forest: #075D44;
+  --primary-lime: #97F095;
+
+  // Secondary
+  --secondary-lime: #F0F424;
+  --secondary-mint: #5FDCB2;
+  --secondary-lilac: #DBC5FF;
+
+  // Achromatic Colors
+  --white: #FFFFFF;
+  --achromatics-grey-forms: #EEEEEE;
+  --achromatics-light-grey: #C2C2C2;
+  --achromatics-grey: #6C7D79;
+  --achromatics-shadow: #38403E;
+  --achromatics-black: #191919;
+
+  // Disabled
+  --disabled-bg: #A0B0AC33;
+  --disabled-color: #A0B0AC;
+
+  // Gradient
+  --gradient-bg: linear-gradient(90.16deg, #D5FFF1 0.07%, #FDF4D5 99.79%);
+  --gradient-mint: linear-gradient(90.15deg, #5FDCB2 0.16%, #97F095 99.9%);
+  --gradient-mint-revers: linear-gradient(90.15deg, #97F095 0.16%, #5FDCB2 99.9%);
+  --gradient-forest-pine: linear-gradient(180deg, var(--primary-forest) 0%, #043B2E 100%);
+}

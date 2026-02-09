@@ -20,7 +20,10 @@
             "input": "apps/landing/public"
           }
         ],
-        "styles": ["apps/landing/src/styles.scss"]
+        "styles": [
+            "apps/landing/src/styles.scss",
+            "libs/ui-kit/src/lib/ui-kit/theme.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -54,7 +57,7 @@
           "buildTarget": "landing:build:production"
         },
         "development": {
-          "buildTarget": "landing:build:development"
+            "buildTarget": "landing:build:development"
         }
       },
       "defaultConfiguration": "development"

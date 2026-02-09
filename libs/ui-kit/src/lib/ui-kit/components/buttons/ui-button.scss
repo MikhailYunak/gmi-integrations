@@ -1,0 +1,413 @@
+// ============================================
+// ANGULAR BUTTON DIRECTIVE STYLES
+// Usage: <button uiButton>Text</button>
+//        <button uiButton="outline">Text</button>
+//        <button uiButton size="lg">Text</button>
+//        <button uiButton [loading]="true">Text</button>
+// ============================================
+
+// ============================================
+// BUTTON VARIABLES
+// ============================================
+
+// Colors (from design)
+$color-primary: #7FE5B8;
+
+$color-disabled-bg: var(--disabled-bg);
+$color-disabled-text: var(--disabled-color);
+
+$color-text-primary: #1F2937;
+$color-white: #ffffff;
+
+// Typography
+$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+
+// Button sizes
+$btn-width: fit-content;
+$btn-min-width: 160px;
+$btn-height: 50px;
+$btn-font-size: 18px;
+$btn-border-radius: 8px;
+$btn-padding-x: 32px;
+
+// Shadows
+$btn-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+$btn-shadow-hover: 0 4px 12px rgba(127, 229, 184, 0.3);
+
+// Transitions
+$transition-default: all .4s ease-in-out;
+
+// ============================================
+// BASE STYLE FOR [uiButton] DIRECTIVE
+// ============================================
+
+[uiButton] {
+  // Base styles
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: $font-family;
+  font-weight: $font-weight-medium;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: $transition-default;
+  white-space: nowrap;
+  box-sizing: border-box;
+
+  // Default sizes
+  width: $btn-width;
+  min-width: $btn-min-width;
+  height: $btn-height;
+  padding: 0 $btn-padding-x;
+  font-size: $btn-font-size;
+  border-radius: $btn-border-radius;
+  line-height: 1;
+
+  // Primary style by default
+  &[data-variant="primary"] {
+    background: var(--gradient-mint);
+    color: $color-text-primary;
+    box-shadow: $btn-shadow;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-mint-revers);
+      border-radius: inherit;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      z-index: -1;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  // Focus state
+  &:focus,
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.3);
+  }
+
+  // Hover state
+  &:hover:not(:disabled):not(.disabled):not([data-loading="true"]) {
+    box-shadow: $btn-shadow-hover;
+  }
+
+  // Active state
+  &:active:not(:disabled):not(.disabled):not([data-loading="true"]) {
+    background: var(--gradient-mint-revers);
+    box-shadow: $btn-shadow;
+  }
+
+  // Disabled state
+  &:disabled,
+  &.disabled {
+    background: $color-disabled-bg;
+    color: $color-disabled-text;
+    box-shadow: none;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// ============================================
+// BUTTON VARIANTS (data-variant="...")
+// ============================================
+
+// Outline variant: <button uiButton="outline">Text</button>
+[uiButton][data-variant="outline"] {
+  background: transparent;
+  border: 2px solid $color-primary;
+  color: $color-primary;
+  box-shadow: none;
+
+  &:hover:not(:disabled):not(.disabled):not([data-loading="true"]) {
+    background: $color-primary;
+    color: $color-text-primary;
+    box-shadow: $btn-shadow-hover;
+  }
+
+  &:disabled,
+  &.disabled {
+    background: transparent;
+    border-color: $color-disabled-bg;
+    color: $color-disabled-text;
+  }
+}
+
+// Ghost variant: <button uiButton="ghost">Text</button>
+[uiButton][data-variant="ghost"] {
+  background: transparent;
+  color: $color-primary;
+  box-shadow: none;
+
+  &:hover:not(:disabled):not(.disabled):not([data-loading="true"]) {
+    background: rgba($color-primary, 0.1);
+  }
+
+  &:active:not(:disabled):not(.disabled):not([data-loading="true"]) {
+    background: rgba($color-primary, 0.15);
+  }
+
+  &:disabled,
+  &.disabled {
+    background: transparent;
+    color: $color-disabled-text;
+  }
+}
+
+// Text variant: <button uiButton="text">Text</button>
+[uiButton][data-variant="text"] {
+  background: transparent;
+  color: $color-primary;
+  box-shadow: none;
+  width: auto;
+  padding: 0 16px;
+
+  &:hover:not(:disabled):not(.disabled):not([data-loading="true"]) {
+    background: transparent;
+    text-decoration: underline;
+    transform: none;
+  }
+
+  &:disabled,
+  &.disabled {
+    background: transparent;
+    color: $color-disabled-text;
+  }
+}
+
+// ============================================
+// BUTTON SIZES (data-size="...")
+// ============================================
+
+// Small: <button uiButton size="sm">Text</button>
+[uiButton][data-size="sm"] {
+  width: 200px;
+  height: 40px;
+  font-size: 14px;
+  border-radius: 12px;
+  padding: 0 16px;
+}
+
+// Medium (default): <button uiButton size="md">Text</button>
+[uiButton][data-size="md"] {
+  width: $btn-width;
+  height: $btn-height;
+  font-size: $btn-font-size;
+  border-radius: $btn-border-radius;
+  padding: 0 $btn-padding-x;
+}
+
+// Large: <button uiButton size="lg">Text</button>
+[uiButton][data-size="lg"] {
+  width: 400px;
+  height: 64px;
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 0 32px;
+}
+
+// ============================================
+// MODIFIERS (data attributes)
+// ============================================
+
+// Full width: <button uiButton [block]="true">Text</button>
+[uiButton][data-block="true"] {
+  width: 100%;
+}
+
+// Rounded: <button uiButton [rounded]="true">Text</button>
+[uiButton][data-rounded="true"] {
+  border-radius: 999px;
+  padding: 0;
+  height: 60px;
+  min-width: 60px;
+}
+
+// Icon button: <button uiButton [icon]="true">Icon</button>
+[uiButton][data-icon="true"] {
+  width: $btn-height;
+  padding: 0;
+  aspect-ratio: 1;
+
+  &[data-size="sm"] {
+    width: 40px;
+  }
+
+  &[data-size="lg"] {
+    width: 64px;
+  }
+}
+
+// ============================================
+// LOADING / SPINNER STATE
+// ============================================
+
+// Loading state: <button uiButton [loading]="true">Text</button>
+[uiButton][data-loading="true"] {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+  cursor: wait;
+  background: var(--gradient-mint-revers);
+
+  // Hide any existing pseudo-element spinners
+  &::before, &::after {
+    display: none;
+  }
+
+  // Center the injected loader
+  .ui-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// ============================================
+// NEW LOADER ANIMATION
+// ============================================
+
+.ui-loader {
+  display: inline-block;
+  font-size: 0;
+  padding: 0;
+}
+
+.ui-loader span {
+  vertical-align: middle;
+  border-radius: 100%;
+
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 3px 2px;
+  -webkit-animation: ui-loader 0.8s linear infinite alternate;
+  animation: ui-loader 0.8s linear infinite alternate;
+}
+
+.ui-loader span:nth-child(1) {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+  background: #075D44CC;
+}
+
+.ui-loader span:nth-child(2) {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+  background: var(--primary-forest);
+}
+
+.ui-loader span:nth-child(3) {
+  -webkit-animation-delay: -0.26666s;
+  animation-delay: -0.26666s;
+  background: var(--primary-forest);
+}
+
+.ui-loader span:nth-child(4) {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+  background: var(--primary-forest);
+}
+
+.ui-loader span:nth-child(5) {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+  background: #075D44CC;
+}
+
+@keyframes ui-loader {
+  from {
+    transform: scale(0, 0);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+
+@-webkit-keyframes ui-loader {
+  from {
+    -webkit-transform: scale(0, 0);
+  }
+  to {
+    -webkit-transform: scale(1, 1);
+  }
+}
+
+// ============================================
+// BUTTON GROUP
+// ============================================
+
+.button-group {
+  display: inline-flex;
+
+  [uiButton] {
+    border-radius: 0;
+
+    &:first-child {
+      border-top-left-radius: $btn-border-radius;
+      border-bottom-left-radius: $btn-border-radius;
+    }
+
+    &:last-child {
+      border-top-right-radius: $btn-border-radius;
+      border-bottom-right-radius: $btn-border-radius;
+    }
+
+    &:not(:last-child) {
+      margin-right: -2px;
+    }
+  }
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+
+@media (max-width: 768px) {
+  [uiButton]:not([data-icon="true"]) {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  // Icon buttons stay square
+  [uiButton][data-icon="true"] {
+    width: $btn-height;
+
+    &[data-size="sm"] {
+      width: 40px;
+    }
+
+    &[data-size="lg"] {
+      width: 64px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  [uiButton] {
+    height: 48px;
+    font-size: 16px;
+    padding: 0 20px;
+  }
+
+  [uiButton][data-size="lg"] {
+    height: 56px;
+    font-size: 18px;
+  }
+}
