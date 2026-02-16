@@ -28,7 +28,16 @@ import {
 
                 <button disabled type="button" uiButton="primary">Get Covered</button>
 
-                <button type="button" uiButton="ghost" [cdkMenuTriggerFor]="menu" [rounded]="true">Get</button>
+                <button type="button" uiButton="ghost" [rounded]="true">Get</button>
+
+                <div class="ui-menu" [cdkMenuTriggerFor]="menu">
+                    <div class="flex items-center justify-center max-w-50 w-full h-50 relative">
+                        <div class="absolute background-image-gradient"></div>
+                        <button class="ui-menu-button" type="button">En</button>
+                    </div>
+
+                    <span class="self-center triangle"></span>
+                </div>
 
                 <div class="flex flex-col gap-y-24 items-center xl:items-start xl:flex-row xl:justify-between w-full">
                     <div>Frequently Asked Questions</div>

@@ -5,6 +5,19 @@
 
 @layer ui-base {
     .material-symbols-outlined {
-        font-variation-settings: 'wght' 100, 'OPSZ' 24, 'GRAD' 200;
+        font-variation-settings:
+            'wght' 100,
+            'OPSZ' 24,
+            'GRAD' 200;
+    }
+
+    .triangle {
+        width: 0;
+        height: 0;
+        border-left: 0.344rem solid transparent;
+        border-right: 0.344rem solid transparent;
+        border-top: 0.438rem solid #4ade80;
+        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+        transition: transform 0.3s ease;
     }
 }
