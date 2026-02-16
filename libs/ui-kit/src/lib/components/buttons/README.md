@@ -19,8 +19,9 @@ import { UiButtonDirective } from '@gmi/ui-kit'; // Adjust import path as needed
 
 ### 2. Ensure styles are loaded:
 If using the library, styles might be pre-built or need to be imported.
+
 ```scss
-@import 'libs/ui-kit/src/lib/ui-kit/components/buttons/ui-button.scss';
+@import 'ui-button';
 ```
 
 ## 🎨 Usage

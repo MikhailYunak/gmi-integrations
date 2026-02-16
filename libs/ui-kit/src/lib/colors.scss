@@ -21,8 +21,8 @@
   --disabled-color: #A0B0AC;
 
   // Gradient
-  --gradient-bg: linear-gradient(90.16deg, #D5FFF1 0.07%, #FDF4D5 99.79%);
-  --gradient-mint: linear-gradient(90.15deg, #5FDCB2 0.16%, #97F095 99.9%);
-  --gradient-mint-revers: linear-gradient(90.15deg, #97F095 0.16%, #5FDCB2 99.9%);
-  --gradient-forest-pine: linear-gradient(180deg, var(--primary-forest) 0%, #043B2E 100%);
+  --gradient-bg: 90.16deg, #D5FFF1 0.07%, #FDF4D5 99.79%;
+  --gradient-mint: 90.15deg, #5FDCB2 0.16%, #97F095 99.9%;
+  --gradient-mint-revers: 90.15deg, #97F095 0.16%, #5FDCB2 99.9%;
+  --gradient-forest-pine: 180deg, var(--primary-forest) 0%, #043B2E 100%;
 }

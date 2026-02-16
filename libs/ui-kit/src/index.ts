@@ -1,1 +1,2 @@
-export * from './lib/ui-kit/components';
+export * from './lib/components';
+export * from './lib/cdk';

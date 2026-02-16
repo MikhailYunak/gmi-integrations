@@ -1,0 +1,10 @@
+@forward 'colors';
+@forward 'components/buttons/ui-button';
+
+@layer ui-base, ui-components;
+
+@layer ui-base {
+    .material-symbols-outlined {
+        font-variation-settings: 'wght' 100, 'OPSZ' 24, 'GRAD' 200;
+    }
+}

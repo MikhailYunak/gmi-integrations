@@ -22,7 +22,7 @@
         ],
         "styles": [
             "apps/landing/src/styles.scss",
-            "libs/ui-kit/src/lib/ui-kit/theme.scss"
+            "libs/ui-kit/src/lib/theme.scss"
         ]
       },
       "configurations": {

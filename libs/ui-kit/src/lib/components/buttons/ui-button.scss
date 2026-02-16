@@ -71,7 +71,7 @@ $transition-default: all .4s ease-in-out;
 
   // Primary style by default
   &[data-variant="primary"] {
-    background: var(--gradient-mint);
+    background-image: linear-gradient(var(--gradient-mint));
     color: $color-text-primary;
     box-shadow: $btn-shadow;
     position: relative;
@@ -82,7 +82,7 @@ $transition-default: all .4s ease-in-out;
       content: '';
       position: absolute;
       inset: 0;
-      background: var(--gradient-mint-revers);
+      background-image: linear-gradient(var(--gradient-mint-revers));
       border-radius: inherit;
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
@@ -108,7 +108,7 @@ $transition-default: all .4s ease-in-out;
 
   // Active state
   &:active:not(:disabled):not(.disabled):not([data-loading="true"]) {
-    background: var(--gradient-mint-revers);
+    background-image: linear-gradient(var(--gradient-mint-revers));
     box-shadow: $btn-shadow;
   }
 
@@ -263,7 +263,7 @@ $transition-default: all .4s ease-in-out;
   color: transparent !important;
   pointer-events: none;
   cursor: wait;
-  background: var(--gradient-mint-revers);
+  background-image: linear-gradient(var(--gradient-mint-revers));
 
   // Hide any existing pseudo-element spinners
   &::before, &::after {

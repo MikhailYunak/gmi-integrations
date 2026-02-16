@@ -1,0 +1,86 @@
+@layer ui-components {
+    .ui-accordion {
+        display: flex;
+        flex-direction: column;
+        row-gap: var(--ui-accordion-row-gap, 1rem);
+        max-width: var(--ui-accordion-max-width, 41.188rem);
+
+        .ui-accordion-item {
+            display: block;
+            border: solid 1px var(--ui-accordion-item-border-color, #ffffff);
+            border-radius: var(--ui-accordion-item-border-radius, 1rem);
+            background: var(--ui-accordion-item-bg, #ffffff99);
+
+            .ui-accordion-header {
+                display: block;
+                padding: var(--ui-accordion-header-padding, 1.5rem);
+                border-radius: var(--ui-accordion-item-border-radius, 1rem);
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .ui-accordion-expanded-wrapper {
+                display: grid;
+                grid-template-rows: 0fr;
+                grid-template-columns: 100%;
+
+                .ui-accordion-expanded-content {
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden;
+                    min-height: 0;
+                    visibility: hidden;
+                    opacity: 0;
+
+                    .ui-accordion-expanded-content-body {
+                        padding: var(--ui-accordion-body-padding, 0 1rem 1.5rem 1.5rem);
+                    }
+                }
+            }
+
+            &.ui-accordion-expanded {
+                .ui-accordion-header {
+                    padding-bottom: 0.625rem;
+                }
+
+                > .ui-accordion-expanded-wrapper {
+                    grid-template-rows: 1fr;
+
+                    > .ui-accordion-expanded-content {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        .ui-accordion-item + .ui-accordion-item {
+        }
+
+        &.ui-accordion-expansion-animations-enabled {
+            .ui-accordion-header {
+                transition: var(
+                    --ui-accordion-expanded-animation-padding-bottom,
+                    padding-bottom 300ms ease-out
+                );
+            }
+
+            .ui-accordion-expanded-wrapper {
+                transition: var(
+                    --ui-accordion-expanded-animation-grid-template-rows,
+                    grid-template-rows 300ms ease-out
+                );
+            }
+
+            .ui-accordion-expanded-content {
+                transition: var(
+                    --ui-accordion-expanded-animation-visibility,
+                    visibility 250ms ease-out,
+                    opacity 250ms ease-out
+                );
+            }
+        }
+    }
+}
