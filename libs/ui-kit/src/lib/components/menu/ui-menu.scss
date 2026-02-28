@@ -1,0 +1,24 @@
+.ui-cdk-menu {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+  padding: 8px;
+  border-radius: 16px;
+  background: var(--secondary-mint);
+
+  &-item,
+  .ui-cdk-menu-item-radio {
+    padding: 6px 16px;
+    border-radius: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--primary-forest);
+
+    &:active,
+    &[role='menuitemradio'][aria-checked='true'],
+    &:hover, {
+      background-color: var(--primary-forest);
+      color: var(--secondary-mint);
+    }
+  }
+}

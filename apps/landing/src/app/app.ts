@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {
     UiAccordion,
     UiAccordionBody,
     UiAccordionHeader,
     UiAccordionItem,
-    UiButtonDirective
+    UiButtonDirective, UiCdkMenu, UiCdkMenuItem, UiCdkMenuItemRadio, UiCdkMenuTrigger
 } from '@gmi-integrations/ui-kit';
 import {
     CdkMenu,
@@ -24,13 +24,13 @@ import {
                 class="flex flex-col justify-center items-center min-h-screen gap-y-20 bg-linear-(--gradient-bg) max-w-[1440px] w-full px-16 xl:px-48"
             >
                 <!-- Primary Button (default) -->
-                <button type="button" uiButton="primary">Get Covered</button>
+                <button type="button" uiButton="primary" (click)="uiCdkMenuTriggerForRef.open()">Get Covered</button>
 
                 <button disabled type="button" uiButton="primary">Get Covered</button>
 
-                <button type="button" uiButton="ghost" [rounded]="true">Get</button>
+                <button type="button" uiButton="ghost" [rounded]="true" (click)="reset()">Get</button>
 
-                <div class="ui-menu" [cdkMenuTriggerFor]="menu">
+                <div #uiCdkMenuTriggerForRef="uiCdkMenuTriggerFor" class="ui-menu" [uiCdkMenuTriggerFor]="uiMenuRef">
                     <div class="flex items-center justify-center max-w-50 w-full h-50 relative">
                         <div class="absolute background-image-gradient"></div>
                         <button class="ui-menu-button" type="button">En</button>
@@ -38,6 +38,21 @@ import {
 
                     <span class="self-center triangle"></span>
                 </div>
+
+                <ng-template #uiMenuRef>
+                    <div uiCdkMenu>
+                        @for (language of languages; track language) {
+                            <button
+                                type="button"
+                                uiCdkMenuItemRadio
+                                [uiCdkMenuItemChecked]="language === selectedLanguage()"
+                                (uiCdkMenuItemTriggered)="selectedLanguage.set(language)"
+                            >
+                                {{ language }}
+                            </button>
+                        }
+                    </div>
+                </ng-template>
 
                 <div class="flex flex-col gap-y-24 items-center xl:items-start xl:flex-row xl:justify-between w-full">
                     <div>Frequently Asked Questions</div>
@@ -67,47 +82,6 @@ import {
                         }
                     </ui-accordion>
                 </div>
-
-                <ng-template #menu>
-                    <div cdkMenu class="example-menu">
-                        <button
-                            cdkMenuItemCheckbox
-                            class="example-menu-item"
-                            type="button"
-                            [cdkMenuItemChecked]="bold"
-                            (cdkMenuItemTriggered)="bold = !bold"
-                        >
-                            Bold
-                        </button>
-                        <button
-                            cdkMenuItemCheckbox
-                            class="example-menu-item"
-                            type="button"
-                            [cdkMenuItemChecked]="italic"
-                            (cdkMenuItemTriggered)="italic = !italic"
-                        >
-                            Italic
-                        </button>
-                        <hr />
-                        <div cdkMenuGroup>
-                            @for (size of sizes; track size) {
-                                <button
-                                    cdkMenuItemRadio
-                                    class="example-menu-item"
-                                    type="button"
-                                    [cdkMenuItemChecked]="size === selectedSize"
-                                    (cdkMenuItemTriggered)="selectedSize = size"
-                                >
-                                    {{ size }}
-                                </button>
-                            }
-                        </div>
-                        <hr />
-                        <button cdkMenuItem class="example-menu-item" type="button" (cdkMenuItemTriggered)="reset()">
-                            Reset
-                        </button>
-                    </div>
-                </ng-template>
             </div>
         </div>
         <router-outlet />
@@ -115,26 +89,19 @@ import {
     imports: [
         RouterModule,
         UiButtonDirective,
-        CdkMenuTrigger,
-        CdkMenu,
-        CdkMenuItemCheckbox,
-        CdkMenuGroup,
-        CdkMenuItemRadio,
-        CdkMenuItem,
         UiAccordion,
         UiAccordionItem,
         UiAccordionHeader,
-        UiAccordionBody
+        UiAccordionBody,
+        UiCdkMenu,
+        UiCdkMenuTrigger,
+        UiCdkMenuItemRadio
     ]
 })
 export class App {
-    bold = false;
+    languages = ['English', 'Español'];
 
-    italic = false;
-
-    sizes = ['Small', 'Normal', 'Large'];
-
-    selectedSize: string | undefined = 'Normal';
+    readonly selectedLanguage = signal<string | undefined>('English');
 
     readonly accordionItems = [
         'Do I need small business insurance?',
@@ -145,8 +112,6 @@ export class App {
     ];
 
     reset(): void {
-        this.bold = false;
-        this.italic = false;
-        this.selectedSize = 'Normal';
+        this.selectedLanguage.set(undefined);
     }
 }
