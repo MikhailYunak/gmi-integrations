@@ -13,6 +13,7 @@
     font-weight: 500;
     cursor: pointer;
     color: var(--primary-forest);
+    transition: background-color 0.3s ease-in-out;
 
     &:active,
     &[role='menuitemradio'][aria-checked='true'],

@@ -1,0 +1,46 @@
+:host.language-switcher {
+  $host-class: language-switcher;
+
+  display: flex;
+  cursor: pointer;
+  column-gap: 6px;
+  max-width: 61px;
+  width: 100%;
+  max-height: 50px;
+  height: 100%;
+  overflow: hidden;
+
+  &[aria-expanded='true'] {
+    .triangle {
+      transform: rotate(180deg);
+    }
+  }
+
+  &[aria-expanded='true'],
+  &:hover {
+    .#{$host-class}-gradient {
+      transform: scale(1.1);
+    }
+  }
+
+  &-button {
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: rgba(151, 240, 149, 1);
+    border: 0.2px solid;
+    border-image-source: linear-gradient(90.15deg, #5fdcb2 0.16%, #97f095 99.9%);
+    background: rgb(7 93 68);
+    z-index: 10;
+  }
+
+  .#{$host-class}-gradient {
+    width: 50px;
+    height: 50px;
+    background: transparent url('/img/radial.png') no-repeat center;
+    background-size: cover;
+    transition: transform 0.3s ease;
+    z-index: 0;
+  }
+}

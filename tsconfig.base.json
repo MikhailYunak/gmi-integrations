@@ -16,7 +16,8 @@
         "baseUrl": ".",
         "paths": {
             "@gmi-integrations/ui-kit": ["libs/ui-kit/src/index.ts"],
-            "@gmi-integrations/cdk": ["libs/cdk/src/index.ts"]
+            "@gmi-integrations/cdk": ["libs/cdk/src/index.ts"],
+            "@gmi-integrations/shared": ["libs/shared/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

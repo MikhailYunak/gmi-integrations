@@ -22,7 +22,7 @@
 
   --color-gray-300: var(--achromatics-grey-forms);
   --color-gray-400: var(--achromatics-light-grey);
-  --color-gray-500: var(--disabled-color);
+  --color-gray-500: var(--secondary-gray);
   --color-gray-600: var(--achromatics-grey);
   --color-gray-700: var(--disabled-bg);
   --color-gray-800: var(--achromatics-shadow);

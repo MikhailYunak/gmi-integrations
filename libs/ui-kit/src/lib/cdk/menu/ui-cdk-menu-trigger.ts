@@ -1,4 +1,4 @@
-import { Directive, inject } from '@angular/core';
+import { Directive, effect, inject, model, TemplateRef } from '@angular/core';
 import { CdkMenuTrigger } from '@angular/cdk/menu';
 
 @Directive({
@@ -17,6 +17,16 @@ import { CdkMenuTrigger } from '@angular/cdk/menu';
 })
 export class UiCdkMenuTrigger {
     protected readonly _cdkMenuTrigger = inject(CdkMenuTrigger);
+
+    readonly menuTemplateRef = model<TemplateRef<unknown> | null>(null);
+
+    constructor() {
+        effect(() => {
+            if (this.menuTemplateRef()) {
+                this._cdkMenuTrigger.menuTemplateRef = this.menuTemplateRef();
+            }
+        });
+    }
 
     open(): void {
         this._cdkMenuTrigger.open();
