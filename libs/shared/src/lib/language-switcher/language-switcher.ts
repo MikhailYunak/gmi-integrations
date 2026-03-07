@@ -7,7 +7,9 @@ import { UiCdkMenu, UiCdkMenuItemRadio, UiCdkMenuTrigger } from '@gmi-integratio
     template: `
         <div class="flex items-center justify-center max-w-50 w-full h-50 relative">
             <div class="absolute language-switcher-gradient"></div>
-            <button class="language-switcher-button" type="button">En</button>
+            <button class="language-switcher-button" type="button">
+                <span class="language-switcher-button__text">En</span>
+            </button>
         </div>
 
         <span class="self-center triangle"></span>

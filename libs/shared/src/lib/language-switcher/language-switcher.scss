@@ -23,16 +23,33 @@
     }
   }
 
-  &-button {
-    cursor: pointer;
+  .#{$host-class}-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 36px;
     height: 36px;
+    cursor: pointer;
+    border: 0.5px solid var(--primary-lime);
     border-radius: 50%;
-    color: rgba(151, 240, 149, 1);
-    border: 0.2px solid;
-    border-image-source: linear-gradient(90.15deg, #5fdcb2 0.16%, #97f095 99.9%);
-    background: rgb(7 93 68);
+    background-color: rgb(7 93 68);
+    background-image:
+      linear-gradient(var(--gradient-forest-pine-revers));
     z-index: 10;
+
+    &__text {
+      color: var(--primary-lime);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      z-index: 1;
+    }
+
+    &:hover {
+      filter: brightness(1.2);
+      transition: filter 0.2s ease;
+    }
   }
 
   .#{$host-class}-gradient {

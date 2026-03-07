@@ -1,0 +1,12 @@
+@use '../../../../ui-kit/src/lib/theme' as theme;
+
+:host {
+    display: block;
+    width: 136px;
+    height: 32px;
+
+    @include theme.screen-md {
+        width: 175px;
+        height: 42px;
+    }
+}

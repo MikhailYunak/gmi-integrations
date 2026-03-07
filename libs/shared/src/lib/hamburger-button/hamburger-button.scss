@@ -1,0 +1,81 @@
+.hamburger-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:hover .hamburger-gradient {
+        transform: scale(1.1);
+    }
+}
+
+.hamburger-gradient {
+    position: absolute;
+    inset: 0;
+    background: transparent url('/img/radial.png') no-repeat center;
+    background-size: cover;
+    transition: transform 0.3s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hamburger-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 2px;
+    width: 40px;
+    height: 40px;
+    padding: 0 8px;
+    background-image: linear-gradient(var(--gradient-forest-pine));
+    border: 0.5px solid var(--primary-lime);
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+
+    // Close icon state — center the icon
+    &:has(.hb-icon) {
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        padding: 0;
+    }
+
+    &:hover {
+        filter: brightness(1.2);
+        transition: filter 0.2s ease;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--primary-lime);
+        outline-offset: 2px;
+    }
+
+    // Hamburger bars (projected via [open])
+    .hb-bar {
+        display: block;
+        width: 18px;
+        height: 3px;
+        background-color: var(--primary-lime);
+        border-radius: 2px;
+        flex-shrink: 0;
+
+        &.hb-bar--long {
+            width: 22px;
+        }
+    }
+
+    // Close icon (projected via [close])
+    .hb-icon {
+        //font-weight: bold;
+        color: var(--primary-lime);
+        font-size: 20px;
+        line-height: 1;
+    }
+}

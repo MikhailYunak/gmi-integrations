@@ -1,8 +1,17 @@
 :root {
   // Primary
   --primary-forest: hsla(163, 86%, 20%, 1);
-  --primary-lime: #97F095;
+
+  --forest-500: hsla(166, 88%, 13%, 1);
+
+  --primary-forest-600: hsla(166, 87%, 12%, 0.9);
+  --primary-forest-700: hsla(166, 87%, 12%, 1);
+
+
+  --primary-lime: hsla(119, 75%, 76%, 1);
   --primary-black: hsla(168, 7%, 27%, 1);
+
+  --lime-150: hsla(160, 100%, 92%, 1);
   --lime-opacity-400: hsla(119, 75%, 76%, 0.4);
   --lime-opacity-200: hsla(119, 75%, 76%, 0.2);
 
@@ -10,6 +19,10 @@
   --secondary-lime: #F0F424;
   --secondary-mint: #5FDCB2;
   --secondary-lilac: #DBC5FF;
+
+  --yellow-100: hsla(47, 90%, 91%, 1);
+
+  --mint-200: hsla(160, 64%, 62%, 1);
 
   // Achromatic Colors
   --white: #FFFFFF;
@@ -24,8 +37,9 @@
   --secondary-gray: #A0B0AC;
 
   // Gradient
-  --gradient-bg: 90.16deg, #D5FFF1 0.07%, #FDF4D5 99.79%;
-  --gradient-mint: 90.15deg, #5FDCB2 0.16%, #97F095 99.9%;
+  --gradient-bg: 90.16deg, var(--lime-150) 0.07%, var(--yellow-100) 99.79%;
+  --gradient-mint: 90.15deg, var(--mint-200) 0.16%, var(--primary-lime) 99.9%;
   --gradient-mint-revers: 90.15deg, #97F095 0.16%, #5FDCB2 99.9%;
-  --gradient-forest-pine: 180deg, var(--primary-forest) 0%, #043B2E 100%;
+  --gradient-forest-pine: 180deg, var(--primary-forest) 0%, var(--primary-forest-700) 100%;
+  --gradient-forest-pine-revers: 90.15deg, var(--primary-forest) 0.16%, var(--primary-forest-700) 99.9%;
 }

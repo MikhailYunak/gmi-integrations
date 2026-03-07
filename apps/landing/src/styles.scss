@@ -1,2 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @forward '../../../libs/tailwind/tailwind.css';
+
+main {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  max-width: calc(var(--spacing) * 1440);
+  width: 100%;
+}

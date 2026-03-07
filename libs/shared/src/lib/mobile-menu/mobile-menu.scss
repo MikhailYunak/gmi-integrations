@@ -1,0 +1,93 @@
+:host {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: var(--forest-500);
+    display: flex;
+    flex-direction: column;
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+}
+
+.mobile-menu-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-forest-600);
+    border: none;
+    border-radius: 12px;
+    color: var(--white);
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--white);
+        outline-offset: 2px;
+        border-radius: 12px;
+    }
+}
+
+.mobile-menu-nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        color: var(--white);
+        text-decoration: none;
+        font-size: 2rem;
+        font-weight: 400;
+        transition: color 0.2s ease;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--primary-lime);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--primary-lime);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+    }
+}
+
+.mobile-menu-footer {
+  display: flex;
+  justify-content: center;
+    padding: 32px 24px;
+}

@@ -1,0 +1,34 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  background-color: var(--white);
+}
+
+.header-end-desktop {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.hamburger-btn {
+  display: none;
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 700,
+      'GRAD' 200,
+      'opsz' 24;
+  }
+}
+
+@media (max-width: 767px) {
+  .header-end-desktop {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+}

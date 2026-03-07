@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
+
 @import "tailwindcss";
 
 @theme {
@@ -9,12 +10,17 @@
   --spacing: 1px;
 
   --color-green-500: var(--primary-forest);
+  --color-green-600: var(--primary-forest-600);
   --color-green-700: #043B2E;
-  --color-lime-50: #E9FFF7;
+
   --color-mint-100: var(--secondary-mint);
+
+  --color-lime-50: #E9FFF7;
   --color-lime-100: rgba(212, 255, 241, 1);
+  --color-lime-150: var(--lime-150);
   --color-lime-400: var(--primary-lime);
 
+  --color-yellow-100: var(--yellow-100);
   --color-yellow-500: var(--secondary-lime);
   --color-orange-100: rgba(253, 244, 213, 1);
 

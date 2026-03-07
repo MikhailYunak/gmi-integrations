@@ -1,0 +1,31 @@
+@layer ui-components {
+    .ui-header {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-column-gap: 48px;
+        align-items: center;
+        padding: var(--ui-header-padding, 1rem);
+        height: var(--ui-header-height, auto);
+        background: var(--ui-header-bg, hsla(166, 87%, 12%, 0.9));
+        border-bottom: var(--ui-header-border-bottom, none);
+        border-radius: var(--ui-header-border-radius, 1rem);
+
+        .ui-header-start {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .ui-header-center {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .ui-header-end {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    }
+}

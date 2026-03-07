@@ -9,7 +9,7 @@ export const LANDING_ROUTES: Routes = [
     },
     {
         path: '',
-        redirectTo: '/general',
+        redirectTo: 'general',
         pathMatch: 'full'
     },
     { path: '**', component: NotFoundPage }
