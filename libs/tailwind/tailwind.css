@@ -4,6 +4,8 @@
   --font-sans: var(--font-sans);
   --font-primary: var(--font-primary);
 
+  --text-xxs: 0.625rem;
+
   --spacing: 1px;
 
   --color-green-500: var(--primary-forest);

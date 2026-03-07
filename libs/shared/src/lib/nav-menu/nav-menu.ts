@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { UiLinkComponent } from '@gmi-integrations/ui-kit';
 
 const NAV_ITEMS = [
     { label: 'Why Us', fragment: 'why-us' },
@@ -14,7 +15,7 @@ const NAV_ITEMS = [
             <ul role="list">
                 @for (item of items; track item.fragment) {
                     <li>
-                        <a [href]="'#' + item.fragment">{{ item.label }}</a>
+                        <ui-link [href]="'#' + item.fragment" [label]="item.label" />
                     </li>
                 }
             </ul>
@@ -22,6 +23,7 @@ const NAV_ITEMS = [
     `,
     styleUrl: 'nav-menu.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [UiLinkComponent]
 })
 export class NavMenu {
     readonly items = NAV_ITEMS;

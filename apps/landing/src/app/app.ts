@@ -14,11 +14,6 @@ import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@g
                 <ng-container slot="center"><gmi-nav-menu /></ng-container>
 
                 <ng-container slot="end">
-                    <!--                    <div class="header-end-desktop">-->
-                    <!--                        <gmi-language-switcher />-->
-                    <!--                        <button type="button" uiButton="primary">Get insurance</button>-->
-                    <!--                    </div>-->
-
                     <div class="flex gap-x-16 md:gap-x-24">
                         <gmi-language-switcher />
 
