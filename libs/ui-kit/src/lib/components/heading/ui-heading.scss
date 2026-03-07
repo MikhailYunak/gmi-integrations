@@ -1,0 +1,87 @@
+@use '../../breakpoint-mixins' as breakpoint;
+// ============================================
+// HEADING DIRECTIVE STYLES
+// Usage:
+//   <h1 uiHeading>Normal</h1>
+//   <h2 uiHeading variant="italic">Italic</h2>
+// ============================================
+
+@layer components {
+  // Base: DM Sans, no letter-spacing
+  h1[uiHeading],
+  h2[uiHeading],
+  h3[uiHeading],
+  h4[uiHeading],
+  h5[uiHeading] {
+    font-family: var(--font-sans);
+    font-style: normal;
+    letter-spacing: 0;
+    margin: 0;
+  }
+
+  // H1 — 84px / 106% / Medium
+  h1[uiHeading] {
+    font-size: 42px;
+    line-height: 106%;
+    font-weight: 500;
+  }
+
+  // H2 — 56px / 116% / Medium
+  h2[uiHeading] {
+    font-size: 36px;
+    line-height: 116%;
+    font-weight: 500;
+  }
+
+  // H3 — 36px / 107% / Medium
+  h3[uiHeading] {
+    font-size: 36px;
+    line-height: 107%;
+    font-weight: 500;
+  }
+
+  // H4 — 24px / 114% / Regular
+  h4[uiHeading] {
+    font-size: 24px;
+    line-height: 114%;
+    font-weight: 400;
+  }
+
+  // H5 — 20px / 140% / Regular
+  h5[uiHeading] {
+    font-size: 20px;
+    line-height: 140%;
+    font-weight: 400;
+  }
+
+  // Italic variant — Playfair Display Italic
+  h1[uiHeading][data-variant='italic'],
+  span[uiHeading][data-variant='italic'],
+  h2[uiHeading][data-variant='italic'],
+  span[uiHeading][data-variant='italic'],
+  h3[uiHeading][data-variant='italic'],
+  span[uiHeading][data-variant='italic'],
+  h4[uiHeading][data-variant='italic'],
+  span[uiHeading][data-variant='italic'],
+  h5[uiHeading][data-variant='italic'],
+  span[uiHeading][data-variant='italic'] {
+    font-family: var(--font-primary);
+    font-style: italic;
+  }
+
+  h1[uiHeading][data-variant='italic'],
+  span[uiHeading][data-variant='italic'] {
+    font-weight: 400;
+  }
+
+  @include breakpoint.screen-lg {
+    h1[uiHeading] {
+      font-size: 84px;
+    }
+
+    h2[uiHeading] {
+      font-size: 56px;
+    }
+  }
+
+}

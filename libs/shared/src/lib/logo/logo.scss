@@ -1,11 +1,11 @@
-@use '../../../../ui-kit/src/lib/theme' as theme;
+@use '../../../../ui-kit/src/lib/breakpoint-mixins' as breakpoint;
 
 :host {
     display: block;
     width: 136px;
     height: 32px;
 
-    @include theme.screen-md {
+    @include breakpoint.screen-md {
         width: 175px;
         height: 42px;
     }

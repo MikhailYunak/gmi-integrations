@@ -20,7 +20,7 @@ $color-text-primary: #1f2937;
 $color-white: #ffffff;
 
 // Typography
-$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+$font-family: var(--font-sans);
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 
@@ -28,7 +28,7 @@ $font-weight-semibold: 600;
 $btn-width: fit-content;
 $btn-min-width: 160px;
 $btn-height: 50px;
-$btn-font-size: 18px;
+$btn-font-size: 16px;
 $btn-border-radius: 8px;
 $btn-padding-x: 32px;
 

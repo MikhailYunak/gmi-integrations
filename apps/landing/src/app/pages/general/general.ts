@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
-import { LanguageSwitcher } from '@gmi-integrations/shared';
-import { RouterOutlet } from '@angular/router';
-import { UiButtonDirective, UiHeader } from '@gmi-integrations/ui-kit';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { SubHeader } from './sub-header/sub-header';
 
 @Component({
     selector: 'gmi-general',
     templateUrl: './general.html',
     styleUrls: ['./general.scss'],
-    imports: []
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [SubHeader]
 })
 export class General {}

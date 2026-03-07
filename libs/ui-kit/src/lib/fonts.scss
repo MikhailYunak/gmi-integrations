@@ -1,0 +1,83 @@
+@use './breakpoint-mixins' as breakpoint;
+
+:root {
+  --font-sans: 'DM Sans', 'sans-serif';
+  --font-primary: 'Playfair Display', 'serif';
+}
+
+/*
+* <p class="text-body">main text</p>
+* <span class="text-additional">additional text</span>
+*/
+
+@layer components {
+  /* ============================================
+   * BODY TEXT UTILITIES
+   * ============================================ */
+
+  /* Text Large — DM Sans Regular/Bold, 18px */
+  .text-large {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0;
+  }
+
+  .text-large-bold {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    line-height: 124%;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  /* Text — DM Sans Regular/Medium, 16px */
+  .text-body {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 144%;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .text-body-medium {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 100%;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  /* Additional Text — DM Sans Regular, 14px */
+  .text-additional {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 140%;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  /* Smaller Text — DM Sans Regular/Bold, 12px */
+  .text-smaller {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    line-height: 140%;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .text-smaller-bold {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    line-height: 140%;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  @include breakpoint.screen-lg {
+    .text-large {
+      font-size: 24px;
+    }
+  }
+}

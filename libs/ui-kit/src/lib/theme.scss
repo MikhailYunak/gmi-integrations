@@ -1,14 +1,11 @@
+@forward 'fonts';
 @forward 'colors';
+@forward 'breakpoint-mixins';
 @forward 'components/buttons/ui-button';
 @forward 'components/menu/ui-menu';
+@forward 'components/heading/ui-heading';
 
 @layer base, components, ui-base, ui-components, utilities;
-
-// Breakpoint mixins
-@mixin screen-sm { @media (min-width: 640px)  { @content; } }
-@mixin screen-md { @media (min-width: 768px)  { @content; } }
-@mixin screen-lg { @media (min-width: 1024px) { @content; } }
-@mixin screen-xl { @media (min-width: 1280px) { @content; } }
 
 @layer ui-base {
     .material-symbols-outlined {
