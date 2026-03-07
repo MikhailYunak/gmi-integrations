@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
 import { UiButtonDirective } from '@gmi-integrations/ui-kit';
 
 const NAV_ITEMS = [
@@ -15,7 +15,7 @@ const NAV_ITEMS = [
             <ul role="list">
                 @for (item of items; track item.fragment) {
                     <li>
-                        <a [href]="'#' + item.fragment" (click)="close.emit()">{{ item.label }}</a>
+                        <a [href]="'#' + item.fragment" (click)="handleClose()">{{ item.label }}</a>
                     </li>
                 }
             </ul>
@@ -31,11 +31,19 @@ const NAV_ITEMS = [
     host: {
         role: 'dialog',
         'aria-modal': 'true',
-        'aria-label': 'Navigation menu'
+        'aria-label': 'Navigation menu',
+        '[class.closing]': 'isClosing()',
     }
 })
 export class MobileMenu {
     readonly close = output<void>();
 
     readonly items = NAV_ITEMS;
+
+    readonly isClosing = signal(false);
+
+    handleClose(): void {
+        this.isClosing.set(true);
+        setTimeout(() => this.close.emit(), 500);
+    }
 }

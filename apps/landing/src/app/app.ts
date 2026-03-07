@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UiButtonDirective, UiHeader } from '@gmi-integrations/ui-kit';
 import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@gmi-integrations/shared';
@@ -42,7 +42,7 @@ import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@g
             </ui-header>
 
             @if (_mobileMenuOpen) {
-                <gmi-mobile-menu (close)="mobileMenuOpen.set(false)" />
+                <gmi-mobile-menu #mobileMenu (close)="mobileMenuOpen.set(false)" />
             }
 
             <router-outlet />
@@ -54,8 +54,13 @@ import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@g
 })
 export class App {
     readonly mobileMenuOpen = signal(false);
+    private readonly mobileMenu = viewChild<MobileMenu>('mobileMenu');
 
     protected _menuOpenChanged(): void {
-        this.mobileMenuOpen.update((v) => !v);
+        if (this.mobileMenuOpen()) {
+            this.mobileMenu()?.handleClose();
+        } else {
+            this.mobileMenuOpen.set(true);
+        }
     }
 }
