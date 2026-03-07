@@ -16,9 +16,9 @@
   --lime-opacity-200: hsla(119, 75%, 76%, 0.2);
 
   // Secondary
-  --secondary-lime: #F0F424;
-  --secondary-mint: #5FDCB2;
-  --secondary-lilac: #DBC5FF;
+  --secondary-lime: hsla(61, 90%, 55%, 1);
+  --secondary-mint: hsla(160, 64%, 62%, 1);
+  --secondary-lilac: hsla(263, 100%, 89%, 1);
 
   --yellow-100: hsla(47, 90%, 91%, 1);
 
@@ -29,7 +29,7 @@
   --achromatics-grey-forms: #EEEEEE;
   --achromatics-light-grey: #C2C2C2;
   --achromatics-grey: #6C7D79;
-  --achromatics-shadow: #38403E;
+  --achromatics-shadow: hsla(165, 7%, 27%, 1);
   --achromatics-black: #191919;
 
   // Disabled
