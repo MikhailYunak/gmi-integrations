@@ -1,4 +1,6 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface CharItem {
   char: string;
@@ -10,19 +12,16 @@ interface CharItem {
  *
  * Usage:
  * <ui-link href="/path" label="Learn More" />
+ * <ui-link href="/general" fragment="section-id" label="Learn More" />
  * <ui-link href="/path" label="Learn More" [disabled]="true" />
  */
 @Component({
     selector: 'ui-link',
     template: `
         @let _disabled = disabled();
-        <a
-            [href]="_disabled ? null : href()"
-            [class.is-disabled]="_disabled"
-            [attr.aria-disabled]="_disabled || null"
-            [attr.tabindex]="_disabled ? -1 : null"
-            [attr.aria-label]="label()"
-        >
+        @let _fragment = fragment();
+
+        <ng-template #linkContent>
             @for (layer of LAYERS; track layer) {
                 <span class="link-text" aria-hidden="true">
                     @for (item of _chars(); track item.index) {
@@ -34,18 +33,40 @@ interface CharItem {
                     }
                 </span>
             }
-        </a>
+        </ng-template>
+
+        @if (_fragment !== undefined) {
+            <a
+                [routerLink]="_disabled ? null : href()"
+                [fragment]="_fragment"
+                [class.is-disabled]="_disabled"
+                [attr.aria-disabled]="_disabled || null"
+                [attr.tabindex]="_disabled ? -1 : null"
+                [attr.aria-label]="label()"
+            ><ng-container [ngTemplateOutlet]="linkContent" /></a>
+        } @else {
+            <a
+                [href]="_disabled ? null : href()"
+                [class.is-disabled]="_disabled"
+                [attr.aria-disabled]="_disabled || null"
+                [attr.tabindex]="_disabled ? -1 : null"
+                [attr.aria-label]="label()"
+            ><ng-container [ngTemplateOutlet]="linkContent" /></a>
+        }
     `,
     host: {
         class: 'ui-link'
     },
     styleUrl: './ui-link.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [RouterLink, NgTemplateOutlet]
 })
 export class UiLinkComponent {
     readonly href = input<string>('#');
 
     readonly label = input.required<string>();
+
+    readonly fragment = input<string | undefined>(undefined);
 
     readonly disabled = input(false, {
         transform: (v: boolean | string) => v === true || v === 'true'

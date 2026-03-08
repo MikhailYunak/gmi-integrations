@@ -15,7 +15,7 @@ const NAV_ITEMS = [
             <ul role="list">
                 @for (item of items; track item.fragment) {
                     <li>
-                        <ui-link [href]="'#' + item.fragment" [label]="item.label" />
+                        <ui-link href="/general" [fragment]="item.fragment" [label]="item.label" />
                     </li>
                 }
             </ul>

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { UiButtonDirective } from '@gmi-integrations/ui-kit';
 
 const NAV_ITEMS = [
@@ -15,7 +16,7 @@ const NAV_ITEMS = [
             <ul role="list">
                 @for (item of items; track item.fragment) {
                     <li>
-                        <a [href]="'#' + item.fragment" (click)="handleClose()">{{ item.label }}</a>
+                        <a [routerLink]="['/general']" [fragment]="item.fragment" (click)="handleClose()">{{ item.label }}</a>
                     </li>
                 }
             </ul>
@@ -27,7 +28,7 @@ const NAV_ITEMS = [
     `,
     styleUrl: 'mobile-menu.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [UiButtonDirective],
+    imports: [RouterLink, UiButtonDirective],
     host: {
         role: 'dialog',
         'aria-modal': 'true',

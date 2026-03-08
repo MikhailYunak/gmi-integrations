@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { UiLinkComponent } from '@gmi-integrations/ui-kit';
 
 const SOCIAL_LINKS = [
@@ -34,7 +35,7 @@ const LEGAL_LINKS = [
         }
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [UiLinkComponent, NgOptimizedImage]
+    imports: [RouterLink, UiLinkComponent, NgOptimizedImage]
 })
 export class Footer {
     protected readonly _currentYear = new Date().getFullYear();
