@@ -1,34 +1,26 @@
-<label
-    class="ui-radio-card"
-    [class.is-active]="isChecked()"
-    [class.is-disabled]="isDisabled()"
-    [for]="cardId"
->
+<label class="ui-radio-card__header" [for]="cardId">
     <input
         type="radio"
         class="ui-radio-card__native"
         [id]="cardId"
-        [name]="name()"
+        [name]="_name()"
         [checked]="isChecked()"
         [disabled]="isDisabled()"
         [attr.aria-required]="required() || null"
         (change)="select()"
     />
-
-    <div class="ui-radio-card__header">
-        <span class="ui-radio-card__indicator" [class.is-checked]="isChecked()" aria-hidden="true"></span>
-        <span class="ui-radio-card__title">{{ title() }}</span>
-    </div>
-
-    @if (description()) {
-        <p class="ui-radio-card__description">{{ description() }}</p>
-    }
-
-    @if (learnMoreUrl()) {
-        <a
-            class="ui-radio-card__link"
-            [href]="learnMoreUrl()"
-            (click)="$event.stopPropagation()"
-        >{{ learnMoreLabel() }}</a>
-    }
+    <span class="ui-radio-card__indicator" aria-hidden="true"></span>
+    <span class="ui-radio-card__title">{{ title() }}</span>
 </label>
+
+@if (description()) {
+    <p class="ui-radio-card__description">{{ description() }}</p>
+}
+
+@if (learnMoreUrl()) {
+    <a
+        class="ui-radio-card__link"
+        [href]="learnMoreUrl()"
+        (click)="$event.stopPropagation()"
+    >{{ learnMoreLabel() }}</a>
+}

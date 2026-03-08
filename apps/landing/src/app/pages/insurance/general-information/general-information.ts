@@ -2,14 +2,17 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import {
     UiButtonDirective,
-    UiCheckbox, UiCheckboxCard,
+    UiCheckbox,
+    UiCheckboxCard,
     UiDropdown,
     UiDropdownOption,
     UiHeadingDirective,
     UiInput,
-    UiInputHintState, UiLinkComponent,
+    UiInputHintState,
+    UiLinkComponent,
     UiRadioCard,
-    UiTextarea,
+    UiRadioCardGroup,
+    UiTextarea
 } from '@gmi-integrations/ui-kit';
 import { InsuranceFormService } from '../services/insurance-form.service';
 
@@ -64,7 +67,7 @@ const US_STATES: UiDropdownOption[] = [
     { label: 'Washington', value: 'WA' },
     { label: 'West Virginia', value: 'WV' },
     { label: 'Wisconsin', value: 'WI' },
-    { label: 'Wyoming', value: 'WY' },
+    { label: 'Wyoming', value: 'WY' }
 ];
 
 @Component({
@@ -87,6 +90,7 @@ const US_STATES: UiDropdownOption[] = [
         UiDropdown,
         UiTextarea,
         UiRadioCard,
+        UiRadioCardGroup,
         UiButtonDirective,
         UiHeadingDirective,
         UiCheckboxCard,

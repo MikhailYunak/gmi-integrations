@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UiTooltipDirective } from '../tooltip';
 
 export type UiDropdownOption = {
     label: string;
@@ -27,6 +28,7 @@ let _nextDropdownId = 0;
     templateUrl: './ui-dropdown.html',
     styleUrl: './ui-dropdown.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [UiTooltipDirective],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,

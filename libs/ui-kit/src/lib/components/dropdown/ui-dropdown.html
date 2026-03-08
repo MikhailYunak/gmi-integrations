@@ -1,18 +1,13 @@
+@let _tooltip = tooltip();
+
 <div class="ui-form-field">
     @if (label()) {
         <div class="ui-form-field__label-row">
             <label [id]="dropdownId + '-label'" class="ui-form-field__label">
                 {{ label() }}@if (required()) {<span class="ui-form-field__required" aria-hidden="true"> *</span>}
             </label>
-            @if (tooltip()) {
-                <button
-                    type="button"
-                    class="ui-form-field__tooltip-btn"
-                    [title]="tooltip()"
-                    [attr.aria-label]="tooltip()"
-                >
-                    <span class="material-symbols-outlined" aria-hidden="true">help</span>
-                </button>
+            @if (_tooltip) {
+              <span [uiTooltip]="_tooltip" class="material-symbols-outlined ui-form-field__tooltip" aria-hidden="true">help</span>
             }
         </div>
     }

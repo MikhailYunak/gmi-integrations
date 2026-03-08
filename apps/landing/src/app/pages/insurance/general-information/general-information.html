@@ -39,23 +39,8 @@
             >
                 <span uiInputPrefix class="inline-flex items-center gap-4 py-0 pr-4 pl-12 cursor-pointer shrink-0">
                     <span class="text-[18px] leading-none" aria-hidden="true">🇺🇸</span>
-                    <span class="text-[15px] font-medium text-(--primary-black) whitespace-nowrap">+1</span>
-                    <svg
-                        class="text-gray-600 shrink-0"
-                        width="12"
-                        height="8"
-                        viewBox="0 0 12 8"
-                        fill="none"
-                        aria-hidden="true"
-                    >
-                        <path
-                            d="M1 1.5L6 6.5L11 1.5"
-                            stroke="currentColor"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-                    </svg>
+                    <span class="text-[15px] font-medium text-gray-650 whitespace-nowrap">+1</span>
+                    <span class="material-symbols-outlined text-gray-600 shrink-0">keyboard_arrow_down</span>
                 </span>
             </ui-input>
         </div>
@@ -80,7 +65,8 @@
                 label="Business name"
                 placeholder="Enter Your Legal Business Name"
                 [required]="true"
-                tooltip="The legal registered name of your business"
+                tooltip="The legal entity is who the policy covers for its operations and property. Examples include a corporation, LLC, LLP, sole proprietorship, etc.
+This will print as the Named Insured on the policy."
                 formControlName="legalBusinessName"
                 [hintState]="hintState(svc.form.controls.businessInfo.controls.legalBusinessName)"
                 [hint]="hintMsg(svc.form.controls.businessInfo.controls.legalBusinessName)"
@@ -124,19 +110,19 @@
             />
         </div>
 
-        <div class="flex gap-x-12 md:gap-x-24">
+        <div class="flex gap-x-12 items-start md:gap-x-24">
             <ui-input
                 class="max-w-166 md:max-w-204"
                 label="Number of Employees"
                 type="stepper"
                 [required]="true"
                 [min]="1"
-                tooltip="Count all full-time and part-time employees"
+                tooltip="This is the number of employees, including yourself, who you employ (part-time and full-time).
+This does not include independent contractors which work for your business on a 1099/contract basis."
                 formControlName="numEmployees"
             />
             <ui-input
-                class="max-w-166 md:max-w-204"
-                label="Business Zip Code"
+                class="max-w-166 md:max-w-204 pt-30"
                 placeholder="Business Zip Code"
                 [required]="true"
                 formControlName="businessZipCode"
@@ -153,26 +139,14 @@
             <span class="text-red-500" aria-hidden="true">*</span>
         </p>
 
-        <div
+        <ui-radio-card-group
             class="flex flex-wrap gap-12 mb-20 [&_ui-radio-card]:flex-1 [&_ui-radio-card]:min-w-120"
-            role="radiogroup"
+            formControlName="hasPreviousClaims"
             aria-label="Previous claims"
         >
-            <ui-radio-card
-                title="Yes"
-                [value]="true"
-                name="hasPreviousClaims"
-                [required]="true"
-                formControlName="hasPreviousClaims"
-            />
-            <ui-radio-card
-                title="No"
-                [value]="false"
-                name="hasPreviousClaims"
-                [required]="true"
-                formControlName="hasPreviousClaims"
-            />
-        </div>
+            <ui-radio-card class="md:max-w-128" title="Yes" [value]="true" />
+            <ui-radio-card class="md:max-w-128" title="No" [value]="false" />
+        </ui-radio-card-group>
 
         @if (svc.showClaimsSection()) {
         <div class="border border-gray-500 rounded-2xl p-20 mt-4">
@@ -210,12 +184,8 @@
                             [hintState]="hintState(claim.controls.claimAmount)"
                             [hint]="hintMsg(claim.controls.claimAmount)"
                         >
-                            <span
-                                uiInputPrefix
-                                class="inline-flex items-center justify-center w-20 h-20 rounded-full [border:1.5px_solid_currentColor] text-[11px] font-bold shrink-0 ml-12 text-gray-600"
-                                aria-hidden="true"
-                            >
-                                $
+                            <span uiInputPrefix class="material-symbols-outlined text-gray-500" aria-hidden="true">
+                                paid
                             </span>
                         </ui-input>
                     </div>

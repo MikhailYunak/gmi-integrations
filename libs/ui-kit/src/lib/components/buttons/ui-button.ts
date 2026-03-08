@@ -32,7 +32,7 @@ export class UiButtonDirective {
    * Button variant
    * Possible values: 'primary' | 'outline' | 'ghost' | 'text'
    */
-  readonly variant = input('primary', { alias: 'uiButton' });
+  readonly variant = input('primary', { alias: 'uiButton', transform: (v: string) => v || 'primary' });
 
   /**
    * Button size

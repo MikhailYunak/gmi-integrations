@@ -8,6 +8,7 @@ import {
     signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { UiTooltipDirective } from '../tooltip';
 
 export type UiInputHintState = 'default' | 'success' | 'warning' | 'error';
 export type UiInputType = 'text' | 'email' | 'password' | 'number' | 'tel' | 'stepper';
@@ -23,9 +24,10 @@ let _nextId = 0;
         {
             provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => UiInput),
-            multi: true,
-        },
+            multi: true
+        }
     ],
+    imports: [UiTooltipDirective]
 })
 export class UiInput implements ControlValueAccessor {
     readonly inputId = `ui-input-${_nextId++}`;
@@ -62,10 +64,14 @@ export class UiInput implements ControlValueAccessor {
 
     protected readonly hintIcon = computed(() => {
         switch (this.hintState()) {
-            case 'success': return 'check_circle';
-            case 'warning': return 'warning';
-            case 'error': return 'warning';
-            default: return 'info';
+            case 'success':
+                return 'check_circle';
+            case 'warning':
+                return 'warning';
+            case 'error':
+                return 'warning';
+            default:
+                return 'info';
         }
     });
 

@@ -87,6 +87,7 @@
         &__label {
             cursor: pointer;
             font-size: 18px;
+            line-height: 22px;
             font-weight: 700;
         }
 
@@ -97,7 +98,8 @@
         }
 
         &.is-checked {
-            border-color: var(--primary-lime);
+          border-width: 2px;
+          border-color: var(--primary-forest);
 
             .ui-checkbox-card__control {
                 &:before {
