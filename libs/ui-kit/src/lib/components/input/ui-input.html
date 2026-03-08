@@ -1,101 +1,94 @@
 <div class="ui-form-field">
     @if (label()) {
-        <div class="ui-form-field__label-row">
-            <label [for]="inputId" class="ui-form-field__label">
-                {{ label() }}@if (required()) {<span class="ui-form-field__required" aria-hidden="true"> *</span>}
-            </label>
-            @if (tooltip()) {
-                <button
-                    type="button"
-                    class="ui-form-field__tooltip-btn"
-                    [title]="tooltip()"
-                    [attr.aria-label]="tooltip()"
-                >
-                    <span class="material-symbols-outlined" aria-hidden="true">help</span>
-                </button>
+    <div class="ui-form-field__label-row">
+        <label [for]="inputId" class="ui-form-field__label">
+            {{ label() }} @if (required()) {
+            <span class="ui-form-field__required" aria-hidden="true">*</span>
             }
-        </div>
-    }
-
-    @if (type() === 'stepper') {
-        <div
-            class="ui-input-wrapper ui-input-wrapper--stepper"
-            [class.is-focused]="isFocused()"
-            [class.is-filled]="isFilled()"
-            [class.is-disabled]="isDisabled()"
-            [attr.data-hint-state]="hintState()"
+        </label>
+        @if (tooltip()) {
+        <button type="button" class="ui-form-field__tooltip-btn" [title]="tooltip()" [attr.aria-label]="tooltip()">
+            <span class="material-symbols-outlined" aria-hidden="true">help</span>
+        </button>
+        }
+    </div>
+    } @if (type() === 'stepper') {
+    <div
+        class="ui-input-wrapper ui-input-wrapper--stepper"
+        [class.is-focused]="isFocused()"
+        [class.is-filled]="isFilled()"
+        [class.is-disabled]="isDisabled()"
+        [attr.data-hint-state]="hintState()"
+    >
+        <button
+            type="button"
+            class="ui-input-stepper__btn"
+            (click)="decrement()"
+            [disabled]="isDisabled()"
+            aria-label="Decrease"
         >
-            <button
-                type="button"
-                class="ui-input-stepper__btn"
-                (click)="decrement()"
-                [disabled]="isDisabled()"
-                aria-label="Decrease"
-            >
-                <span aria-hidden="true">−</span>
-            </button>
-            <input
-                [id]="inputId"
-                class="ui-input ui-input--stepper"
-                type="number"
-                [value]="value()"
-                [disabled]="isDisabled()"
-                [attr.min]="min()"
-                [attr.max]="max()"
-                [attr.step]="step()"
-                (input)="handleInput($event)"
-                (focus)="handleFocus()"
-                (blur)="handleBlur()"
-                [attr.aria-required]="required() || null"
-                [attr.aria-invalid]="hintState() === 'error' || null"
-                [attr.aria-describedby]="hint() ? inputId + '-hint' : null"
-            />
-            <button
-                type="button"
-                class="ui-input-stepper__btn"
-                (click)="increment()"
-                [disabled]="isDisabled()"
-                aria-label="Increase"
-            >
-                <span aria-hidden="true">+</span>
-            </button>
-        </div>
+            <span aria-hidden="true">−</span>
+        </button>
+        <input
+            [id]="inputId"
+            class="ui-input ui-input--stepper"
+            type="number"
+            [value]="value()"
+            [disabled]="isDisabled()"
+            [attr.min]="min()"
+            [attr.max]="max()"
+            [attr.step]="step()"
+            (input)="handleInput($event)"
+            (focus)="handleFocus()"
+            (blur)="handleBlur()"
+            [attr.aria-required]="required() || null"
+            [attr.aria-invalid]="hintState() === 'error' || null"
+            [attr.aria-describedby]="hint() ? inputId + '-hint' : null"
+        />
+        <button
+            type="button"
+            class="ui-input-stepper__btn"
+            (click)="increment()"
+            [disabled]="isDisabled()"
+            aria-label="Increase"
+        >
+            <span aria-hidden="true">+</span>
+        </button>
+    </div>
     } @else {
-        <div
-            class="ui-input-wrapper"
-            [class.is-focused]="isFocused()"
-            [class.is-filled]="isFilled()"
-            [class.is-disabled]="isDisabled()"
-            [attr.data-hint-state]="hintState()"
-        >
-            <ng-content select="[uiInputPrefix]" />
-            <input
-                [id]="inputId"
-                class="ui-input"
-                [type]="type()"
-                [placeholder]="placeholder()"
-                [value]="value()"
-                [disabled]="isDisabled()"
-                (input)="handleInput($event)"
-                (focus)="handleFocus()"
-                (blur)="handleBlur()"
-                [attr.aria-required]="required() || null"
-                [attr.aria-invalid]="hintState() === 'error' || null"
-                [attr.aria-describedby]="hint() ? inputId + '-hint' : null"
-            />
-            <ng-content select="[uiInputSuffix]" />
-        </div>
-    }
-
-    @if (hint()) {
-        <div
-            [id]="inputId + '-hint'"
-            class="ui-form-field__hint"
-            [attr.data-hint-state]="hintState()"
-            [attr.role]="hintState() === 'error' ? 'alert' : null"
-        >
-            <span class="material-symbols-outlined ui-form-field__hint-icon" aria-hidden="true">{{ hintIcon() }}</span>
-            {{ hint() }}
-        </div>
+    <div
+        class="ui-input-wrapper"
+        [class.is-focused]="isFocused()"
+        [class.is-filled]="isFilled()"
+        [class.is-disabled]="isDisabled()"
+        [attr.data-hint-state]="hintState()"
+    >
+        <ng-content select="[uiInputPrefix]" />
+        <input
+            [id]="inputId"
+            class="ui-input"
+            [type]="type()"
+            [placeholder]="placeholder()"
+            [value]="value()"
+            [disabled]="isDisabled()"
+            (input)="handleInput($event)"
+            (focus)="handleFocus()"
+            (blur)="handleBlur()"
+            [attr.aria-required]="required() || null"
+            [attr.aria-invalid]="hintState() === 'error' || null"
+            [attr.aria-describedby]="hint() ? inputId + '-hint' : null"
+        />
+        <ng-content select="[uiInputSuffix]" />
+    </div>
+    } @if (hint()) {
+    <div
+        [id]="inputId + '-hint'"
+        class="ui-form-field__hint"
+        [attr.data-hint-state]="hintState()"
+        [attr.role]="hintState() === 'error' ? 'alert' : null"
+    >
+        <span class="material-symbols-outlined ui-form-field__hint-icon" aria-hidden="true">{{ hintIcon() }}</span>
+        {{ hint() }}
+    </div>
     }
 </div>

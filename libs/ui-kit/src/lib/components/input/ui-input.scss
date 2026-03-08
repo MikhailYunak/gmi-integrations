@@ -15,12 +15,12 @@
     &__label {
         font-size: 13px;
         line-height: 1.4;
-        color: var(--achromatics-grey);
+        color: var(--forest-900);
         cursor: pointer;
     }
 
     &__required {
-        color: var(--achromatics-grey);
+        color: var(--red-500);
     }
 
     &__tooltip-btn {
@@ -61,7 +61,7 @@
         }
 
         &[data-hint-state='error'] {
-            color: #ef4444;
+            color: var(--red-300);
         }
 
         &-icon {
@@ -103,7 +103,7 @@
     }
 
     &[data-hint-state='error'] {
-        border-color: #ef4444;
+        border-color: var(--red-100);
 
         &.is-focused {
             box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
@@ -123,8 +123,9 @@
 
     // Stepper variant
     &--stepper {
-        padding: 0 10px;
-        gap: 4px;
+        padding: 0;
+        gap: 0;
+        overflow: hidden;
     }
 }
 
@@ -169,34 +170,37 @@
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 36px;
-    height: 36px;
-    border: 1.5px solid var(--secondary-gray);
-    border-radius: 50%;
+    width: 52px;
+    height: 100%;
+    border: none;
+    border-radius: 0;
     background: transparent;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1;
     color: var(--primary-black);
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        color 0.2s ease;
+    transition: background 0.2s ease;
     user-select: none;
 
+    &:first-child {
+        border-right: 1.5px solid var(--secondary-gray);
+    }
+
+    &:last-child {
+        border-left: 1.5px solid var(--secondary-gray);
+    }
+
     &:hover:not(:disabled) {
-        border-color: var(--primary-lime);
         background: var(--lime-opacity-200);
     }
 
     &:focus-visible {
         outline: 2px solid var(--primary-lime);
-        outline-offset: 2px;
+        outline-offset: -2px;
     }
 
     &:disabled {
         color: var(--secondary-gray);
-        border-color: var(--secondary-gray);
         cursor: not-allowed;
         opacity: 0.5;
     }

@@ -1,0 +1,265 @@
+<header class="flex flex-col gap-y-8 text-center">
+    <h1 uiHeading class="text-[36px] md:text-[56px]">
+        <span uiHeading variant="italic">Let's get</span>
+        you insured
+    </h1>
+    <p class="text-gray-600">Please answer all questions accurately and completely. All fields are required.</p>
+</header>
+
+<form class="flex flex-col gap-y-48 w-full" [formGroup]="svc.form" (ngSubmit)="svc.submitStepOne()" novalidate>
+    <!-- ── General Information ───────────────────────────────────────── -->
+    <section class="flex flex-col items-center gap-y-24" formGroupName="generalInfo">
+        <h2 class="form-sub-title text-green-700">General Information</h2>
+
+        <div class="w-full">
+            <ui-input
+                placeholder="Full Name"
+                [required]="true"
+                formControlName="fullName"
+                [hintState]="hintState(svc.form.controls.generalInfo.controls.fullName)"
+                [hint]="hintMsg(svc.form.controls.generalInfo.controls.fullName)"
+            />
+        </div>
+
+        <div class="grid grid-cols-1 gap-12 w-full md:grid-cols-2">
+            <ui-input
+                type="email"
+                placeholder="Email"
+                [required]="true"
+                formControlName="email"
+                [hintState]="hintState(svc.form.controls.generalInfo.controls.email)"
+                [hint]="hintMsg(svc.form.controls.generalInfo.controls.email)"
+            />
+            <ui-input
+                placeholder="000 000 0000"
+                [required]="true"
+                formControlName="phone"
+                [hintState]="hintState(svc.form.controls.generalInfo.controls.phone)"
+                [hint]="hintMsg(svc.form.controls.generalInfo.controls.phone)"
+            >
+                <span uiInputPrefix class="inline-flex items-center gap-4 py-0 pr-4 pl-12 cursor-pointer shrink-0">
+                    <span class="text-[18px] leading-none" aria-hidden="true">🇺🇸</span>
+                    <span class="text-[15px] font-medium text-(--primary-black) whitespace-nowrap">+1</span>
+                    <svg
+                        class="text-gray-600 shrink-0"
+                        width="12"
+                        height="8"
+                        viewBox="0 0 12 8"
+                        fill="none"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M1 1.5L6 6.5L11 1.5"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </span>
+            </ui-input>
+        </div>
+    </section>
+
+    <!-- ── Insurance Policies ────────────────────────────────────────── -->
+    <section class="flex flex-col gap-y-24" formGroupName="businessInfo">
+        <h2 class="form-sub-title text-green-700 text-center">Insurance Policies</h2>
+
+        <p class="text-gray-600 text-lg">A General Liability Policy covers you when other parties sue you over:</p>
+        <ul class="list-outside list-disc text-gray-600 text-lg [&_li+li]:mt-4 [&_li]:ml-32">
+            <li>Bodily Injury, e.g., slip-and-falls at your business</li>
+            <li>Property Damage, e.g., your business broke a client's computer.</li>
+            <li>
+                Advertising and Personal Injury, e.g., you infringed on a copyright or wrote something that damaged
+                someone's reputation.
+            </li>
+        </ul>
+
+        <div class="mb-12">
+            <ui-input
+                label="Business name"
+                placeholder="Enter Your Legal Business Name"
+                [required]="true"
+                tooltip="The legal registered name of your business"
+                formControlName="legalBusinessName"
+                [hintState]="hintState(svc.form.controls.businessInfo.controls.legalBusinessName)"
+                [hint]="hintMsg(svc.form.controls.businessInfo.controls.legalBusinessName)"
+            />
+        </div>
+
+        <ui-checkbox-card
+            formControlName="hasDba"
+            label="My Business Uses A Separate Doing Business As Or Operating Name"
+        ></ui-checkbox-card>
+
+        @if (svc.showDba()) {
+        <ui-input
+            label="DBA Name"
+            placeholder="Enter your DBA / operating name"
+            formControlName="dba"
+            [hintState]="hintState(svc.form.controls.businessInfo.controls.dba)"
+            [hint]="hintMsg(svc.form.controls.businessInfo.controls.dba)"
+        />
+        }
+
+        <div class="flex gap-x-12 md:gap-x-24">
+            <ui-dropdown
+                class="max-w-166 md:max-w-204 w-full"
+                label="Business State"
+                placeholder="Business State"
+                [required]="true"
+                [options]="states"
+                formControlName="businessState"
+                [hintState]="hintState(svc.form.controls.businessInfo.controls.businessState)"
+                [hint]="hintMsg(svc.form.controls.businessInfo.controls.businessState)"
+            />
+            <ui-input
+                class="max-w-166 md:max-w-204"
+                label="Business Start Date"
+                placeholder="MM/YYYY"
+                [required]="true"
+                formControlName="businessStartDate"
+                [hintState]="hintState(svc.form.controls.businessInfo.controls.businessStartDate)"
+                [hint]="hintMsg(svc.form.controls.businessInfo.controls.businessStartDate)"
+            />
+        </div>
+
+        <div class="flex gap-x-12 md:gap-x-24">
+            <ui-input
+                class="max-w-166 md:max-w-204"
+                label="Number of Employees"
+                type="stepper"
+                [required]="true"
+                [min]="1"
+                tooltip="Count all full-time and part-time employees"
+                formControlName="numEmployees"
+            />
+            <ui-input
+                class="max-w-166 md:max-w-204"
+                label="Business Zip Code"
+                placeholder="Business Zip Code"
+                [required]="true"
+                formControlName="businessZipCode"
+                [hintState]="hintState(svc.form.controls.businessInfo.controls.businessZipCode)"
+                [hint]="hintMsg(svc.form.controls.businessInfo.controls.businessZipCode)"
+            />
+        </div>
+    </section>
+
+    <!-- ── Previous Claims ───────────────────────────────────────────── -->
+    <section class="mb-130">
+        <p class="text-body-medium text-green-900 m-0 mb-12">
+            Have you had any insurance claims in the past 5 years?
+            <span class="text-red-500" aria-hidden="true">*</span>
+        </p>
+
+        <div
+            class="flex flex-wrap gap-12 mb-20 [&_ui-radio-card]:flex-1 [&_ui-radio-card]:min-w-120"
+            role="radiogroup"
+            aria-label="Previous claims"
+        >
+            <ui-radio-card
+                title="Yes"
+                [value]="true"
+                name="hasPreviousClaims"
+                [required]="true"
+                formControlName="hasPreviousClaims"
+            />
+            <ui-radio-card
+                title="No"
+                [value]="false"
+                name="hasPreviousClaims"
+                [required]="true"
+                formControlName="hasPreviousClaims"
+            />
+        </div>
+
+        @if (svc.showClaimsSection()) {
+        <div class="border border-gray-500 rounded-2xl p-20 mt-4">
+            <p class="text-additional text-gray-600 m-0 mb-16">Please add all claims from the past 5 years</p>
+
+            <div formArrayName="previousClaims">
+                @for (claim of svc.claims(); track $index; let i = $index) {
+                <div class="[&+&]:mt-20 [&+&]:pt-20 [&+&]:border-t [&+&]:border-gray-500" [formGroupName]="i">
+                    <div class="flex items-center justify-between mb-12">
+                        <span class="text-body-medium text-(--primary-black)">Claim {{ i + 1 }}</span>
+                        @if (i > 0) {
+                        <button
+                            type="button"
+                            class="inline-flex items-center justify-center w-32 h-32 border-none bg-transparent cursor-pointer rounded-full text-gray-600 transition-[background-color,color] duration-150 ease-in-out hover:bg-gray-500 hover:text-(--primary-black) focus-visible:outline-2 focus-visible:outline-lime-400 focus-visible:outline-offset-2"
+                            (click)="svc.removeClaim(i)"
+                            [attr.aria-label]="'Remove claim ' + (i + 1)"
+                        >
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                <path
+                                    d="M12 4L4 12M4 4L12 12"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </button>
+                        }
+                    </div>
+
+                    <div class="mb-12">
+                        <ui-input
+                            placeholder="Claim Amount"
+                            [required]="true"
+                            formControlName="claimAmount"
+                            [hintState]="hintState(claim.controls.claimAmount)"
+                            [hint]="hintMsg(claim.controls.claimAmount)"
+                        >
+                            <span
+                                uiInputPrefix
+                                class="inline-flex items-center justify-center w-20 h-20 rounded-full [border:1.5px_solid_currentColor] text-[11px] font-bold shrink-0 ml-12 text-gray-600"
+                                aria-hidden="true"
+                            >
+                                $
+                            </span>
+                        </ui-input>
+                    </div>
+
+                    <div class="mb-12">
+                        <ui-textarea
+                            placeholder="Describe The Claim"
+                            [required]="true"
+                            [maxLength]="180"
+                            formControlName="claimDescription"
+                            [hintState]="hintState(claim.controls.claimDescription)"
+                            [hint]="hintMsg(claim.controls.claimDescription)"
+                        />
+                    </div>
+                </div>
+                }
+            </div>
+
+            <button
+                type="button"
+                class="inline-flex items-center gap-6 mt-16 p-0 border-none bg-transparent cursor-pointer text-[14px] font-semibold text-green-500 transition-opacity duration-150 ease-in-out hover:opacity-75 focus-visible:outline-2 focus-visible:outline-lime-400 focus-visible:outline-offset-2 focus-visible:rounded"
+                (click)="svc.addClaim()"
+            >
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+                Add Another Claim
+            </button>
+        </div>
+        }
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────────────────────── -->
+    <footer
+        class="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-16 px-16 py-12 bg-green-700 border-t border-gray-500 z-50 md:px-48 md:py-16"
+    >
+        <div class="flex justify-between w-full max-w-664">
+            <p class="text-[9px] md:text-sm text-white max-w-260">
+                By clicking "Continue", you agree to our
+                <ui-link class="text-green-500" href="/terms" label="Terms of Use"></ui-link>
+                and
+                <ui-link class="text-green-500" href="/privacy" label="Privacy Policy"></ui-link>
+            </p>
+            <button uiButton [loading]="svc.isLoading()" type="submit" [disabled]="svc.form.invalid">Continue</button>
+        </div>
+    </footer>
+</form>

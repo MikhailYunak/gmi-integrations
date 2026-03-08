@@ -75,9 +75,22 @@
     letter-spacing: 0;
   }
 
+  h2.form-sub-title {
+    font-family: var(--font-sans);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 100%;
+  }
+
+
+
   @include breakpoint.screen-lg {
     .text-large {
       font-size: 24px;
+    }
+
+    h2.form-sub-title {
+      font-size: 32px;
     }
   }
 }

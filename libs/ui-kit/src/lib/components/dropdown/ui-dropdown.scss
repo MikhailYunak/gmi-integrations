@@ -15,12 +15,12 @@
     &__label {
         font-size: 13px;
         line-height: 1.4;
-        color: var(--achromatics-grey);
+        color: var(--forest-900);
         cursor: default;
     }
 
     &__required {
-        color: var(--achromatics-grey);
+        color: var(--red-500);
     }
 
     &__tooltip-btn {
@@ -61,7 +61,7 @@
         }
 
         &[data-hint-state='error'] {
-            color: #ef4444;
+            color: var(--red-300);
         }
 
         &-icon {
@@ -118,7 +118,7 @@
     }
 
     &[data-hint-state='error'] {
-        border-color: #ef4444;
+        border-color: var(--red-100);
 
         &.is-open,
         &.is-focused {
@@ -175,9 +175,12 @@
     border: 1.5px solid var(--secondary-gray);
     border-radius: 16px;
     overflow: hidden;
-    overflow-y: auto;
-    max-height: 224px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.ui-dropdown__panel-scroll {
+    overflow-y: auto;
+    max-height: 270px;
 }
 
 // ── Option item ───────────────────────────────────────────────────────────────

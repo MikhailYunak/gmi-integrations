@@ -16,7 +16,11 @@ const INSURANCE_STEPS: StepperStep[] = [
         <router-outlet />
     `,
     styles: `
-        :has {
+        :host {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -82px;
             padding-left: 16px;
             padding-right: 16px;
 

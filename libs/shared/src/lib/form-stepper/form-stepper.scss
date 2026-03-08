@@ -4,11 +4,13 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 20px 16px 44px;
+    margin-top: 102px;
+    padding-top: 24px;
+    padding-bottom: 62px;
 
-    @include bp.screen-md {
-        padding: 32px 16px 48px;
-    }
+    //@include bp.screen-md {
+    //  margin-top: 102px;
+    //}
 }
 
 .stepper {

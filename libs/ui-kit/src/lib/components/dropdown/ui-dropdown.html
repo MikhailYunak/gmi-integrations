@@ -49,6 +49,7 @@
                 role="listbox"
                 [attr.aria-labelledby]="label() ? dropdownId + '-label' : null"
             >
+            <div class="ui-dropdown__panel-scroll">
                 @for (option of options(); track option.value) {
                     <div
                         class="ui-dropdown__option"
@@ -63,6 +64,7 @@
                         }
                     </div>
                 }
+            </div>
             </div>
         }
     </div>

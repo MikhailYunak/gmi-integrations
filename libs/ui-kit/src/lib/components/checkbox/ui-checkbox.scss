@@ -32,30 +32,15 @@
 // ── Custom visual control ─────────────────────────────────────────────────────
 .ui-checkbox__control {
     flex-shrink: 0;
-    position: relative;
-    width: 22px;
-    height: 22px;
-    border-radius: 6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 8px;
     border: 2px solid var(--secondary-gray);
     background: var(--white);
     transition:
         border-color 0.15s ease,
         background 0.15s ease,
         box-shadow 0.15s ease;
-
-    // Checkmark (hidden by default)
-    &::after {
-        content: none;
-        position: absolute;
-        left: 5px;
-        top: 1px;
-        width: 5px;
-        height: 10px;
-        border: 2.5px solid var(--white);
-        border-top: none;
-        border-left: none;
-        transform: rotate(45deg);
-    }
 }
 
 // Hover — unchecked
@@ -66,22 +51,18 @@
 // Focus-visible
 .ui-checkbox__native:focus-visible + .ui-checkbox__control {
     border-color: var(--primary-lime);
-    box-shadow: 0 0 0 3px var(--lime-opacity-400);
+    box-shadow: 0 0 0 5px var(--lime-opacity-400);
 }
 
 // Checked
 .ui-checkbox__native:checked + .ui-checkbox__control {
-    background: linear-gradient(var(--gradient-forest-pine));
+    background: conic-gradient(from 0deg at 50% 50.29%, #5fdcb2 0deg, #043b2e 360deg);
     border-color: transparent;
-
-    &::after {
-        content: '';
-    }
 }
 
 // Focus-visible + checked
 .ui-checkbox__native:checked:focus-visible + .ui-checkbox__control {
-    box-shadow: 0 0 0 3px var(--lime-opacity-400);
+    box-shadow: 0 0 0 5px var(--lime-opacity-400);
 }
 
 // ── Label text ────────────────────────────────────────────────────────────────
