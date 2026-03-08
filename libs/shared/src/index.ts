@@ -6,3 +6,4 @@ export * from './lib/nav-menu';
 export * from './lib/not-found';
 export * from './lib/logo';
 export * from './lib/marquee-section';
+export * from './lib/reviews-slider';

@@ -1,0 +1,191 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    row-gap: 54px;
+
+    @media (width >= 48rem /* 768px */) {
+        padding-top: 80px;
+    }
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.reviews-header {
+    padding-inline: 16px;
+
+    @media (width >= 48rem /* 768px */) {
+        padding-inline: 48px;
+    }
+}
+
+.rating-badge {
+    background-color: var(--secondary-lime);
+    color: var(--forest-900);
+    border-radius: 100px;
+    padding: 7px;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    flex-shrink: 0;
+
+    @media (width >= 48rem /* 768px */) {
+        font-size: 2.25rem;
+    }
+}
+
+/* ─── Swiper ──────────────────────────────────────────────── */
+.reviews-swiper {
+    width: 100%;
+}
+
+swiper-slide {
+    height: auto;
+}
+
+/* ─── Review Card ─────────────────────────────────────────── */
+.review-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: hsla(163, 86%, 20%, 0.99);
+    //border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    height: 100%;
+    min-height: 220px;
+}
+
+.card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.avatar {
+    width: 79px;
+    height: 79px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.card-header-info {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    row-gap: 8px;
+    min-width: 0;
+}
+
+.reviewer-name {
+    color: var(--primary-lime);
+    font-weight: 400;
+    font-size: 1.125rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ─── Star rating ─────────────────────────────────────────── */
+.star-rating {
+    position: absolute;
+    left: -34px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 6px;
+    background-color: var(--primary-forest-700);
+    border-radius: 100px;
+}
+
+.rating-text {
+    color: white;
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 4px;
+}
+
+.stars {
+    display: flex;
+    gap: 2px;
+}
+
+.star {
+    font-size: 1.125rem;
+
+    &--filled {
+        color: #f5c518;
+    }
+
+    &--empty {
+        color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* ─── Review body ─────────────────────────────────────────── */
+.review-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.review-date {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.875rem;
+    margin-top: auto;
+}
+
+/* ─── Navigation ──────────────────────────────────────────── */
+.reviews-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-forest);
+    background: transparent;
+    color: var(--primary-forest);
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+
+    .material-symbols-outlined {
+        font-size: 28px;
+    }
+
+    &:hover {
+        border-color: var(--mint-200);
+        color: var(--white);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--mint-200);
+        color: var(--white);
+        outline-offset: 3px;
+    }
+}
+
+/* ─── CTA ─────────────────────────────────────────────────── */
+.reviews-cta {
+    display: flex;
+    justify-content: center;
+    padding-inline: 16px;
+
+    @media (width >= 48rem /* 768px */) {
+        padding-inline: 48px;
+    }
+}
