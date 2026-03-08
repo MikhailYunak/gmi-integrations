@@ -35,6 +35,7 @@
                     opacity: 0;
 
                     .ui-accordion-expanded-content-body {
+                        color: var(--ui-accordion-item-text-color, hsla(165, 7%, 27%, 1));
                         padding: var(--ui-accordion-body-padding, 0 1rem 1.5rem 1.5rem);
                     }
                 }
