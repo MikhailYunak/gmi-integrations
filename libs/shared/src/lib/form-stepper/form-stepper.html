@@ -1,0 +1,36 @@
+<nav class="stepper" aria-label="Form steps">
+    @for (step of computedSteps(); track step.route; let i = $index, first = $first) {
+        @if (!first) {
+            <div
+                class="stepper__connector"
+                [class.stepper__connector--completed]="computedSteps()[i - 1].isCompleted"
+                aria-hidden="true"
+            ></div>
+        }
+
+        <div
+            class="stepper__step"
+            [class.stepper__step--active]="step.isActive"
+            [class.stepper__step--completed]="step.isCompleted"
+        >
+            <button
+                class="stepper__circle"
+                type="button"
+                [routerLink]="step.isNavigable ? ['/insurance', step.route] : null"
+                [attr.aria-current]="step.isActive ? 'step' : null"
+                [attr.aria-disabled]="!step.isNavigable || null"
+                [attr.aria-label]="'Step ' + (i + 1) + ': ' + step.label + (step.isCompleted ? ', completed' : '') + (step.isActive ? ', current step' : '')"
+            >
+                @if (step.isCompleted) {
+                    <svg width="14" height="11" viewBox="0 0 14 11" fill="none" aria-hidden="true">
+                        <path d="M1 5.5L5 9.5L13 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                } @else {
+                    <span aria-hidden="true">{{ i + 1 }}</span>
+                }
+            </button>
+
+            <span class="stepper__label">{{ step.label }}</span>
+        </div>
+    }
+</nav>

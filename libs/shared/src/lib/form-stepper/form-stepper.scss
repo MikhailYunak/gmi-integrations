@@ -1,0 +1,122 @@
+@use '../../../../ui-kit/src/lib/breakpoint-mixins' as bp;
+
+:host {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 16px 44px;
+
+    @include bp.screen-md {
+        padding: 32px 16px 48px;
+    }
+}
+
+.stepper {
+    display: flex;
+    align-items: flex-start;
+    max-width: 560px;
+    width: 100%;
+    margin: 0 48px;
+}
+
+// ── Connector line ─────────────────────────────────────────────────────────
+
+.stepper__connector {
+    flex: 1;
+    height: 1.5px;
+    background-color: var(--achromatics-light-grey);
+    // Center the line with the circle: (circle-size / 2) - (line-height / 2)
+    margin-top: 12px; // mobile: (26px / 2) - (1.5px / 2) ≈ 12px
+
+    @include bp.screen-md {
+        margin-top: 17px; // desktop: (36px / 2) - (1.5px / 2) ≈ 17px
+    }
+
+    transition: background-color 0.3s ease;
+
+    &--completed {
+        background-color: var(--primary-forest);
+    }
+}
+
+// ── Step ──────────────────────────────────────────────────────────────────
+
+.stepper__step {
+    position: relative;
+    flex-shrink: 0;
+    // Fixed to circle size so connector touches circle edges directly
+    width: 26px;
+    height: 26px;
+
+    @include bp.screen-md {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+// ── Circle button ─────────────────────────────────────────────────────────
+
+.stepper__circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid var(--achromatics-light-grey);
+    background-color: transparent;
+    color: var(--achromatics-light-grey);
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    pointer-events: none;
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+
+    @include bp.screen-md {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .stepper__step--active &,
+    .stepper__step--completed & {
+        background-color: var(--primary-forest);
+        border-color: var(--primary-forest);
+        color: var(--white);
+        cursor: pointer;
+        pointer-events: auto;
+    }
+}
+
+// ── Label ─────────────────────────────────────────────────────────────────
+
+.stepper__label {
+    position: absolute;
+    // mobile: circle(26px) + gap(6px)
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 9px;
+    color: var(--achromatics-light-grey);
+    white-space: nowrap;
+    text-align: center;
+    transition: color 0.3s ease;
+
+    @include bp.screen-md {
+        // desktop: circle(36px) + gap(8px)
+        top: 44px;
+        font-size: 12px;
+    }
+
+    .stepper__step--active & {
+        color: var(--primary-forest);
+        font-weight: 600;
+    }
+
+    .stepper__step--completed & {
+        color: var(--primary-forest);
+    }
+}

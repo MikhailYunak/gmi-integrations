@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+// ── Shared form-field layout ──────────────────────────────────────────────────
+.ui-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    &__label-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    &__label {
+        font-size: 13px;
+        line-height: 1.4;
+        color: var(--achromatics-grey);
+        cursor: pointer;
+    }
+
+    &__required {
+        color: var(--achromatics-grey);
+    }
+
+    &__tooltip-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+        color: var(--secondary-gray);
+        line-height: 1;
+
+        .material-symbols-outlined {
+            font-size: 16px;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--primary-lime);
+            border-radius: 50%;
+        }
+    }
+
+    &__hint {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 12px;
+        line-height: 1.4;
+        color: var(--achromatics-grey);
+
+        &[data-hint-state='success'] {
+            color: var(--primary-forest);
+        }
+
+        &[data-hint-state='warning'] {
+            color: #f97316;
+        }
+
+        &[data-hint-state='error'] {
+            color: #ef4444;
+        }
+
+        &-icon {
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+    }
+}
+
+// ── Input wrapper (pill shape) ────────────────────────────────────────────────
+.ui-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 56px;
+    padding: 0 20px;
+    border: 1.5px solid var(--secondary-gray);
+    border-radius: 999px;
+    background: var(--white);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+    &:hover:not(.is-disabled) {
+        border-color: var(--primary-lime);
+    }
+
+    &.is-focused {
+        border-color: var(--primary-lime);
+        box-shadow: 0 0 0 4px var(--lime-opacity-400);
+    }
+
+    &.is-filled:not(.is-focused) {
+        border-color: var(--primary-black);
+
+        &:hover {
+            border-color: var(--primary-lime);
+        }
+    }
+
+    &[data-hint-state='error'] {
+        border-color: #ef4444;
+
+        &.is-focused {
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+        }
+    }
+
+    &[data-hint-state='success'].is-filled {
+        border-color: var(--primary-forest);
+    }
+
+    &.is-disabled {
+        background: var(--disabled-bg);
+        border-color: var(--secondary-gray);
+        opacity: 0.6;
+        pointer-events: none;
+    }
+
+    // Stepper variant
+    &--stepper {
+        padding: 0 10px;
+        gap: 4px;
+    }
+}
+
+// ── Input element ─────────────────────────────────────────────────────────────
+.ui-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-family: var(--font-sans, 'Inter', sans-serif);
+    font-size: 16px;
+    color: var(--primary-black);
+
+    &::placeholder {
+        color: var(--secondary-gray);
+    }
+
+    &:disabled {
+        color: var(--secondary-gray);
+        cursor: not-allowed;
+    }
+
+    // Stepper: center-aligned number
+    &--stepper {
+        text-align: center;
+
+        // Hide native spinners
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        -moz-appearance: textfield;
+    }
+}
+
+// ── Stepper buttons ───────────────────────────────────────────────────────────
+.ui-input-stepper__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid var(--secondary-gray);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--primary-black);
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease;
+    user-select: none;
+
+    &:hover:not(:disabled) {
+        border-color: var(--primary-lime);
+        background: var(--lime-opacity-200);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--primary-lime);
+        outline-offset: 2px;
+    }
+
+    &:disabled {
+        color: var(--secondary-gray);
+        border-color: var(--secondary-gray);
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+}

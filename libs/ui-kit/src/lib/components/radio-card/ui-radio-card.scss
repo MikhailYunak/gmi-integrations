@@ -1,0 +1,136 @@
+// ── Card wrapper ──────────────────────────────────────────────────────────────
+.ui-radio-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    border: 1.5px solid var(--secondary-gray);
+    border-radius: 16px;
+    background: var(--white);
+    cursor: pointer;
+    user-select: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+    &:hover:not(.is-disabled) {
+        border-color: var(--primary-lime);
+    }
+
+    &:has(.ui-radio-card__native:focus-visible) {
+        border-color: var(--primary-lime);
+        box-shadow: 0 0 0 4px var(--lime-opacity-400);
+    }
+
+    &.is-active {
+        border-color: var(--primary-lime);
+    }
+
+    &.is-disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+}
+
+// ── Visually-hidden native input ──────────────────────────────────────────────
+.ui-radio-card__native {
+    appearance: none;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+// ── Header row: indicator + title ─────────────────────────────────────────────
+.ui-radio-card__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+// ── Radio indicator ───────────────────────────────────────────────────────────
+.ui-radio-card__indicator {
+    flex-shrink: 0;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--secondary-gray);
+    background: var(--white);
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease;
+
+    &::after {
+        content: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--white);
+    }
+
+    &.is-checked {
+        background: linear-gradient(var(--gradient-forest-pine));
+        border-color: transparent;
+
+        &::after {
+            content: '';
+        }
+    }
+
+    .ui-radio-card:hover:not(.is-disabled) &:not(.is-checked) {
+        border-color: var(--primary-lime);
+    }
+}
+
+// ── Title ─────────────────────────────────────────────────────────────────────
+.ui-radio-card__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--primary-black);
+    transition: color 0.2s ease;
+
+    .ui-radio-card.is-active & {
+        color: var(--primary-forest);
+    }
+}
+
+// ── Description ───────────────────────────────────────────────────────────────
+.ui-radio-card__description {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--achromatics-grey);
+}
+
+// ── Learn More link ───────────────────────────────────────────────────────────
+.ui-radio-card__link {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--primary-forest);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+        opacity: 0.75;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--primary-lime);
+        outline-offset: 2px;
+        border-radius: 2px;
+    }
+}

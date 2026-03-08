@@ -1,0 +1,62 @@
+<div class="ui-form-field">
+    @if (label()) {
+        <div class="ui-form-field__label-row">
+            <label [for]="textareaId" class="ui-form-field__label">
+                {{ label() }}@if (required()) {<span class="ui-form-field__required" aria-hidden="true"> *</span>}
+            </label>
+            @if (tooltip()) {
+                <button
+                    type="button"
+                    class="ui-form-field__tooltip-btn"
+                    [title]="tooltip()"
+                    [attr.aria-label]="tooltip()"
+                >
+                    <span class="material-symbols-outlined" aria-hidden="true">help</span>
+                </button>
+            }
+        </div>
+    }
+
+    <div
+        class="ui-textarea-wrapper"
+        [class.is-focused]="isFocused()"
+        [class.is-filled]="charCount() > 0"
+        [class.is-disabled]="isDisabled()"
+        [attr.data-hint-state]="effectiveHintState()"
+    >
+        <textarea
+            [id]="textareaId"
+            class="ui-textarea"
+            [placeholder]="placeholder()"
+            [rows]="rows()"
+            [disabled]="isDisabled()"
+            [value]="value()"
+            (input)="handleInput($event)"
+            (focus)="handleFocus()"
+            (blur)="handleBlur()"
+            [attr.aria-required]="required() || null"
+            [attr.aria-invalid]="effectiveHintState() === 'error' || null"
+            [attr.aria-describedby]="textareaId + '-hint'"
+        ></textarea>
+
+        <div class="ui-textarea-footer">
+            @if (maxLength() !== null) {
+                <span class="ui-textarea-counter" [class.is-over-limit]="isOverLimit()">
+                    {{ charCount() }}/{{ maxLength() }}
+                </span>
+            }
+        </div>
+    </div>
+
+    @if (effectiveHint()) {
+        <div
+            [id]="textareaId + '-hint'"
+            class="ui-form-field__hint"
+            [attr.data-hint-state]="effectiveHintState()"
+            [attr.role]="effectiveHintState() === 'error' ? 'alert' : null"
+        >
+            <span class="material-symbols-outlined ui-form-field__hint-icon" aria-hidden="true">{{ hintIcon() }}</span>
+            {{ effectiveHint() }}
+        </div>
+    }
+</div>
