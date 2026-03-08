@@ -1,0 +1,66 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    row-gap: 40px;
+}
+
+.swiper-track {
+    width: 100%;
+}
+
+swiper-slide {
+    height: auto;
+}
+
+/* ─── Navigation ──────────────────────────────────────────── */
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--swiper-nav-border, currentColor);
+    background: var(--swiper-nav-bg, transparent);
+    color: var(--swiper-nav-color, currentColor);
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        color 0.2s ease;
+
+    .material-symbols-outlined {
+        font-size: 28px;
+    }
+
+    &--next {
+        border-color: var(--swiper-nav-next-border, var(--swiper-nav-border, currentColor));
+        background: var(--swiper-nav-next-bg, var(--swiper-nav-bg, transparent));
+        color: var(--swiper-nav-next-color, var(--swiper-nav-color, currentColor));
+    }
+
+    &:hover {
+      background: var(--swiper-nav-active-bg, transparent);
+      border-color: var(--swiper-nav-active-border, var(--mint-200));
+      color: var(--swiper-nav-active-color, var(--white));
+        opacity: 0.8;
+    }
+
+    &:focus-visible {
+      background: var(--swiper-nav-active-bg, transparent);
+      border-color: var(--swiper-nav-active-border, var(--mint-200));
+      color: var(--swiper-nav-active-color, var(--white));
+        outline: 2px solid currentColor;
+        outline-offset: 3px;
+    }
+}

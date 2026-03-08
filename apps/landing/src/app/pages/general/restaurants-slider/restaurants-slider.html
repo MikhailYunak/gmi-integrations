@@ -1,0 +1,33 @@
+<div class="restaurants-header">
+    <h2 uiHeading class="text-gray-900 px-20 md:px-0">
+        <span uiHeading variant="italic">Restaurants</span>
+        we already work with
+    </h2>
+</div>
+
+<gmi-swiper-slider
+    [slides]="_restaurants"
+    [slideTemplate]="restaurantCardTpl"
+    navPrevLabel="Previous restaurant"
+    navNextLabel="Next restaurant"
+/>
+
+<ng-template #restaurantCardTpl let-item>
+    <article class="restaurant-card">
+        <div class="card-image-wrapper">
+            <img
+                [ngSrc]="_asRestaurant(item).imageSrc"
+                [alt]="_asRestaurant(item).name"
+                width="400"
+                height="225"
+                class="card-image"
+                disableOptimizedSrcset
+                loading="lazy"
+            />
+        </div>
+        <div class="card-body">
+            <h5 uiHeading class="uppercase">{{ _asRestaurant(item).name }}</h5>
+            <p class="card-description">{{ _asRestaurant(item).description }}</p>
+        </div>
+    </article>
+</ng-template>

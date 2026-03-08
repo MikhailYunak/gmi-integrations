@@ -25,6 +25,31 @@
         }
     }
 
+  .fixed-layout-bg__restaurants {
+    background-image:
+      url(/img/circles-yellow.svg),
+      url(/img/figure/radial-yellow-medium.svg),
+      url(/img/radial-violet.svg),
+      url(/img/circle-violet.svg),
+      linear-gradient(var(--gradient-bg));
+    background-repeat: no-repeat;
+    background-position:
+      -58px 44px,
+      28px 54px,
+      top 377px right 104px,
+      top 398px right 106px,
+      0 0;
+
+    @media (width >= 48rem /* 768px */) {
+      background-position:
+        102px 62px,
+        170px 78px,
+        top 416px right 152px,
+        top 433px right 156px,
+        0 0;
+    }
+  }
+
   .fixed-layout-bg__overall-rating {
     background-image:
       url(/img/figure/radial-mint.svg),

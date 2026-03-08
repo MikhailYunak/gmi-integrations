@@ -1,0 +1,29 @@
+<swiper-container init="false" #swiperEl class="swiper-track">
+  @for (slide of slides(); track $index) {
+    <swiper-slide>
+      <ng-template
+        [ngTemplateOutlet]="slideTemplate()"
+        [ngTemplateOutletContext]="{ $implicit: slide }"
+      ></ng-template>
+    </swiper-slide>
+  }
+</swiper-container>
+
+<div class="slider-nav" role="group" aria-label="Slider navigation">
+  <button
+    class="nav-btn nav-btn--prev"
+    type="button"
+    (click)="_slidePrev()"
+    [attr.aria-label]="navPrevLabel()"
+  >
+    <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
+  </button>
+  <button
+    class="nav-btn nav-btn--next"
+    type="button"
+    (click)="_slideNext()"
+    [attr.aria-label]="navNextLabel()"
+  >
+    <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+  </button>
+</div>

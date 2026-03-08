@@ -1,0 +1,75 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 64px;
+    row-gap: 38px;
+
+    /* nav button theming — outline prev, filled next */
+    --swiper-nav-border: var(--mint-200);
+    --swiper-nav-color: var(--mint-200);
+    --swiper-nav-active-border: var(--primary-forest);
+    --swiper-nav-active-bg: var(--primary-forest);
+
+    @media (width >= 48rem /* 768px */) {
+        row-gap: 48px;
+    }
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.restaurants-header {
+    padding-inline: 16px;
+    text-align: center;
+
+    @media (width >= 48rem /* 768px */) {
+        padding-inline: 48px;
+    }
+}
+
+/* ─── Restaurant Card ─────────────────────────────────────── */
+.restaurant-card {
+    display: flex;
+    flex-direction: column;
+    background: hsla(0, 0%, 100%, 0.8);
+    padding: 16px;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 100%;
+    //border: 1px solid rgba(0, 0, 0, 0.06);
+
+    @media (width >= 48rem /* 768px */) {
+        padding: 24px;
+    }
+}
+
+.card-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 16px;
+    background: hsla(0, 0%, 100%, 0.8);
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+
+  @media (width >= 48rem /* 768px */) {
+    padding: 10px 0 0 60px;
+    row-gap: 6px;
+  }
+}
+
+.card-description {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--achromatics-grey);
+}

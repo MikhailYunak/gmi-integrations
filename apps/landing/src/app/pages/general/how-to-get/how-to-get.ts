@@ -19,14 +19,14 @@ type Step = {
         </h2>
 
         <div class="flex flex-col md:flex-row md:items-center gap-x-40 gap-y-28">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-48 gap-x-20  flex-1 md:mt-68">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-48 gap-x-20  flex-1 md:mt-48">
                 @for (step of steps; track step.number) {
                     <div class="flex flex-col gap-12">
                         <div class="flex items-start gap-16">
                             <gmi-quarter-circle-element class="self-start" [color]="step.badgeColor">
                                 {{ step.number }}
                             </gmi-quarter-circle-element>
-                            <div class="flex flex-col pt-40 pr-40 gap-y-12 md:gap-y-16">
+                            <div class="flex flex-col pt-28 pr-40 gap-y-12 md:gap-y-16">
                                 <h5 uiHeading class="uppercase">{{ step.title }}</h5>
                                 <p class="text-body text-gray-600 step-description">{{ step.description }}</p>
                             </div>
@@ -55,7 +55,7 @@ type Step = {
             @media (min-width: 768px) {
                 row-gap: 0;
                 padding-top: 80px;
-                padding-bottom: 80px;
+                padding-bottom: 116px;
             }
         }
     `,
