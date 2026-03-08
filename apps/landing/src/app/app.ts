@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { filter, map, startWith } from 'rxjs';
 import { UiButtonDirective, UiHeader } from '@gmi-integrations/ui-kit';
 import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@gmi-integrations/shared';
 
@@ -7,31 +9,36 @@ import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@g
     selector: 'gmi-root',
     template: `
         @let _mobileMenuOpen = mobileMenuOpen();
+        @let _isGeneral = isGeneralRoute();
         <main>
             <ui-header class="sticky top-6 md:top-20 mx-6 md:mx-48 z-50">
                 <ng-container slot="start"><gmi-logo /></ng-container>
 
-                <ng-container slot="center"><gmi-nav-menu /></ng-container>
+                @if (_isGeneral) {
+                    <ng-container slot="center"><gmi-nav-menu /></ng-container>
+                }
 
                 <ng-container slot="end">
                     <div class="flex gap-x-16 md:gap-x-24">
                         <gmi-language-switcher />
 
-                        <button class="hidden md:inline-flex" type="button" uiButton="primary">Get insurance</button>
+                        @if (_isGeneral) {
+                            <button class="hidden md:inline-flex" type="button" uiButton="primary" [routerLink]="['/insurance']">Get insurance</button>
 
-                        <gmi-hamburger-button
-                            #hamburgerButtonRef="hamburger-button"
-                            class="hamburger-btn md:hidden"
-                            [isOpen]="_mobileMenuOpen"
-                            (menuOpen)="_menuOpenChanged()"
-                        >
-                            <span close class="hb-icon material-symbols-outlined" translate="no" aria-hidden="true">
-                                close
-                            </span>
-                            <span open class="hb-bar hb-bar--long"></span>
-                            <span open class="hb-bar"></span>
-                            <span open class="hb-bar"></span>
-                        </gmi-hamburger-button>
+                            <gmi-hamburger-button
+                                #hamburgerButtonRef="hamburger-button"
+                                class="hamburger-btn md:hidden"
+                                [isOpen]="_mobileMenuOpen"
+                                (menuOpen)="_menuOpenChanged()"
+                            >
+                                <span close class="hb-icon material-symbols-outlined" translate="no" aria-hidden="true">
+                                    close
+                                </span>
+                                <span open class="hb-bar hb-bar--long"></span>
+                                <span open class="hb-bar"></span>
+                                <span open class="hb-bar"></span>
+                            </gmi-hamburger-button>
+                        }
                     </div>
                 </ng-container>
             </ui-header>
@@ -45,11 +52,21 @@ import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@g
     `,
     styleUrl: 'app.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterOutlet, UiHeader, UiButtonDirective, LanguageSwitcher, Logo, NavMenu, MobileMenu, HamburgerButton]
+    imports: [RouterLink, RouterOutlet, UiHeader, UiButtonDirective, LanguageSwitcher, Logo, NavMenu, MobileMenu, HamburgerButton]
 })
 export class App {
     readonly mobileMenuOpen = signal(false);
     private readonly mobileMenu = viewChild<MobileMenu>('mobileMenu');
+
+    private readonly router = inject(Router);
+
+    readonly isGeneralRoute = toSignal(
+        this.router.events.pipe(
+            filter((e) => e instanceof NavigationEnd),
+            map(() => this.router.url.startsWith('/general')),
+            startWith(this.router.url.startsWith('/general'))
+        )
+    );
 
     protected _menuOpenChanged(): void {
         if (this.mobileMenuOpen()) {

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit';
 
 @Component({
@@ -22,7 +23,7 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
                     spam. No hidden fees.
                 </p>
             </div>
-            <button uiButton="primary">Get Insurance</button>
+            <button type="button" uiButton="primary" [routerLink]="['/insurance']">Get Insurance</button>
         </div>
 
         <div class="relative self-center shrink-0 w-full md:w-573 h-299 md:h-500">
@@ -45,6 +46,6 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
         class: 'sub-header'
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgOptimizedImage, UiButtonDirective, UiHeadingDirective]
+    imports: [NgOptimizedImage, RouterLink, UiButtonDirective, UiHeadingDirective]
 })
 export class SubHeader {}

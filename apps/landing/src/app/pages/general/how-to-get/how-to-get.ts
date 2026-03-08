@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit';
 import { QuarterCircleElement } from './quarter-circle-element/quarter-circle-element';
 
@@ -41,7 +42,7 @@ type Step = {
         </div>
 
         <div class="flex justify-center">
-            <button uiButton="primary">Get Insurance</button>
+            <button type="button" uiButton="primary" [routerLink]="['/insurance']">Get Insurance</button>
         </div>
     `,
     styles: `
@@ -63,7 +64,7 @@ type Step = {
         class: 'how-to-get'
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgOptimizedImage, UiButtonDirective, UiHeadingDirective, QuarterCircleElement]
+    imports: [NgOptimizedImage, RouterLink, UiButtonDirective, UiHeadingDirective, QuarterCircleElement]
 })
 export class HowToGet {
     readonly steps: Step[] = [

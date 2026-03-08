@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit';
 import { SwiperSlider } from '@gmi-integrations/shared';
 
@@ -46,7 +47,7 @@ const REVIEWS: Review[] = [
     templateUrl: './reviews-section.html',
     styleUrl: './reviews-section.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [SwiperSlider, UiButtonDirective, UiHeadingDirective],
+    imports: [RouterLink, SwiperSlider, UiButtonDirective, UiHeadingDirective],
 })
 export class ReviewsSection {
     protected readonly _reviews: unknown[] = REVIEWS;

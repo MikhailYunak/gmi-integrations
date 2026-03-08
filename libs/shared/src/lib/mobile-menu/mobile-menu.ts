@@ -23,7 +23,7 @@ const NAV_ITEMS = [
         </nav>
 
         <div class="mobile-menu-footer">
-            <button type="button" uiButton="primary">Get Insurance</button>
+            <button type="button" uiButton="primary" [routerLink]="['/insurance']" (click)="handleClose()">Get Insurance</button>
         </div>
     `,
     styleUrl: 'mobile-menu.scss',
