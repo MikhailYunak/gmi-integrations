@@ -10,7 +10,7 @@
 
   --color-green-500: var(--primary-forest);
   --color-green-600: var(--primary-forest-600);
-  --color-green-700: #043B2E;
+  --color-green-700: var(--primary-forest-700);
 
   --color-mint-100: var(--secondary-mint);
 

@@ -17,4 +17,14 @@
 <section class="bg-linear-(--gradient-bg) h-740">
 
 </section>
+
+<gmi-marquee-section [templateRef]="itemTpl" />
+
 <gmi-footer />
+
+<ng-template #itemTpl>
+  <div class="flex h-28 shrink-0 gap-x-16 whitespace-nowrap">
+    <img src="/img/radial-small.svg" alt="radial-small">
+    <span class="text-green-700 text-xl uppercase font-medium">All Safe.Insure</span>
+  </div>
+</ng-template>

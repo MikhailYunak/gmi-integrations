@@ -5,3 +5,4 @@ export * from './lib/mobile-menu';
 export * from './lib/nav-menu';
 export * from './lib/not-found';
 export * from './lib/logo';
+export * from './lib/marquee-section';
