@@ -1,0 +1,38 @@
+<div
+    class="ui-amount-picker"
+    role="group"
+    [attr.aria-label]="'Amount picker ' + pickerId"
+>
+    @if (allowCustom()) {
+        <div
+            class="ui-amount-pill ui-amount-pill--custom"
+            [class.is-selected]="isCustomSelected()"
+            [class.is-focused]="isCustomFocused()"
+        >
+            <span class="ui-amount-pill__currency" aria-hidden="true">{{ currency() }}</span>
+            <input
+                class="ui-amount-pill__custom-input"
+                type="text"
+                inputmode="decimal"
+                [attr.aria-label]="'Custom amount'"
+                [value]="customRaw()"
+                (input)="handleCustomInput($event)"
+                (focus)="handleCustomFocus()"
+                (blur)="handleCustomBlur()"
+            />
+        </div>
+    }
+
+    @for (opt of formattedOptions(); track opt.value) {
+        <button
+            type="button"
+            class="ui-amount-pill"
+            [class.is-selected]="selectedValue() === opt.value"
+            [attr.aria-pressed]="selectedValue() === opt.value"
+            (click)="selectPreset(opt.value)"
+        >
+            <span class="ui-amount-pill__currency" aria-hidden="true">{{ currency() }}</span>
+            <span class="ui-amount-pill__label">{{ opt.label }}</span>
+        </button>
+    }
+</div>

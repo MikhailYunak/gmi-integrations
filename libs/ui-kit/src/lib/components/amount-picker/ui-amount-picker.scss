@@ -1,0 +1,122 @@
+// ── Wrapper ───────────────────────────────────────────────────────────────────
+.ui-amount-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+// ── Shared pill base ──────────────────────────────────────────────────────────
+.ui-amount-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 44px;
+    padding: 0 16px;
+    border: 1.5px solid var(--secondary-gray);
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    font-family: var(--font-sans, 'Inter', sans-serif);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--achromatics-grey);
+    transition:
+        border-color 0.15s ease,
+        background 0.15s ease,
+        color 0.15s ease,
+        box-shadow 0.15s ease;
+    white-space: nowrap;
+    user-select: none;
+
+    &:hover:not(.is-selected) {
+        border-color: var(--primary-lime);
+        color: var(--primary-black);
+    }
+
+    &:focus-visible {
+        outline: none;
+        border-color: var(--primary-lime);
+        box-shadow: 0 0 0 3px var(--lime-opacity-400);
+    }
+
+    // Selected state — solid forest green
+    &.is-selected {
+        background: linear-gradient(var(--gradient-forest-pine));
+        border-color: transparent;
+        color: var(--white);
+    }
+
+    // Currency icon circle
+    &__currency {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 1.5px solid currentColor;
+        font-size: 11px;
+        font-weight: 700;
+        flex-shrink: 0;
+        line-height: 1;
+        transition: border-color 0.15s ease;
+
+        .ui-amount-pill.is-selected & {
+            border-color: var(--white);
+        }
+    }
+
+    &__label {
+        line-height: 1;
+    }
+}
+
+// ── Custom amount pill ────────────────────────────────────────────────────────
+.ui-amount-pill--custom {
+    // override: not a <button> so needs pointer cursor from parent label
+    cursor: text;
+    min-width: 110px;
+    padding: 0 12px;
+
+    &.is-focused,
+    &:focus-within {
+        border-color: var(--primary-lime);
+        box-shadow: 0 0 0 3px var(--lime-opacity-400);
+        color: var(--primary-black);
+    }
+
+    &.is-selected:not(.is-focused):not(:focus-within) {
+        background: linear-gradient(var(--gradient-forest-pine));
+        border-color: transparent;
+        color: var(--white);
+    }
+
+    // Override: no button styles
+    border: 1.5px solid var(--secondary-gray);
+    background: transparent;
+}
+
+.ui-amount-pill__custom-input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    color: inherit;
+    width: 60px;
+
+    &::placeholder {
+        color: var(--secondary-gray);
+    }
+
+    // Hide number arrows
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+
+    -moz-appearance: textfield;
+}
