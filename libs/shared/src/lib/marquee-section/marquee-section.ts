@@ -16,13 +16,17 @@ import { NgTemplateOutlet } from '@angular/common';
                 }
             </div>
         </div>
+
         <ng-template #defaultTpl>
-            <span>example</span>
+            <div class="flex h-28 shrink-0 gap-x-16 whitespace-nowrap">
+                <img src="/img/radial-small.svg" alt="radial-small" />
+                <span class="text-green-700 text-xl uppercase font-medium">All Safe.Insure</span>
+            </div>
         </ng-template>
     `,
     imports: [NgTemplateOutlet],
     styleUrl: './marquee-section.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarqueeSection {
     readonly templateRef = input<TemplateRef<unknown> | undefined>(undefined);
