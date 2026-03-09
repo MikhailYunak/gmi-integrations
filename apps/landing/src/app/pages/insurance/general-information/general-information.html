@@ -6,7 +6,7 @@
     <p class="text-gray-600">Please answer all questions accurately and completely. All fields are required.</p>
 </header>
 
-<form class="flex flex-col gap-y-48 w-full" [formGroup]="svc.form" (ngSubmit)="svc.submitStepOne()" novalidate>
+<form class="flex flex-col gap-y-48 w-full" [formGroup]="svc.form" (ngSubmit)="svc.submit()" novalidate>
     <!-- ── General Information ───────────────────────────────────────── -->
     <section class="flex flex-col items-center gap-y-24" formGroupName="generalInfo">
         <h2 class="form-sub-title text-green-700">General Information</h2>

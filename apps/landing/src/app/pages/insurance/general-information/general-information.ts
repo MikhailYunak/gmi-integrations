@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 import {
     UiButtonDirective,
-    UiCheckbox,
     UiCheckboxCard,
     UiDropdown,
     UiDropdownOption,
@@ -14,7 +13,7 @@ import {
     UiRadioCardGroup,
     UiTextarea
 } from '@gmi-integrations/ui-kit';
-import { InsuranceFormService } from '../services/insurance-form.service';
+import { GeneralInformationFormService } from './general-information-form.service';
 
 // ── US States list ─────────────────────────────────────────────────────────────
 const US_STATES: UiDropdownOption[] = [
@@ -83,7 +82,7 @@ const US_STATES: UiDropdownOption[] = [
         }
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [InsuranceFormService],
+    providers: [GeneralInformationFormService],
     imports: [
         ReactiveFormsModule,
         UiInput,
@@ -98,7 +97,7 @@ const US_STATES: UiDropdownOption[] = [
     ]
 })
 export class GeneralInformation {
-    protected readonly svc = inject(InsuranceFormService);
+    protected readonly svc = inject(GeneralInformationFormService);
 
     protected readonly states = US_STATES;
 

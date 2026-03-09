@@ -2,7 +2,7 @@
     <h1 uiHeading class="text-[36px] md:text-[56px]">About your restaurant</h1>
 </header>
 
-<form class="flex flex-col gap-y-48 w-full" [formGroup]="svc.step2Form" (ngSubmit)="svc.submitStepTwo()" novalidate>
+<form class="flex flex-col gap-y-48 w-full" [formGroup]="svc.form" (ngSubmit)="svc.submit()" novalidate>
     <!-- ── Financials ──────────────────────────────────────────────────── -->
     <section class="flex flex-col gap-y-24" formGroupName="financials">
         <div>
@@ -22,8 +22,8 @@
                 placeholder="500,000"
                 [required]="true"
                 formControlName="annualEarnings"
-                [hintState]="hintState(svc.step2Form.controls.financials.controls.annualEarnings)"
-                [hint]="hintMsg(svc.step2Form.controls.financials.controls.annualEarnings)"
+                [hintState]="hintState(svc.form.controls.financials.controls.annualEarnings)"
+                [hint]="hintMsg(svc.form.controls.financials.controls.annualEarnings)"
             >
                 <span uiInputPrefix class="inline-flex items-center py-0 pr-8 pl-12 cursor-default shrink-0 text-gray-600" aria-hidden="true">
                     <span class="material-symbols-outlined text-[18px]">paid</span>
@@ -50,8 +50,8 @@
                 placeholder="500,000"
                 [required]="true"
                 formControlName="annualPayroll"
-                [hintState]="hintState(svc.step2Form.controls.financials.controls.annualPayroll)"
-                [hint]="hintMsg(svc.step2Form.controls.financials.controls.annualPayroll)"
+                [hintState]="hintState(svc.form.controls.financials.controls.annualPayroll)"
+                [hint]="hintMsg(svc.form.controls.financials.controls.annualPayroll)"
             >
                 <span uiInputPrefix class="inline-flex items-center py-0 pr-8 pl-12 cursor-default shrink-0 text-gray-600" aria-hidden="true">
                     <span class="material-symbols-outlined text-[18px]">paid</span>
@@ -86,8 +86,8 @@
                     placeholder="Enter Street Address"
                     [required]="true"
                     formControlName="street"
-                    [hintState]="hintState(svc.step2Form.controls.primaryLocation.controls.street)"
-                    [hint]="hintMsg(svc.step2Form.controls.primaryLocation.controls.street)"
+                    [hintState]="hintState(svc.form.controls.primaryLocation.controls.street)"
+                    [hint]="hintMsg(svc.form.controls.primaryLocation.controls.street)"
                 />
 
                 <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
@@ -95,23 +95,23 @@
                         placeholder="Enter City"
                         [required]="true"
                         formControlName="city"
-                        [hintState]="hintState(svc.step2Form.controls.primaryLocation.controls.city)"
-                        [hint]="hintMsg(svc.step2Form.controls.primaryLocation.controls.city)"
+                        [hintState]="hintState(svc.form.controls.primaryLocation.controls.city)"
+                        [hint]="hintMsg(svc.form.controls.primaryLocation.controls.city)"
                     />
                     <ui-dropdown
                         placeholder="Enter State"
                         [required]="true"
                         [options]="states"
                         formControlName="state"
-                        [hintState]="hintState(svc.step2Form.controls.primaryLocation.controls.state)"
-                        [hint]="hintMsg(svc.step2Form.controls.primaryLocation.controls.state)"
+                        [hintState]="hintState(svc.form.controls.primaryLocation.controls.state)"
+                        [hint]="hintMsg(svc.form.controls.primaryLocation.controls.state)"
                     />
                     <ui-input
                         placeholder="Enter Zip Code"
                         [required]="true"
                         formControlName="zip"
-                        [hintState]="hintState(svc.step2Form.controls.primaryLocation.controls.zip)"
-                        [hint]="hintMsg(svc.step2Form.controls.primaryLocation.controls.zip)"
+                        [hintState]="hintState(svc.form.controls.primaryLocation.controls.zip)"
+                        [hint]="hintMsg(svc.form.controls.primaryLocation.controls.zip)"
                     />
                 </div>
             </div>
@@ -143,8 +143,8 @@
                     placeholder="Enter Street Address"
                     [required]="true"
                     formControlName="street"
-                    [hintState]="hintState(svc.step2Form.controls.mailingAddress.controls.street)"
-                    [hint]="hintMsg(svc.step2Form.controls.mailingAddress.controls.street)"
+                    [hintState]="hintState(svc.form.controls.mailingAddress.controls.street)"
+                    [hint]="hintMsg(svc.form.controls.mailingAddress.controls.street)"
                 />
 
                 <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
@@ -152,23 +152,23 @@
                         placeholder="Enter City"
                         [required]="true"
                         formControlName="city"
-                        [hintState]="hintState(svc.step2Form.controls.mailingAddress.controls.city)"
-                        [hint]="hintMsg(svc.step2Form.controls.mailingAddress.controls.city)"
+                        [hintState]="hintState(svc.form.controls.mailingAddress.controls.city)"
+                        [hint]="hintMsg(svc.form.controls.mailingAddress.controls.city)"
                     />
                     <ui-dropdown
                         placeholder="Enter State"
                         [required]="true"
                         [options]="states"
                         formControlName="state"
-                        [hintState]="hintState(svc.step2Form.controls.mailingAddress.controls.state)"
-                        [hint]="hintMsg(svc.step2Form.controls.mailingAddress.controls.state)"
+                        [hintState]="hintState(svc.form.controls.mailingAddress.controls.state)"
+                        [hint]="hintMsg(svc.form.controls.mailingAddress.controls.state)"
                     />
                     <ui-input
                         placeholder="Enter Zip Code"
                         [required]="true"
                         formControlName="zip"
-                        [hintState]="hintState(svc.step2Form.controls.mailingAddress.controls.zip)"
-                        [hint]="hintMsg(svc.step2Form.controls.mailingAddress.controls.zip)"
+                        [hintState]="hintState(svc.form.controls.mailingAddress.controls.zip)"
+                        [hint]="hintMsg(svc.form.controls.mailingAddress.controls.zip)"
                     />
                 </div>
             </div>
@@ -182,7 +182,7 @@
     >
         <div class="flex justify-between w-full max-w-664">
             <button uiButton="outline" type="button" (click)="svc.goBack()">Back</button>
-            <button uiButton [loading]="svc.isLoading()" type="submit" [disabled]="svc.step2Form.invalid">Continue</button>
+            <button uiButton [loading]="svc.isLoading()" type="submit" [disabled]="svc.form.invalid">Continue</button>
         </div>
     </footer>
 </form>

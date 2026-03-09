@@ -49,12 +49,12 @@ export type StepThreeModel = {
         glLimit: number;
     };
     cyberCoverage: {
-        limits: string; // e.g. "25000/50000"
-    };
+        limits: string; // e.g. "50000/50000/25000"
+    } | null;
     epli: {
         limits: string; // e.g. "50000/50000"
         retention: number;
-    };
+    } | null;
     liquorLiability: {
         shouldInclude: boolean;
         alcoholicBeverageSales: number;

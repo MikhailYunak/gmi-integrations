@@ -10,7 +10,7 @@ import {
     UiRadioCard,
     UiRadioCardGroup,
 } from '@gmi-integrations/ui-kit';
-import { InsuranceFormService } from '../services/insurance-form.service';
+import { AboutYourRestaurantFormService } from './about-your-restaurant-form.service';
 
 const US_STATES: UiDropdownOption[] = [
     { label: 'Alabama', value: 'AL' },
@@ -78,7 +78,7 @@ const US_STATES: UiDropdownOption[] = [
         }
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [InsuranceFormService],
+    providers: [AboutYourRestaurantFormService],
     imports: [
         ReactiveFormsModule,
         UiInput,
@@ -90,17 +90,17 @@ const US_STATES: UiDropdownOption[] = [
     ],
 })
 export class AboutYourRestaurant {
-    protected readonly svc = inject(InsuranceFormService);
+    protected readonly svc = inject(AboutYourRestaurantFormService);
 
     protected readonly states = US_STATES;
 
     protected hintState(control: AbstractControl): UiInputHintState {
-        this.svc.step2FormChange();
+        this.svc.formChange();
         return control.invalid && control.touched ? 'error' : 'default';
     }
 
     protected hintMsg(control: AbstractControl): string {
-        this.svc.step2FormChange();
+        this.svc.formChange();
         if (!control.invalid || !control.touched) {
             return '';
         }
@@ -108,8 +108,8 @@ export class AboutYourRestaurant {
             return 'This field is required';
         }
         if (control.errors?.['pattern']) {
-            const zip = this.svc.step2Form.controls.primaryLocation.controls.zip;
-            const mailingZip = this.svc.step2Form.controls.mailingAddress.controls.zip;
+            const zip = this.svc.form.controls.primaryLocation.controls.zip;
+            const mailingZip = this.svc.form.controls.mailingAddress.controls.zip;
             if (control === zip || control === mailingZip) {
                 return 'Enter a 5-digit zip code';
             }
