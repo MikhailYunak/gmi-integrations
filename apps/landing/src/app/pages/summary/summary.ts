@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { Footer } from '@gmi-integrations/shared';
-import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit';
 import { InsuranceStorageService } from '../insurance/services/insurance-storage.service';
+import { SummarySubHeader } from './sub-header/summary-sub-header';
+import {HelpBlock} from "./help-block/help-block.component";
 
 type BillingCycle = 'monthly' | 'yearly';
 
@@ -12,27 +11,21 @@ type CoterieQuote = {
     annualPremium: number;
 };
 
-const HELP_ITEMS = [
-    'Obtain Your Certificate Of Insurance',
-    'Billing And Payments',
-    'Assistance Filing A Claim',
-    'Assistance Filing A Claim',
-    'Explore FAQs',
-] as const;
-
 @Component({
     selector: 'gmi-summary',
     templateUrl: './summary.html',
     styleUrl: './summary.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgOptimizedImage, RouterLink, Footer, UiHeadingDirective, UiButtonDirective, CurrencyPipe],
+    imports: [
+        Footer,
+        SummarySubHeader,
+        HelpBlock
+    ]
 })
 export class Summary {
     private readonly _storage = inject(InsuranceStorageService);
 
     protected readonly _billingCycle = signal<BillingCycle>('monthly');
-
-    protected readonly _helpItems = HELP_ITEMS;
 
     private readonly _coterieQuote = computed((): CoterieQuote | null => {
         const raw = this._storage.get()?.coterieResponse;
@@ -46,7 +39,9 @@ export class Summary {
     protected readonly _annualSavings = computed(() => {
         const monthly = this._monthlyPremium();
         const annual = this._annualPremium();
-        if (monthly === null || annual === null) {return null;}
+        if (monthly === null || annual === null) {
+            return null;
+        }
         return Math.round(monthly * 12 - annual);
     });
 
