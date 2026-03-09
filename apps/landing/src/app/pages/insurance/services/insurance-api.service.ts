@@ -2,12 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import type { Observable } from 'rxjs';
-import {
-    ConflictErrorBody,
-    QuoteApplication,
-    QuoteApplicationFull,
-    StepOneModel,
-} from '../models/insurance.models';
+import { ConflictErrorBody, QuoteApplicationFull, StepOneModel, StepTwoModel } from '../models/insurance.models';
 
 const API_BASE = 'https://quote.allsafe.insure/api';
 
@@ -33,6 +28,12 @@ export class InsuranceApiService {
             .pipe(catchError(this._handleError));
     }
 
+    updateStepTwo(uuid: string, stepTwo: StepTwoModel): Observable<QuoteApplicationFull> {
+        return this._http
+            .put<QuoteApplicationFull>(`${API_BASE}/quote-applications/${uuid}/step-two`, stepTwo)
+            .pipe(catchError(this._handleError));
+    }
+
     cancelApplication(uuid: string): Observable<void> {
         return this._http
             .post<void>(`${API_BASE}/quote-applications/${uuid}/cancel`, null)
@@ -44,8 +45,6 @@ export class InsuranceApiService {
     }
 }
 
-export function isConflictError(
-    error: HttpErrorResponse,
-): error is HttpErrorResponse & { error: ConflictErrorBody } {
+export function isConflictError(error: HttpErrorResponse): error is HttpErrorResponse & { error: ConflictErrorBody } {
     return error.status === 409 && !!error.error?.activeQuoteUuid;
 }

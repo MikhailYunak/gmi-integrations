@@ -1,0 +1,188 @@
+<header class="flex flex-col gap-y-8 text-center">
+    <h1 uiHeading class="text-[36px] md:text-[56px]">About your restaurant</h1>
+</header>
+
+<form class="flex flex-col gap-y-48 w-full" [formGroup]="svc.step2Form" (ngSubmit)="svc.submitStepTwo()" novalidate>
+    <!-- ── Financials ──────────────────────────────────────────────────── -->
+    <section class="flex flex-col gap-y-24" formGroupName="financials">
+        <div>
+            <p class="text-body-medium text-green-900 m-0 mb-12">
+                Annually, my business earns
+                <span class="text-green-500">(before taxes)</span>
+                <button
+                    type="button"
+                    class="inline-flex items-center justify-center w-20 h-20 ml-4 border-none bg-transparent cursor-pointer text-gray-600 align-middle focus-visible:outline-2 focus-visible:outline-lime-400 focus-visible:rounded"
+                    title="Total revenue your business earns before taxes each year"
+                    aria-label="Total revenue your business earns before taxes each year"
+                >
+                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">help</span>
+                </button>
+            </p>
+            <ui-input
+                placeholder="500,000"
+                [required]="true"
+                formControlName="annualEarnings"
+                [hintState]="hintState(svc.step2Form.controls.financials.controls.annualEarnings)"
+                [hint]="hintMsg(svc.step2Form.controls.financials.controls.annualEarnings)"
+            >
+                <span uiInputPrefix class="inline-flex items-center py-0 pr-8 pl-12 cursor-default shrink-0 text-gray-600" aria-hidden="true">
+                    <span class="material-symbols-outlined text-[18px]">paid</span>
+                </span>
+                <span uiInputSuffix class="inline-flex items-center py-0 pl-8 pr-12 shrink-0 text-gray-500 text-sm font-medium" aria-hidden="true">
+                    E.G.
+                </span>
+            </ui-input>
+        </div>
+
+        <div>
+            <p class="text-body-medium text-green-900 m-0 mb-12">
+                Annually, I pay myself and my employees a total of
+                <button
+                    type="button"
+                    class="inline-flex items-center justify-center w-20 h-20 ml-4 border-none bg-transparent cursor-pointer text-gray-600 align-middle focus-visible:outline-2 focus-visible:outline-lime-400 focus-visible:rounded"
+                    title="Total amount paid to yourself and all employees annually, including wages and salaries"
+                    aria-label="Total amount paid to yourself and all employees annually, including wages and salaries"
+                >
+                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">help</span>
+                </button>
+            </p>
+            <ui-input
+                placeholder="500,000"
+                [required]="true"
+                formControlName="annualPayroll"
+                [hintState]="hintState(svc.step2Form.controls.financials.controls.annualPayroll)"
+                [hint]="hintMsg(svc.step2Form.controls.financials.controls.annualPayroll)"
+            >
+                <span uiInputPrefix class="inline-flex items-center py-0 pr-8 pl-12 cursor-default shrink-0 text-gray-600" aria-hidden="true">
+                    <span class="material-symbols-outlined text-[18px]">paid</span>
+                </span>
+                <span uiInputSuffix class="inline-flex items-center py-0 pl-8 pr-12 shrink-0 text-gray-500 text-sm font-medium" aria-hidden="true">
+                    E.G.
+                </span>
+            </ui-input>
+        </div>
+    </section>
+
+    <!-- ── Business Location ──────────────────────────────────────────── -->
+    <section class="flex flex-col gap-y-24 mb-130">
+        <h2 class="form-sub-title text-green-700 text-center">Business Location and Type of Building</h2>
+
+        <div formGroupName="primaryLocation">
+            <div class="flex items-center gap-6 mb-4">
+                <span class="text-body-medium text-green-900 font-bold">Primary Location Address</span>
+                <button
+                    type="button"
+                    class="inline-flex items-center justify-center w-20 h-20 border-none bg-transparent cursor-pointer text-gray-600 focus-visible:outline-2 focus-visible:outline-lime-400 focus-visible:rounded"
+                    title="The physical address where your business primarily operates"
+                    aria-label="The physical address where your business primarily operates"
+                >
+                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">help</span>
+                </button>
+            </div>
+            <p class="text-gray-600 text-sm m-0 mb-16">Where is your business located?</p>
+
+            <div class="flex flex-col gap-y-12">
+                <ui-input
+                    placeholder="Enter Street Address"
+                    [required]="true"
+                    formControlName="street"
+                    [hintState]="hintState(svc.step2Form.controls.primaryLocation.controls.street)"
+                    [hint]="hintMsg(svc.step2Form.controls.primaryLocation.controls.street)"
+                />
+
+                <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+                    <ui-input
+                        placeholder="Enter City"
+                        [required]="true"
+                        formControlName="city"
+                        [hintState]="hintState(svc.step2Form.controls.primaryLocation.controls.city)"
+                        [hint]="hintMsg(svc.step2Form.controls.primaryLocation.controls.city)"
+                    />
+                    <ui-dropdown
+                        placeholder="Enter State"
+                        [required]="true"
+                        [options]="states"
+                        formControlName="state"
+                        [hintState]="hintState(svc.step2Form.controls.primaryLocation.controls.state)"
+                        [hint]="hintMsg(svc.step2Form.controls.primaryLocation.controls.state)"
+                    />
+                    <ui-input
+                        placeholder="Enter Zip Code"
+                        [required]="true"
+                        formControlName="zip"
+                        [hintState]="hintState(svc.step2Form.controls.primaryLocation.controls.zip)"
+                        [hint]="hintMsg(svc.step2Form.controls.primaryLocation.controls.zip)"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <p class="text-body-medium text-green-900 m-0 mb-12">
+                Is your mailing address the same as your business address?
+                <span class="text-red-500" aria-hidden="true">*</span>
+            </p>
+
+            <ui-radio-card-group
+                class="flex flex-wrap gap-12 [&_ui-radio-card]:flex-1 [&_ui-radio-card]:min-w-120"
+                formControlName="isMailingSameAsPrimary"
+                aria-label="Mailing address same as business address"
+            >
+                <ui-radio-card class="md:max-w-128" title="Yes" [value]="true" />
+                <ui-radio-card class="md:max-w-128" title="No" [value]="false" />
+            </ui-radio-card-group>
+        </div>
+
+        @if (svc.showMailingAddress()) {
+        <div formGroupName="mailingAddress">
+            <p class="text-body-medium text-green-900 font-bold m-0 mb-4">Mailing Address</p>
+            <p class="text-gray-600 text-sm m-0 mb-16">Where should we send your policy documents?</p>
+
+            <div class="flex flex-col gap-y-12">
+                <ui-input
+                    placeholder="Enter Street Address"
+                    [required]="true"
+                    formControlName="street"
+                    [hintState]="hintState(svc.step2Form.controls.mailingAddress.controls.street)"
+                    [hint]="hintMsg(svc.step2Form.controls.mailingAddress.controls.street)"
+                />
+
+                <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+                    <ui-input
+                        placeholder="Enter City"
+                        [required]="true"
+                        formControlName="city"
+                        [hintState]="hintState(svc.step2Form.controls.mailingAddress.controls.city)"
+                        [hint]="hintMsg(svc.step2Form.controls.mailingAddress.controls.city)"
+                    />
+                    <ui-dropdown
+                        placeholder="Enter State"
+                        [required]="true"
+                        [options]="states"
+                        formControlName="state"
+                        [hintState]="hintState(svc.step2Form.controls.mailingAddress.controls.state)"
+                        [hint]="hintMsg(svc.step2Form.controls.mailingAddress.controls.state)"
+                    />
+                    <ui-input
+                        placeholder="Enter Zip Code"
+                        [required]="true"
+                        formControlName="zip"
+                        [hintState]="hintState(svc.step2Form.controls.mailingAddress.controls.zip)"
+                        [hint]="hintMsg(svc.step2Form.controls.mailingAddress.controls.zip)"
+                    />
+                </div>
+            </div>
+        </div>
+        }
+    </section>
+
+    <!-- ── Footer ────────────────────────────────────────────────────── -->
+    <footer
+        class="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-16 px-16 py-12 bg-green-700 border-t border-gray-500 z-50 md:px-48 md:py-16"
+    >
+        <div class="flex justify-between w-full max-w-664">
+            <button uiButton="outline" type="button" (click)="svc.goBack()">Back</button>
+            <button uiButton [loading]="svc.isLoading()" type="submit" [disabled]="svc.step2Form.invalid">Continue</button>
+        </div>
+    </footer>
+</form>
