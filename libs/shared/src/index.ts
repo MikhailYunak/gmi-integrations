@@ -8,3 +8,4 @@ export * from './lib/logo';
 export * from './lib/marquee-section';
 export * from './lib/gmi-slider';
 export * from './lib/form-stepper';
+export * from './lib/pricing-card';

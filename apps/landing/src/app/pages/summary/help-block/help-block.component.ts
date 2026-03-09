@@ -69,7 +69,7 @@ const HELP_ITEMS = [
         class: 'sub-summary-sub-header'
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [UiHeadingDirective, RouterLink, NgOptimizedImage, UiButtonDirective]
+    imports: [UiHeadingDirective, NgOptimizedImage, UiButtonDirective]
 })
 export class HelpBlock {
     protected readonly _helpItems = HELP_ITEMS;

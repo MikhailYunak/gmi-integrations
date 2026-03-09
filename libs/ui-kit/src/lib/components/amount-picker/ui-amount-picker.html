@@ -31,7 +31,9 @@
             [attr.aria-pressed]="selectedValue() === opt.value"
             (click)="selectPreset(opt.value)"
         >
-            <span class="ui-amount-pill__currency" aria-hidden="true">{{ currency() }}</span>
+            @if (opt.isNumeric) {
+                <span class="ui-amount-pill__currency" aria-hidden="true">{{ currency() }}</span>
+            }
             <span class="ui-amount-pill__label">{{ opt.label }}</span>
         </button>
     }

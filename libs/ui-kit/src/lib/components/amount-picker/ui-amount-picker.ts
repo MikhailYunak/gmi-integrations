@@ -27,16 +27,16 @@ let _nextAmountPickerId = 0;
 export class UiAmountPicker implements ControlValueAccessor {
     readonly pickerId = `ui-amount-picker-${_nextAmountPickerId++}`;
 
-    /** Preset numeric amounts to show as pills */
-    readonly options = input<number[]>([500, 1000, 2500, 5000]);
+    /** Preset amounts to show as pills — supports numbers or strings */
+    readonly options = input<(number | string)[]>([500, 1000, 2500, 5000]);
 
-    /** Currency symbol displayed inside each pill */
+    /** Currency symbol displayed inside numeric pills */
     readonly currency = input<string>('$');
 
-    /** When true, shows an extra editable pill for a custom amount */
+    /** When true, shows an extra editable pill for a custom amount (only for numeric options) */
     readonly allowCustom = input(false, { transform: booleanAttribute });
 
-    protected readonly selectedValue = signal<number | null>(null);
+    protected readonly selectedValue = signal<number | string | null>(null);
 
     protected readonly customRaw = signal<string>('');
 
@@ -50,24 +50,25 @@ export class UiAmountPicker implements ControlValueAccessor {
     protected readonly formattedOptions = computed(() =>
         this.options().map((opt) => ({
             value: opt,
-            label: opt.toLocaleString('en-US'),
+            label: typeof opt === 'number' ? opt.toLocaleString('en-US') : opt,
+            isNumeric: typeof opt === 'number',
         }))
     );
 
-    private _onChange: (value: number | null) => void = () => {};
+    private _onChange: (value: number | string | null) => void = () => {};
 
     private _onTouched: () => void = () => {};
 
-    writeValue(val: number | null): void {
+    writeValue(val: number | string | null): void {
         this.selectedValue.set(val ?? null);
-        if (val !== null && !this.options().includes(val)) {
+        if (typeof val === 'number' && !this.options().includes(val)) {
             this.customRaw.set(String(val));
         } else {
             this.customRaw.set('');
         }
     }
 
-    registerOnChange(fn: (value: number | null) => void): void {
+    registerOnChange(fn: (value: number | string | null) => void): void {
         this._onChange = fn;
     }
 
@@ -77,7 +78,7 @@ export class UiAmountPicker implements ControlValueAccessor {
 
     setDisabledState(_disabled: boolean): void {}
 
-    protected selectPreset(value: number): void {
+    protected selectPreset(value: number | string): void {
         this.selectedValue.set(value);
         this.customRaw.set('');
         this._onChange(value);

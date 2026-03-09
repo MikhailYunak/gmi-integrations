@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { UiHeadingDirective } from '@gmi-integrations/ui-kit';
 import {RouterLink} from "@angular/router";
+import {PricingCard} from "@gmi-integrations/shared";
 
 @Component({
     selector: 'gmi-summary-sub-header',
@@ -17,7 +18,14 @@ import {RouterLink} from "@angular/router";
 
         <section class="mx-auto">
             <div class="flex flex-col items-center gap-y-34 max-w-654">
-                <div class="w-318 h-500 bg-white">price</div>
+                <gmi-pricing-card
+                    logoSrc="/img/NEXT.png"
+                    logoAlt="Coterie"
+                    [monthlyPrice]="273.79"
+                    [yearlyPrice]="2937.0"
+                    savingsMessage="Save $77 in fees by paying in full"
+                    (ctaClick)="_onPay($event)"
+                />
                 <p class="text-white text-sm md:text-lg">
                     This quotes are customized using the information you provided, public, and third-party data. You can
                     <a [routerLink]="['/insurance']" class="underline hover:italic hover:font-(--font-primary)">
@@ -47,6 +55,10 @@ import {RouterLink} from "@angular/router";
         class: 'sub-summary-sub-header'
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [UiHeadingDirective, RouterLink]
+    imports: [UiHeadingDirective, RouterLink, PricingCard]
 })
-export class SummarySubHeader {}
+export class SummarySubHeader {
+    protected _onPay(event: any): void {
+        console.log(event);
+    }
+}
