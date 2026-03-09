@@ -16,9 +16,8 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { merge, switchMap } from 'rxjs';
 import { InsuranceApiService, isConflictError } from './insurance-api.service';
-import { QuoteApplicationStatus, StepOneDto } from '../models/insurance.models';
-
-const QUOTE_UUID_KEY = 'quoteUuid';
+import { InsuranceStorageService } from './insurance-storage.service';
+import { QuoteApplicationStatus, StepOneModel } from '../models/insurance.models';
 
 // ── Form group types ──────────────────────────────────────────────────────────
 
@@ -42,6 +41,8 @@ export class InsuranceFormService {
     private readonly _fb = inject(FormBuilder);
 
     private readonly _api = inject(InsuranceApiService);
+
+    private readonly _storage = inject(InsuranceStorageService);
 
     private readonly _router = inject(Router);
 
@@ -139,8 +140,8 @@ export class InsuranceFormService {
             return;
         }
 
-        const dto = this._buildDto();
-        const uuid = localStorage.getItem(QUOTE_UUID_KEY);
+        const dto = this._buildModel();
+        const uuid = this._storage.getUuid();
         this.isLoading.set(true);
 
         const request$ = uuid
@@ -149,9 +150,9 @@ export class InsuranceFormService {
 
         request$.subscribe({
             next: (app) => {
-                localStorage.setItem(QUOTE_UUID_KEY, app.uuid);
+                this._storage.save(app);
                 this.isLoading.set(false);
-                this._router.navigate(STATUS_ROUTE[app.status] ?? STATUS_ROUTE.STEP_TWO);
+                this._router.navigate(STATUS_ROUTE[app.status as QuoteApplicationStatus] ?? STATUS_ROUTE.STEP_TWO);
             },
             error: (err: HttpErrorResponse) => {
                 this.isLoading.set(false);
@@ -170,10 +171,10 @@ export class InsuranceFormService {
         this.isLoading.set(true);
         this._api.getApplication(uuid).subscribe({
             next: (app) => {
-                localStorage.setItem(QUOTE_UUID_KEY, app.uuid);
+                this._storage.save(app);
                 this.conflictUuid.set(null);
                 this.isLoading.set(false);
-                this._router.navigate(STATUS_ROUTE[app.status] ?? STATUS_ROUTE.STEP_ONE);
+                this._router.navigate(STATUS_ROUTE[app.status as QuoteApplicationStatus] ?? STATUS_ROUTE.STEP_ONE);
             },
             error: () => {
                 this.isLoading.set(false);
@@ -187,14 +188,14 @@ export class InsuranceFormService {
         if (!uuid) {return;}
 
         this.isLoading.set(true);
-        const dto = this._buildDto();
+        const dto = this._buildModel();
 
         this._api
             .cancelApplication(uuid)
             .pipe(switchMap(() => this._api.createApplication(dto)))
             .subscribe({
                 next: (app) => {
-                    localStorage.setItem(QUOTE_UUID_KEY, app.uuid);
+                    this._storage.save(app);
                     this.conflictUuid.set(null);
                     this.isLoading.set(false);
                     this._router.navigate(STATUS_ROUTE.STEP_TWO);
@@ -220,7 +221,7 @@ export class InsuranceFormService {
         this.claims.update((arr) => [...arr, group]);
     }
 
-    private _buildDto(): StepOneDto {
+    private _buildModel(): StepOneModel {
         const raw = this.form.getRawValue();
 
         return {

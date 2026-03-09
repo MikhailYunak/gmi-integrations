@@ -5,7 +5,8 @@ import type { Observable } from 'rxjs';
 import {
     ConflictErrorBody,
     QuoteApplication,
-    StepOneDto,
+    QuoteApplicationFull,
+    StepOneModel,
 } from '../models/insurance.models';
 
 const API_BASE = 'https://quote.allsafe.insure/api';
@@ -14,21 +15,21 @@ const API_BASE = 'https://quote.allsafe.insure/api';
 export class InsuranceApiService {
     private readonly _http = inject(HttpClient);
 
-    createApplication(stepOne: StepOneDto): Observable<QuoteApplication> {
+    createApplication(stepOne: StepOneModel): Observable<QuoteApplicationFull> {
         return this._http
-            .post<QuoteApplication>(`${API_BASE}/quote-applications`, stepOne)
+            .post<QuoteApplicationFull>(`${API_BASE}/quote-applications`, stepOne)
             .pipe(catchError(this._handleError));
     }
 
-    getApplication(uuid: string): Observable<QuoteApplication> {
+    getApplication(uuid: string): Observable<QuoteApplicationFull> {
         return this._http
-            .get<QuoteApplication>(`${API_BASE}/quote-applications/${uuid}`)
+            .get<QuoteApplicationFull>(`${API_BASE}/quote-applications/${uuid}`)
             .pipe(catchError(this._handleError));
     }
 
-    updateStepOne(uuid: string, stepOne: StepOneDto): Observable<QuoteApplication> {
+    updateStepOne(uuid: string, stepOne: StepOneModel): Observable<QuoteApplicationFull> {
         return this._http
-            .put<QuoteApplication>(`${API_BASE}/quote-applications/${uuid}/step-one`, stepOne)
+            .put<QuoteApplicationFull>(`${API_BASE}/quote-applications/${uuid}/step-one`, stepOne)
             .pipe(catchError(this._handleError));
     }
 
