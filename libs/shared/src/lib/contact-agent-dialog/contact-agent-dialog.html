@@ -1,0 +1,53 @@
+<dialog
+    #dialog
+    class="contact-agent-dialog"
+    aria-labelledby="contact-dialog-title"
+    (click)="_handleBackdropClick($event)"
+    (cancel)="_handleClose()"
+>
+    <div class="contact-agent-dialog__content">
+        <header class="contact-agent-dialog__header">
+            <h3 id="contact-dialog-title" uiHeading class="text-center">
+                <span uiHeading>Ask us</span>
+                <span uiHeading variant="italic">Anything</span>
+            </h3>
+            <button
+                type="button"
+                class="contact-agent-dialog__close"
+                aria-label="Close dialog"
+                (click)="_handleClose()"
+            >
+                <span class="material-symbols-outlined" aria-hidden="true">close</span>
+            </button>
+        </header>
+
+        <p class="contact-agent-dialog__description">
+            Our experienced team are on hand to assist you. Just tell us a bit about you and your query below and we'll
+            get back to you as soon as possible.
+        </p>
+
+        <form [formGroup]="_form" (ngSubmit)="_handleSubmit()" class="contact-agent-dialog__form" novalidate>
+            <ui-input placeholder="Full Name" formControlName="fullName" />
+
+            <ui-input type="tel" placeholder="000 000 00 00" formControlName="phone">
+                <div uiInputPrefix class="phone-prefix">
+                    <span aria-hidden="true">🇺🇸</span>
+                    <span class="phone-prefix__code">+1</span>
+                    <span class="phone-prefix__divider" aria-hidden="true"></span>
+                </div>
+            </ui-input>
+
+            <ui-input placeholder="Email" type="email" formControlName="email" />
+
+            <ui-input placeholder="Your Question" formControlName="question" />
+
+            <ui-checkbox
+                class="mt-24"
+                label="I have read and agree to the Terms and Conditions"
+                formControlName="termsAccepted"
+            />
+
+            <button type="submit" uiButton [block]="true">Send</button>
+        </form>
+    </div>
+</dialog>

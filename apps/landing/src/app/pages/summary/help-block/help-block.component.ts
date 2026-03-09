@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit';
 import { RouterLink } from '@angular/router';
 import { NgOptimizedImage } from '@angular/common';
+import { ContactAgentDialog } from '@gmi-integrations/shared';
 
 const HELP_ITEMS = [
     'Obtain Your Certificate Of Insurance',
@@ -31,7 +32,7 @@ const HELP_ITEMS = [
                 }
             </ul>
 
-            <button type="button" class="w-full md:w-fit" uiButton>Contact An Agent</button>
+            <button type="button" class="w-full md:w-fit" uiButton (click)="_isDialogOpen.set(true)">Contact An Agent</button>
         </section>
 
         <section class="relative flex-1 min-h-260 max-w-605 md:min-h-460">
@@ -42,6 +43,11 @@ const HELP_ITEMS = [
                 class="object-contain object-center md:object-top-left"
             />
         </section>
+
+        <gmi-contact-agent-dialog
+            [isOpen]="_isDialogOpen()"
+            (closed)="_isDialogOpen.set(false)"
+        />
     `,
     styles: `
         :host {
@@ -69,8 +75,9 @@ const HELP_ITEMS = [
         class: 'sub-summary-sub-header'
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [UiHeadingDirective, NgOptimizedImage, UiButtonDirective]
+    imports: [UiHeadingDirective, NgOptimizedImage, UiButtonDirective, ContactAgentDialog]
 })
 export class HelpBlock {
     protected readonly _helpItems = HELP_ITEMS;
+    protected readonly _isDialogOpen = signal(false);
 }
