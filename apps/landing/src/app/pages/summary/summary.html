@@ -1,0 +1,133 @@
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<section class="relative overflow-hidden bg-linear-(--gradient-forest-pine) px-16 pt-96 pb-64 md:px-48 md:pt-128 md:pb-96">
+    <!-- Decorative dots - top right -->
+    <div class="absolute top-0 right-0 w-150 h-150 pointer-events-none opacity-60" aria-hidden="true">
+        <img ngSrc="/img/radial.png" fill alt="" priority disableOptimizedSrcset />
+    </div>
+    <!-- Decorative dots - bottom left -->
+    <div class="absolute bottom-0 left-0 w-150 h-150 pointer-events-none opacity-60" aria-hidden="true">
+        <img ngSrc="/img/radial.png" fill alt="" disableOptimizedSrcset />
+    </div>
+
+    <!-- Heading -->
+    <div class="relative text-center mb-48 md:mb-56">
+        <h1 uiHeading class="text-white">
+            <span uiHeading variant="italic">Business Insurance</span> Quote
+        </h1>
+        <p class="text-white mt-16 text-body-medium max-w-480 mx-auto opacity-90">
+            Based On Your Request, We Have Found The Most Popular Insurance Policies For You.
+        </p>
+    </div>
+
+    <!-- Quote card -->
+    <div class="relative bg-white rounded-2xl overflow-hidden mx-auto max-w-480 shadow-main">
+        <!-- Coterie logo -->
+        <div class="flex items-center justify-center px-24 py-20 border-b border-gray-300">
+            <span class="coterie-logo" role="img" aria-label="Coterie Insurance">
+                <span class="coterie-dots" aria-hidden="true"></span>
+                coterie
+            </span>
+        </div>
+
+        <!-- Billing tabs -->
+        <div class="flex justify-center px-24 pt-20" role="tablist" aria-label="Select billing cycle">
+            <div class="flex p-4 bg-gray-300 rounded-full gap-4">
+                <button
+                    id="tab-monthly"
+                    role="tab"
+                    type="button"
+                    [attr.aria-selected]="_billingCycle() === 'monthly'"
+                    aria-controls="panel-quote"
+                    (click)="_billingCycle.set('monthly')"
+                    class="px-20 py-8 rounded-full text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400"
+                    [class.bg-green-500]="_billingCycle() === 'monthly'"
+                    [class.text-white]="_billingCycle() === 'monthly'"
+                    [class.text-gray-900]="_billingCycle() !== 'monthly'"
+                >Monthly</button>
+                <button
+                    id="tab-yearly"
+                    role="tab"
+                    type="button"
+                    [attr.aria-selected]="_billingCycle() === 'yearly'"
+                    aria-controls="panel-quote"
+                    (click)="_billingCycle.set('yearly')"
+                    class="px-20 py-8 rounded-full text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lime-400"
+                    [class.bg-green-500]="_billingCycle() === 'yearly'"
+                    [class.text-white]="_billingCycle() === 'yearly'"
+                    [class.text-gray-900]="_billingCycle() !== 'yearly'"
+                >Yearly</button>
+            </div>
+        </div>
+
+        <!-- Quote panel -->
+        <div id="panel-quote" role="tabpanel" [attr.aria-labelledby]="_billingCycle() === 'monthly' ? 'tab-monthly' : 'tab-yearly'" class="px-24 pt-16 pb-8 text-center">
+            @if (_billingCycle() === 'yearly' && _annualSavings()) {
+                <p class="text-sm mb-8 savings-text">
+                    Save {{ _annualSavings() | currency:'USD':'symbol':'1.0-0' }} in fees by paying in full
+                </p>
+            }
+            <p class="text-sm text-gray-600">Your premium is</p>
+            @if (_displayPrice(); as price) {
+                <p class="text-5xl font-bold text-gray-900 my-8">{{ price | currency }}</p>
+            } @else {
+                <p class="text-5xl font-bold text-gray-900 my-8" aria-label="Price not available">—</p>
+            }
+            <p class="text-sm text-gray-600">per month</p>
+        </div>
+
+        <!-- Pay CTA -->
+        <div class="px-24 pb-24 pt-8">
+            <button uiButton type="button" class="w-full">
+                {{ _billingCycle() === 'monthly' ? 'Pay Monthly' : 'Pay Yearly' }}
+            </button>
+        </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <p class="relative text-center text-sm text-white mt-32 max-w-480 mx-auto opacity-80">
+        This quotes are customized using the information you provided, public, and
+        third-party data. You can
+        <a [routerLink]="['/insurance']" class="underline opacity-100 focus-visible:outline-2 focus-visible:outline-lime-400 focus-visible:rounded">review your application</a>
+        and make edits if needed.
+    </p>
+</section>
+
+<!-- ── Get a Help ─────────────────────────────────────────────────────────── -->
+<section class="bg-linear-(--gradient-bg) px-16 py-64 md:px-48 md:py-96">
+    <div class="flex flex-col gap-48 md:flex-row md:items-start md:gap-64 mx-auto max-w-1200">
+        <!-- Left: content -->
+        <div class="flex flex-col gap-y-24 md:max-w-420">
+            <div>
+                <h2 uiHeading class="text-gray-900">
+                    Get a <span uiHeading variant="italic">Help?</span>
+                </h2>
+                <p class="text-gray-600 mt-8 text-sm">Customers Can Get Help Here.</p>
+            </div>
+
+            <ul class="flex flex-col gap-y-12 list-none m-0 p-0" role="list">
+                @for (item of _helpItems; track item) {
+                    <li class="flex items-center gap-12">
+                        <span class="help-icon shrink-0" aria-hidden="true"></span>
+                        <span class="text-gray-900 text-sm">{{ item }}</span>
+                    </li>
+                }
+            </ul>
+
+            <div>
+                <button type="button" uiButton="outline">Contact An Agent</button>
+            </div>
+        </div>
+
+        <!-- Right: image -->
+        <div class="relative flex-1 min-h-400 md:min-h-500">
+            <img
+                ngSrc="/img/summary-image.png"
+                fill
+                alt="Safe.Insure customer support team"
+                class="object-contain object-center md:object-left-top"
+            />
+        </div>
+    </div>
+</section>
+
+<gmi-footer />

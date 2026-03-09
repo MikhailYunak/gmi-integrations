@@ -11,7 +11,7 @@ const STATUS_ROUTE: Record<QuoteApplicationStatus, string[]> = {
     STEP_ONE: ['/insurance', 'general-information'],
     STEP_TWO: ['/insurance', 'about-your-restaurant'],
     STEP_THREE: ['/insurance', 'general-liability'],
-    COMPLETED: ['/insurance', 'general-information'],
+    COMPLETED: ['/summary'],
     CANCELLED: ['/insurance', 'general-information']
 };
 

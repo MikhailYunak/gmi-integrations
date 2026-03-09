@@ -13,6 +13,10 @@ export const LANDING_ROUTES: Routes = [
         loadChildren: () => import('./pages/insurance/insurance.routes').then((r) => r.INSURANCE_ROUTES)
     },
     {
+        path: 'summary',
+        loadComponent: (): Promise<Type<unknown>> => import('./pages/summary/summary').then((c) => c.Summary)
+    },
+    {
         path: '',
         redirectTo: 'general',
         pathMatch: 'full'
