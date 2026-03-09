@@ -1,4 +1,4 @@
-// ── Step 1 DTO ────────────────────────────────────────────────────────────────
+// ── Step 1 Model ──────────────────────────────────────────────────────────────
 
 export type PreviousClaimModel = {
     claimAmount: number;
@@ -23,7 +23,7 @@ export type StepOneModel = {
     previousClaims?: PreviousClaimModel[];
 }
 
-// ── Step 2 DTO ────────────────────────────────────────────────────────────────
+// ── Step 2 Model ──────────────────────────────────────────────────────────────
 
 export type AddressModel = {
     street: string;
@@ -40,6 +40,26 @@ export type StepTwoModel = {
     primaryLocation: AddressModel;
     isMailingSameAsPrimary: boolean;
     mailingAddress: AddressModel;
+}
+
+// ── Step 3 Model ──────────────────────────────────────────────────────────────
+
+export type StepThreeModel = {
+    coverage: {
+        glLimit: number;
+    };
+    cyberCoverage: {
+        limits: string; // e.g. "25000/50000"
+    };
+    epli: {
+        limits: string; // e.g. "50000/50000"
+        retention: number;
+    };
+    liquorLiability: {
+        shouldInclude: boolean;
+        alcoholicBeverageSales: number;
+        liquorLiabLimitEachOccurrence: number;
+    };
 }
 
 // ── Quote application ─────────────────────────────────────────────────────────
@@ -62,7 +82,7 @@ export type QuoteApplicationFull = {
     status: string;
     step1Data: StepOneModel | null;
     step2Data: StepTwoModel | null;
-    step3Data: unknown | null;
+    step3Data: StepThreeModel | null;
     coterieResponse: unknown | null;
     coterieApplicationId: string | null;
     integrationId: string | null;

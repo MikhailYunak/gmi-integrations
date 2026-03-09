@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { QuoteApplicationFull, StepOneModel, StepTwoModel } from '../models/insurance.models';
+import { QuoteApplicationFull, StepOneModel, StepThreeModel, StepTwoModel } from '../models/insurance.models';
 
 const STORAGE_KEY = 'quoteApplication';
 
@@ -33,7 +33,7 @@ export class InsuranceStorageService {
         return this.get()?.step2Data ?? null;
     }
 
-    getStep3Data(): unknown | null {
+    getStep3Data(): StepThreeModel | null {
         return this.get()?.step3Data ?? null;
     }
 
