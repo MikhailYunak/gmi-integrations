@@ -5,6 +5,7 @@ import type { Observable } from 'rxjs';
 import {
     ConflictErrorBody,
     QuoteApplicationFull,
+    QuoteResult,
     StepOneModel,
     StepThreeModel,
     StepTwoModel
@@ -49,6 +50,12 @@ export class InsuranceApiService {
     cancelApplication(uuid: string): Observable<void> {
         return this._http
             .post<void>(`${API_BASE}/quote-applications/${uuid}/cancel`, null)
+            .pipe(catchError(this._handleError));
+    }
+
+    submitApplication(uuid: string): Observable<QuoteResult> {
+        return this._http
+            .post<QuoteResult>(`${API_BASE}/quote-applications/${uuid}/submit`, null)
             .pipe(catchError(this._handleError));
     }
 

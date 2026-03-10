@@ -1,11 +1,14 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { UiHeadingDirective } from '@gmi-integrations/ui-kit';
-import {RouterLink} from "@angular/router";
-import {PricingCard} from "@gmi-integrations/shared";
+import { RouterLink } from '@angular/router';
+import { PricingCard, BillingCycle } from '@gmi-integrations/shared';
+import { QuoteStateService } from '../../state/quote-state.service';
+import {WINDOW} from "@gmi-integrations/cdk";
 
 @Component({
     selector: 'gmi-summary-sub-header',
     template: `
+        @let pricing = _pricing();
         <section class="flex flex-col gap-y-28">
             <h1 uiHeading class="text-white pr-40 lg:pr-0 capitalize">
                 <span uiHeading variant="italic">Business Insurance</span>
@@ -18,14 +21,18 @@ import {PricingCard} from "@gmi-integrations/shared";
 
         <section class="mx-auto">
             <div class="flex flex-col items-center gap-y-34 max-w-654">
-                <gmi-pricing-card
-                    logoSrc="/img/NEXT.png"
-                    logoAlt="Coterie"
-                    [monthlyPrice]="273.79"
-                    [yearlyPrice]="2937.0"
-                    savingsMessage="Save $77 in fees by paying in full"
-                    (ctaClick)="_onPay($event)"
-                />
+                @if (pricing) {
+                    <gmi-pricing-card
+                        logoSrc="/img/coterie-logo.png"
+                        logoAlt="Coterie"
+                        [monthlyPrice]="pricing!.monthlyPremium"
+                        [totalMonthlyPrice]="pricing!.month1Owed"
+                        [yearlyPrice]="pricing!.yearlyPremium"
+                        [totalYearlyPrice]="pricing!.yearlyTotalOwed"
+                        [savingsMessage]="_savingsMessage()"
+                        (ctaClick)="_onPay($event)"
+                    />
+                }
                 <p class="text-white text-sm lg:text-lg">
                     This quotes are customized using the information you provided, public, and third-party data. You can
                     <a [routerLink]="['/insurance']" class="underline hover:italic hover:font-(--font-primary)">
@@ -58,7 +65,19 @@ import {PricingCard} from "@gmi-integrations/shared";
     imports: [UiHeadingDirective, RouterLink, PricingCard]
 })
 export class SummarySubHeader {
-    protected _onPay(event: any): void {
-        console.log(event);
+    private readonly _quoteState = inject(QuoteStateService);
+
+    private readonly _window = inject(WINDOW).window;
+
+    protected readonly _pricing = computed(() => this._quoteState.quoteResult()?.pricing ?? null);
+
+    protected readonly _savingsMessage = computed(() => {
+        const savings = this._pricing()?.savingsPayingInFull;
+        return savings != null ? `Save $${savings.toFixed(0)} in fees by paying in full` : undefined;
+    });
+
+    protected _onPay(_event: BillingCycle): void {
+        const { applicationUrl } = this._quoteState.quoteResult() ?? {};
+        this._window.open(applicationUrl, '_blank');
     }
 }

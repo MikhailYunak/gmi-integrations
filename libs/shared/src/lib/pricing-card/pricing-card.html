@@ -1,34 +1,37 @@
-@let _badge = badge();
-
-@if (_badge) {
-	<gmi-custom-tooltip class="absolute -top-56 left-1/2 -translate-x-1/2" [text]="_badge">
-		<img icon src="/img/temp/smile.png" alt="smile">
-	</gmi-custom-tooltip>
+@let _badge = badge(); @let billingCycle = _billingCycle(); @let _savingsMessage = savingsMessage(); @let _currency =
+currency(); @let totalPrice = billingCycle === 'monthly' ? totalMonthlyPrice() : totalYearlyPrice(); @if (_badge) {
+<gmi-custom-tooltip class="absolute -top-56 left-1/2 -translate-x-1/2" [text]="_badge">
+    <img icon ngSrc="/img/temp/smile.png" width="36" height="36" alt="smile" />
+</gmi-custom-tooltip>
 }
 
 <section class="h-96 flex items-center justify-center rounded-2xl bg-white">
-    <img [ngSrc]="logoSrc()" [alt]="logoAlt()" width="214" height="48" class="max-w-214 h-48" />
+    <img [ngSrc]="logoSrc()" [alt]="logoAlt()" width="270" height="48" class="max-w-270 h-48" />
 </section>
 
 <section class="flex flex-col items-center max-w-xs rounded-2xl gap-y-12 p-24 bg-white">
     <ui-amount-picker
         class="w-full"
         [options]="_cycleOptions"
-        [ngModel]="_billingCycle() === 'monthly' ? 'Monthly' : 'Yearly'"
+        [ngModel]="billingCycle === 'monthly' ? 'Monthly' : 'Yearly'"
         (ngModelChange)="_billingCycle.set($event === 'Monthly' ? 'monthly' : 'yearly')"
     />
 
-    @if (savingsMessage() && _billingCycle() === 'yearly') {
-    <p class="text-[13px] font-semibold text-[#e53935] text-center m-0" role="status">{{ savingsMessage() }}</p>
-    }
+    <div class="h-14">
+        @if (_savingsMessage && billingCycle === 'yearly') {
+        <p class="text-[13px] font-semibold text-red-500 text-center m-0" role="status">{{ _savingsMessage }}</p>
+        }
+    </div>
 
-    <span class="text-sm text-[#555]">Your premium is</span>
-    <span class="text-4xl font-bold text-[#1a1a1a] leading-tight" aria-live="polite">
-        {{ currency() }}{{ _currentPrice() }}
+    <span class="text-sm text-gray-800">Your premium is</span>
+    <span class="text-4xl font-bold text-green-900 leading-tight" aria-live="polite">
+        {{ _currentPrice() | currency: _currency }}
     </span>
-    <span class="text-[13px] text-[#777]">per {{ _billingCycle() === 'monthly' ? 'month' : 'year' }}</span>
+    <span class="text-[13px] text-gray-800">per {{ billingCycle === 'monthly' ? 'month' : 'year' }}</span>
 
-    <button class="w-full" type="button" uiButton (click)="ctaClick.emit(_billingCycle())">
-        {{ ctaLabel() ?? 'Pay ' + (_billingCycle() === 'monthly' ? 'Monthly' : 'Yearly') }}
+    <span class="text-[13px] text-gray-800">Total due today: {{ totalPrice | currency: _currency}}</span>
+
+    <button class="w-full" type="button" uiButton (click)="ctaClick.emit(billingCycle)">
+        {{ ctaLabel() ?? 'Pay ' + (billingCycle === 'monthly' ? 'Monthly' : 'Yearly') }}
     </button>
 </section>

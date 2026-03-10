@@ -2,10 +2,11 @@ import { computed, DestroyRef, effect, inject, Injectable, signal } from '@angul
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { merge } from 'rxjs';
+import { merge, switchMap } from 'rxjs';
 import { InsuranceApiService } from '../services/insurance-api.service';
 import { InsuranceStorageService } from '../services/insurance-storage.service';
 import { QuoteApplicationStatus, StepThreeModel } from '../models/insurance.models';
+import { QuoteStateService } from '../../state/quote-state.service';
 
 const STATUS_ROUTE: Record<QuoteApplicationStatus, string[]> = {
     STEP_ONE: ['/insurance', 'general-information'],
@@ -24,6 +25,8 @@ export class GeneralLiabilityFormService {
     private readonly _storage = inject(InsuranceStorageService);
 
     private readonly _router = inject(Router);
+
+    private readonly _quoteState = inject(QuoteStateService);
 
     private readonly _destroyRef = inject(DestroyRef);
 
@@ -126,12 +129,18 @@ export class GeneralLiabilityFormService {
 
         this._api
             .updateStepThree(uuid, dto)
-            .pipe(takeUntilDestroyed(this._destroyRef))
-            .subscribe({
-                next: (app) => {
+            .pipe(
+                switchMap((app) => {
                     this._storage.save(app);
+                    return this._api.submitApplication(uuid);
+                }),
+                takeUntilDestroyed(this._destroyRef)
+            )
+            .subscribe({
+                next: (result) => {
+                    this._quoteState.set(result);
                     this.isLoading.set(false);
-                    this._router.navigate(STATUS_ROUTE[app.status as QuoteApplicationStatus] ?? STATUS_ROUTE.COMPLETED);
+                    this._router.navigate(['/summary']);
                 },
                 error: () => {
                     this.isLoading.set(false);

@@ -91,6 +91,29 @@ export type QuoteApplicationFull = {
     updatedAt: string;
 }
 
+// ── Quote result ──────────────────────────────────────────────────────────────
+
+export type QuotePricing = {
+    yearlyPremium: number;
+    yearlyTotalOwed: number;
+    yearlyFees: number;
+    monthlyPremium: number;
+    monthlyOwed: number;
+    monthlyFees: number;
+    month1Owed: number;
+    month1Fees: number;
+    policyFees: number;
+    installmentFees: number;
+    savingsPayingInFull: number;
+};
+
+export type QuoteResult = {
+    uuid: string;
+    quoteId: string;
+    applicationUrl: string;
+    pricing: QuotePricing;
+};
+
 // ── API error shapes ──────────────────────────────────────────────────────────
 
 export type ConflictErrorBody = {
