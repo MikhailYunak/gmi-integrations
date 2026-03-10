@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NgOptimizedImage } from '@angular/common';
 import { UiHeadingDirective } from '@gmi-integrations/ui-kit';
 import { SwiperSlider } from '@gmi-integrations/shared';
 import { ApiService } from '../../../services';
@@ -10,7 +9,7 @@ import { ApiService } from '../../../services';
     templateUrl: './our-clients.html',
     styleUrl: './our-clients.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [SwiperSlider, UiHeadingDirective, NgOptimizedImage]
+    imports: [SwiperSlider, UiHeadingDirective]
 })
 export class OurClients {
     private readonly _api = inject(ApiService);

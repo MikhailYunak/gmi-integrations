@@ -8,6 +8,7 @@ import { ApiService } from '../../../services';
 import { FloorRatingPipe } from './floor-rating.pipe';
 import { FilledStarsPipe } from './filled-stars.pipe';
 import { EmptyStarsPipe } from './empty-stars.pipe';
+import { AverageRatingPipe } from './average-rating.pipe';
 
 @Component({
     selector: 'gmi-reviews-section',
@@ -22,7 +23,8 @@ import { EmptyStarsPipe } from './empty-stars.pipe';
         UiHeadingDirective,
         FloorRatingPipe,
         FilledStarsPipe,
-        EmptyStarsPipe
+        EmptyStarsPipe,
+        AverageRatingPipe
     ]
 })
 export class ReviewsSection {
