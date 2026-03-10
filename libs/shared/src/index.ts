@@ -10,3 +10,4 @@ export * from './lib/gmi-slider';
 export * from './lib/form-stepper';
 export * from './lib/pricing-card';
 export * from './lib/contact-agent-dialog';
+export * from './lib/confirm-dialog';

@@ -3,7 +3,9 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Dialog } from '@angular/cdk/dialog';
 import { merge, switchMap } from 'rxjs';
+import { ConfirmDialog, ConfirmDialogData } from '@gmi-integrations/shared';
 import { InsuranceApiService, isConflictError } from '../services/insurance-api.service';
 import { InsuranceStorageService } from '../services/insurance-storage.service';
 import { QuoteApplicationStatus, StepOneModel } from '../models/insurance.models';
@@ -30,6 +32,8 @@ export class GeneralInformationFormService {
     private readonly _storage = inject(InsuranceStorageService);
 
     private readonly _router = inject(Router);
+
+    private readonly _dialog = inject(Dialog);
 
     private readonly _destroyRef = inject(DestroyRef);
 
@@ -72,8 +76,6 @@ export class GeneralInformationFormService {
     readonly claims = signal<FormGroup<ClaimGroup>[]>([]);
 
     readonly isLoading = signal(false);
-
-    readonly conflictUuid = signal<string | null>(null);
 
     constructor() {
         effect(() => {
@@ -122,23 +124,41 @@ export class GeneralInformationFormService {
             error: (err: HttpErrorResponse) => {
                 this.isLoading.set(false);
                 if (isConflictError(err)) {
-                    this.conflictUuid.set(err.error.activeQuoteUuid);
+                    this._openConflictDialog(err.error.activeQuoteUuid, dto);
                 }
             }
         });
     }
 
-    continueExisting(): void {
-        const uuid = this.conflictUuid();
-        if (!uuid) {return;}
+    private _openConflictDialog(activeUuid: string, dto: StepOneModel): void {
+        const ref = this._dialog.open<boolean, ConfirmDialogData>(ConfirmDialog, {
+            data: {
+                title: 'Active Application Found',
+                message: 'You already have an active quote application. Please Continue or Start Over it first.',
+                confirmLabel: 'Continue',
+                cancelLabel: 'Start Over'
+            },
+            disableClose: true,
+            backdropClass: 'cdk-overlay-dark-backdrop',
+            ariaLabelledBy: 'confirm-dialog-title'
+        });
 
+        ref.closed.pipe(takeUntilDestroyed(this._destroyRef)).subscribe((result) => {
+            if (result === true) {
+                this._continueExisting(activeUuid);
+            } else {
+                this._startOver(activeUuid, dto);
+            }
+        });
+    }
+
+    private _continueExisting(uuid: string): void {
         this.isLoading.set(true);
         this._api.getApplication(uuid).pipe(takeUntilDestroyed(this._destroyRef)).subscribe({
             next: (app) => {
                 this._storage.save(app);
-                this.conflictUuid.set(null);
                 this.isLoading.set(false);
-                this._router.navigate(STATUS_ROUTE[app.status as QuoteApplicationStatus] ?? STATUS_ROUTE.STEP_ONE);
+                this._router.navigate(STATUS_ROUTE[app.status as QuoteApplicationStatus] ?? STATUS_ROUTE.STEP_TWO);
             },
             error: () => {
                 this.isLoading.set(false);
@@ -146,12 +166,8 @@ export class GeneralInformationFormService {
         });
     }
 
-    startOver(): void {
-        const uuid = this.conflictUuid();
-        if (!uuid) {return;}
-
+    private _startOver(uuid: string, dto: StepOneModel): void {
         this.isLoading.set(true);
-        const dto = this._buildModel();
 
         this._api
             .cancelApplication(uuid)
@@ -159,7 +175,6 @@ export class GeneralInformationFormService {
             .subscribe({
                 next: (app) => {
                     this._storage.save(app);
-                    this.conflictUuid.set(null);
                     this.isLoading.set(false);
                     this._router.navigate(STATUS_ROUTE.STEP_TWO);
                 },
