@@ -7,7 +7,7 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
     template: `
         <!-- Image side -->
         <div class="order-2 lg:order-1 relative w-full lg:w-1/2 h-290 lg:h-480 shrink-0">
-            <img ngSrc="/img/already-insured-img.svg" alt="Woman with umbrella" fill priority disableOptimizedSrcset />
+            <img ngSrc="/img/already-insured-img.png" alt="Woman with umbrella" fill priority disableOptimizedSrcset />
         </div>
 
         <!-- Content side -->

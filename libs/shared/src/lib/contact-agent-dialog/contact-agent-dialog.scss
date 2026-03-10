@@ -4,6 +4,8 @@
     border: none;
     border-radius: 16px;
     width: min(460px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    overflow: hidden;
     background: var(--white);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 
@@ -16,6 +18,9 @@
         display: flex;
         flex-direction: column;
         gap: 24px;
+        max-height: calc(100vh - 32px);
+        overflow-y: auto;
+        box-sizing: border-box;
     }
 
     &__header {
