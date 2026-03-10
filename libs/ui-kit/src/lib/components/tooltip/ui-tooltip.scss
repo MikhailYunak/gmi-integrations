@@ -1,16 +1,121 @@
 @layer ui-components {
     .ui-tooltip {
-        display: block;
-        padding: 6px 12px;
-        background-color: var(--primary-forest);
-        color: var(--white);
-        font-size: 0.75rem;
-        line-height: 1.4;
-        border-radius: 6px;
-        max-width: 240px;
-        white-space: normal;
-        word-break: break-word;
-        pointer-events: none;
-        box-shadow: 0 4px 16px rgba(4, 59, 46, 0.3);
+	    display: block;
+	    padding: 16px;
+	    background-color: var(--achromatics-grey-forms);
+	    border: 1px solid var(--primary-forest);
+	    color: var(--achromatics-shadow);
+	    font-size: 0.75rem;
+	    line-height: 1.4;
+	    border-radius: 16px;
+	    max-width: 288px;
+	    white-space: normal;
+	    word-break: break-word;
+	    pointer-events: none;
+	    box-shadow: 0 4px 16px rgba(4, 59, 46, 0.3);
+	    
+	    /* ── Arrow mixin via pseudo ── */
+	    /* shared arrow styles */
+	    &::before,
+	    &::after,
+	    & &-arrow-left::before,
+	    & &-arrow-left::after,
+	    & &-arrow-right::before,
+	    & &-arrow-right::after,
+	    & &-arrow-bottom::before,
+	    & &-arrow-bottom::after {
+		    content: '';
+		    position: absolute;
+		    width: 0;
+		    height: 0;
+	    }
+	    
+	    /* ── TOP arrow ── */
+	    /* border (stroke) triangle */
+	    &::before {
+		    top: -14px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		    border-left: 12px solid transparent;
+		    border-right: 12px solid transparent;
+		    border-bottom: 14px solid var(--primary-forest);
+	    }
+	    
+	    /* fill triangle (slightly smaller, sits on top) */
+	    &::after {
+		    top: -12px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		    border-left: 11px solid transparent;
+		    border-right: 11px solid transparent;
+		    border-bottom: 13px solid var(--achromatics-grey-forms);
+		    z-index: 1;
+	    }
+	    
+	    /* ── BOTTOM arrow ── */
+	    &-arrow-bottom::before {
+		    bottom: -14px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		    border-left: 12px solid transparent;
+		    border-right: 12px solid transparent;
+		    border-top: 14px solid var(--primary-forest);
+	    }
+	    &-arrow-bottom::after {
+		    bottom: -12px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		    border-left: 11px solid transparent;
+		    border-right: 11px solid transparent;
+		    border-top: 13px solid var(--achromatics-grey-forms);
+		    z-index: 1;
+	    }
+	    
+	    /* ── LEFT arrow ── */
+	    &-arrow-left::before {
+		    left: -14px;
+		    top: 50%;
+		    transform: translateY(-50%);
+		    border-top: 12px solid transparent;
+		    border-bottom: 12px solid transparent;
+		    border-right: 14px solid var(--primary-forest);
+	    }
+	    &-arrow-left::after {
+		    left: -12px;
+		    top: 50%;
+		    transform: translateY(-50%);
+		    border-top: 11px solid transparent;
+		    border-bottom: 11px solid transparent;
+		    border-right: 13px solid var(--achromatics-grey-forms);
+		    z-index: 1;
+	    }
+	    
+	    /* ── RIGHT arrow ── */
+	    &-arrow-right::before {
+		    right: -14px;
+		    top: 50%;
+		    transform: translateY(-50%);
+		    border-top: 12px solid transparent;
+		    border-bottom: 12px solid transparent;
+		    border-left: 14px solid var(--primary-forest);
+	    }
+	    &-arrow-right::after {
+		    right: -12px;
+		    top: 50%;
+		    transform: translateY(-50%);
+		    border-top: 11px solid transparent;
+		    border-bottom: 11px solid transparent;
+		    border-left: 13px solid var(--achromatics-grey-forms);
+		    z-index: 1;
+	    }
+	    
+	    /* helper divs for left/right/bottom arrows */
+	    &-arrow-bottom,
+	    &-arrow-left,
+	    &-arrow-right {
+		    position: absolute;
+		    inset: 0;
+		    pointer-events: none;
+	    }
     }
 }

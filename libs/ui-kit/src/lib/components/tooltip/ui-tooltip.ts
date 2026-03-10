@@ -36,15 +36,20 @@ const TOOLTIP_POSITIONS: Record<UiTooltipPosition, ConnectedPosition[]> = {
 
 @Component({
     selector: 'ui-tooltip-content',
-    template: `{{ text() }}`,
+    template: `
+        {{ text() }}
+        <div class="ui-tooltip-arrow-left"></div>
+        <div class="ui-tooltip-arrow-right"></div>
+        <div class="ui-tooltip-arrow-bottom"></div>
+    `,
     styleUrl: './ui-tooltip.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     encapsulation: ViewEncapsulation.None,
     host: {
         class: 'ui-tooltip',
         '[attr.id]': 'id()',
-        role: 'tooltip',
-    },
+        role: 'tooltip'
+    }
 })
 export class UiTooltipContent {
     readonly text = input('');
