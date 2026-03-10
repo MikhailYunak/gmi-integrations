@@ -1,5 +1,5 @@
 <header class="flex flex-col gap-y-8 text-center">
-    <h1 uiHeading class="text-[36px] md:text-[56px]">
+    <h1 uiHeading class="text-[36px] lg:text-[56px]">
         <span uiHeading variant="italic">Let's get</span>
         you insured
     </h1>
@@ -21,7 +21,7 @@
             />
         </div>
 
-        <div class="grid grid-cols-1 gap-12 w-full md:grid-cols-2">
+        <div class="grid grid-cols-1 gap-12 w-full lg:grid-cols-2">
             <ui-input
                 type="email"
                 placeholder="Email"
@@ -88,9 +88,9 @@ This will print as the Named Insured on the policy."
         />
         }
 
-        <div class="flex gap-x-12 md:gap-x-24">
+        <div class="flex gap-x-12 lg:gap-x-24">
             <ui-dropdown
-                class="max-w-166 md:max-w-204 w-full"
+                class="max-w-166 lg:max-w-204 w-full"
                 label="Business State"
                 placeholder="Business State"
                 [required]="true"
@@ -100,7 +100,7 @@ This will print as the Named Insured on the policy."
                 [hint]="hintMsg(svc.form.controls.businessInfo.controls.businessState)"
             />
             <ui-input
-                class="max-w-166 md:max-w-204"
+                class="max-w-166 lg:max-w-204"
                 label="Business Start Date"
                 placeholder="MM/YYYY"
                 [required]="true"
@@ -110,9 +110,9 @@ This will print as the Named Insured on the policy."
             />
         </div>
 
-        <div class="flex gap-x-12 items-start md:gap-x-24">
+        <div class="flex gap-x-12 items-start lg:gap-x-24">
             <ui-input
-                class="max-w-166 md:max-w-204"
+                class="max-w-166 lg:max-w-204"
                 label="Number of Employees"
                 type="stepper"
                 [required]="true"
@@ -122,7 +122,7 @@ This does not include independent contractors which work for your business on a 
                 formControlName="numEmployees"
             />
             <ui-input
-                class="max-w-166 md:max-w-204 pt-30"
+                class="max-w-166 lg:max-w-204 pt-30"
                 placeholder="Business Zip Code"
                 [required]="true"
                 formControlName="businessZipCode"
@@ -144,8 +144,8 @@ This does not include independent contractors which work for your business on a 
             formControlName="hasPreviousClaims"
             aria-label="Previous claims"
         >
-            <ui-radio-card class="md:max-w-128" title="Yes" [value]="true" />
-            <ui-radio-card class="md:max-w-128" title="No" [value]="false" />
+            <ui-radio-card class="lg:max-w-128" title="Yes" [value]="true" />
+            <ui-radio-card class="lg:max-w-128" title="No" [value]="false" />
         </ui-radio-card-group>
 
         @if (svc.showClaimsSection()) {
@@ -220,10 +220,10 @@ This does not include independent contractors which work for your business on a 
 
     <!-- ── Footer ────────────────────────────────────────────────────── -->
     <footer
-        class="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-16 px-16 py-12 bg-green-700 border-t border-gray-500 z-50 md:px-48 md:py-16"
+        class="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-16 px-16 py-12 bg-green-700 border-t border-gray-500 z-50 lg:px-48 lg:py-16"
     >
         <div class="flex justify-between w-full max-w-664">
-            <p class="text-[9px] md:text-sm text-white max-w-260">
+            <p class="text-[9px] lg:text-sm text-white max-w-260">
                 By clicking "Continue", you agree to our
                 <ui-link class="text-green-500" href="/terms" label="Terms of Use"></ui-link>
                 and

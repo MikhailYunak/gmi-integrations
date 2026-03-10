@@ -1,5 +1,5 @@
 <header class="flex flex-col gap-y-8 text-center">
-    <h1 uiHeading class="text-[36px] md:text-[56px]">About your restaurant</h1>
+    <h1 uiHeading class="text-[36px] lg:text-[56px]">About your restaurant</h1>
 </header>
 
 <form class="flex flex-col gap-y-48 w-full" [formGroup]="svc.form" (ngSubmit)="svc.submit()" novalidate>
@@ -90,7 +90,7 @@
                     [hint]="hintMsg(svc.form.controls.primaryLocation.controls.street)"
                 />
 
-                <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+                <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
                     <ui-input
                         placeholder="Enter City"
                         [required]="true"
@@ -128,8 +128,8 @@
                 formControlName="isMailingSameAsPrimary"
                 aria-label="Mailing address same as business address"
             >
-                <ui-radio-card class="md:max-w-128" title="Yes" [value]="true" />
-                <ui-radio-card class="md:max-w-128" title="No" [value]="false" />
+                <ui-radio-card class="lg:max-w-128" title="Yes" [value]="true" />
+                <ui-radio-card class="lg:max-w-128" title="No" [value]="false" />
             </ui-radio-card-group>
         </div>
 
@@ -147,7 +147,7 @@
                     [hint]="hintMsg(svc.form.controls.mailingAddress.controls.street)"
                 />
 
-                <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+                <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
                     <ui-input
                         placeholder="Enter City"
                         [required]="true"
@@ -178,7 +178,7 @@
 
     <!-- ── Footer ────────────────────────────────────────────────────── -->
     <footer
-        class="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-16 px-16 py-12 bg-green-700 border-t border-gray-500 z-50 md:px-48 md:py-16"
+        class="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-16 px-16 py-12 bg-green-700 border-t border-gray-500 z-50 lg:px-48 lg:py-16"
     >
         <div class="flex justify-between w-full max-w-664">
             <button uiButton="outline" type="button" (click)="svc.goBack()">Back</button>

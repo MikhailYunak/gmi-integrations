@@ -9,7 +9,7 @@
 nav ul {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: clamp(0.25rem, 1.5vw, 2rem);
     list-style: none;
     margin: 0;
     padding: 0;

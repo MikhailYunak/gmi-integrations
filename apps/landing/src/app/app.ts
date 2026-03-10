@@ -11,7 +11,7 @@ import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@g
         @let _mobileMenuOpen = mobileMenuOpen();
         @let _isGeneral = isGeneralRoute();
         <main>
-            <ui-header class="sticky top-6 md:top-20 mx-6 md:mx-48 z-50">
+            <ui-header class="sticky top-6 lg:top-20 mx-6 lg:mx-48 z-50">
                 <ng-container slot="start"><gmi-logo /></ng-container>
 
                 @if (_isGeneral) {
@@ -19,15 +19,15 @@ import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@g
                 }
 
                 <ng-container slot="end">
-                    <div class="flex gap-x-16 md:gap-x-24">
+                    <div class="flex gap-x-16 lg:gap-x-24">
                         <gmi-language-switcher />
 
                         @if (_isGeneral) {
-                            <button class="hidden md:inline-flex" type="button" uiButton="primary" [routerLink]="['/insurance']">Get insurance</button>
+                            <button class="hidden lg:inline-flex" type="button" uiButton="primary" [routerLink]="['/insurance']">Get insurance</button>
 
                             <gmi-hamburger-button
                                 #hamburgerButtonRef="hamburger-button"
-                                class="hamburger-btn md:hidden"
+                                class="hamburger-btn lg:hidden"
                                 [isOpen]="_mobileMenuOpen"
                                 (menuOpen)="_menuOpenChanged()"
                             >

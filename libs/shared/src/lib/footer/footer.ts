@@ -29,7 +29,7 @@ const LEGAL_LINKS = [
             background: var(--achromatics-grey-forms);
             padding: 24px 16px 54px;
 
-            @media (min-width: 768px) {
+            @media (width >= 64rem) {
                 padding: 40px 48px;
             }
         }

@@ -2,7 +2,7 @@
     .ui-header {
         display: grid;
         grid-template-columns: auto 1fr auto;
-        grid-column-gap: 48px;
+        grid-column-gap: clamp(8px, 1.5vw, 48px);
         align-items: center;
         padding: var(--ui-header-padding, 1rem);
         height: var(--ui-header-height, auto);

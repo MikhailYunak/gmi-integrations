@@ -19,7 +19,7 @@ type FaqItem = {
             padding-top: 48px;
             padding-bottom: 80px;
 
-            @media (min-width: 768px) {
+            @media (width >= 64rem) {
                 flex-direction: row;
                 column-gap: 32px;
                 justify-content: space-between;
@@ -33,7 +33,7 @@ type FaqItem = {
                 row-gap: 16px;
                 text-align: center;
 
-                @media (width >= 48rem /* 768px */) {
+                @media (width >= 64rem /* 768px */) {
                     padding-left: calc(163px - 48px);
                     text-align: left;
                     justify-content: center;

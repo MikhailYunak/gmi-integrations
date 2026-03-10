@@ -19,15 +19,15 @@ type Step = {
             insurance?
         </h2>
 
-        <div class="flex flex-col md:flex-row md:items-center gap-x-40 gap-y-28">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-48 gap-x-20  flex-1 md:mt-48">
+        <div class="flex flex-col lg:flex-row lg:items-center gap-x-40 gap-y-28">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-48 gap-x-20  flex-1 lg:mt-48">
                 @for (step of steps; track step.number) {
                     <div class="flex flex-col gap-12">
                         <div class="flex items-start gap-16">
                             <gmi-quarter-circle-element class="self-start" [color]="step.badgeColor">
                                 {{ step.number }}
                             </gmi-quarter-circle-element>
-                            <div class="flex flex-col pt-28 pr-40 gap-y-12 md:gap-y-16">
+                            <div class="flex flex-col pt-28 pr-40 gap-y-12 lg:gap-y-16">
                                 <h5 uiHeading class="uppercase">{{ step.title }}</h5>
                                 <p class="text-body text-gray-600 step-description">{{ step.description }}</p>
                             </div>
@@ -36,7 +36,7 @@ type Step = {
                 }
             </div>
 
-            <div class="relative w-full md:w-570 h-380 md:h-555 shrink-0">
+            <div class="relative w-full lg:w-570 h-380 lg:h-555 shrink-0">
                 <img ngSrc="/img/how-to-get-container.svg" alt="" fill priority disableOptimizedSrcset />
             </div>
         </div>
@@ -53,7 +53,7 @@ type Step = {
             padding-top: 48px;
             padding-bottom: 48px;
 
-            @media (min-width: 768px) {
+            @media (width >= 64rem) {
                 row-gap: 0;
                 padding-top: 80px;
                 padding-bottom: 116px;

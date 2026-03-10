@@ -16,31 +16,31 @@ const HELP_ITEMS = [
     selector: 'gmi-help-block',
     template: `
         <section class="flex flex-col">
-            <div class="flex flex-col gap-y-12 mb-32 text-center md:gap-y-28 md:text-left">
+            <div class="flex flex-col gap-y-12 mb-32 text-center lg:gap-y-28 lg:text-left">
                 <h2 uiHeading class="text-gray-900">
                     Get a
                     <span uiHeading variant="italic">Help?</span>
                 </h2>
-                <p class="text-gray-800 md:text-2xl md:capitalize">Customers Can Get Help Here.</p>
+                <p class="text-gray-800 lg:text-2xl lg:capitalize">Customers Can Get Help Here.</p>
             </div>
 
             <ul class="flex flex-col gap-y-12 list-none mb-48" role="list">
                 @for (item of _helpItems; track item) {
                     <li class="flex items-center gap-x-10">
-                        <span class="text-gray-800 font-bold md:text-lg/[24px]">{{ item }}</span>
+                        <span class="text-gray-800 font-bold lg:text-lg/[24px]">{{ item }}</span>
                     </li>
                 }
             </ul>
 
-            <button type="button" class="w-full md:w-fit" uiButton (click)="_isDialogOpen.set(true)">Contact An Agent</button>
+            <button type="button" class="w-full lg:w-fit" uiButton (click)="_isDialogOpen.set(true)">Contact An Agent</button>
         </section>
 
-        <section class="relative flex-1 min-h-260 max-w-605 md:min-h-460">
+        <section class="relative flex-1 min-h-260 max-w-605 lg:min-h-460">
             <img
                 ngSrc="/img/summary-image.png"
                 fill
                 alt="Safe.Insure customer support team"
-                class="object-contain object-center md:object-top-left"
+                class="object-contain object-center lg:object-top-left"
             />
         </section>
 
@@ -56,7 +56,7 @@ const HELP_ITEMS = [
             row-gap: 16px;
             margin: 40px auto;
 
-            @media (min-width: 768px) {
+            @media (width >= 64rem) {
                 flex-direction: row;
                 justify-content: space-between;
                 margin: 106px 146px;

@@ -99,7 +99,7 @@
       }
     }
 
-    @media (min-width: 768px) {
+    @media (width >= 64rem) {
       .link-text {
         font-size: (var(--ui-link-text-font-size), 1rem);
       }

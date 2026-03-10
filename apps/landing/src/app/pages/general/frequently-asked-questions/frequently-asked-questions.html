@@ -1,5 +1,5 @@
 <div class="frequently-asked-questions-left">
-    <h2 uiHeading class="text-green-900 md:w-3/4">
+    <h2 uiHeading class="text-green-900 lg:w-3/4">
         <span uiHeading variant="italic">Frequently</span>
         Asked Questions
     </h2>
@@ -12,7 +12,7 @@
         <ui-accordion-header [index]="index" [expanded]="accordionItem.expanded" (click)="accordionItem.toggle()">
             @let icon = accordionItem.expanded ? 'remove' : 'add';
             <div class="flex justify-between items-center gap-x-2">
-                <span class="text-lg md:text-xl leading-[112%] md:leading-[108%] font-medium uppercase">{{ item.question }}</span>
+                <span class="text-lg lg:text-xl leading-[112%] lg:leading-[108%] font-medium uppercase">{{ item.question }}</span>
                 <span class="material-symbols-outlined text-green-500">{{ icon }}</span>
             </div>
         </ui-accordion-header>

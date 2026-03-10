@@ -7,16 +7,16 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
     selector: 'gmi-sub-header',
     template: `
         <div class="flex flex-col gap-y-28 flex-1">
-            <h1 uiHeading class="text-white pr-40 md:pr-0 capitalize">
+            <h1 uiHeading class="text-white pr-40 lg:pr-0 capitalize">
                 Get Your
                 <span uiHeading variant="italic">
                     restaurant
-                    <br class="md:hidden" />
+                    <br class="lg:hidden" />
                     insurance
                 </span>
                 quote
             </h1>
-            <div class="flex flex-col gap-y-8 max-w-774 text-lime-400 md:capitalize">
+            <div class="flex flex-col gap-y-8 max-w-774 text-lime-400 lg:capitalize">
                 <p class="text-large">It takes ~5 minutes.</p>
                 <p class="text-large">
                     Answer a few questions to see your best coverage options and monthly price — fast and secure. No
@@ -26,7 +26,7 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
             <button type="button" uiButton="primary" [routerLink]="['/insurance']">Get Insurance</button>
         </div>
 
-        <div class="relative self-center shrink-0 w-full md:w-573 h-299 md:h-500">
+        <div class="relative self-center shrink-0 w-full lg:w-573 h-299 lg:h-500">
             <img ngSrc="/img/united-radial.svg" alt="" fill priority disableOptimizedSrcset />
         </div>
     `,
@@ -36,7 +36,7 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
             flex-direction: column;
             row-gap: 24px;
 
-            @media (min-width: 768px) {
+            @media (width >= 64rem) {
                 flex-direction: row;
                 align-items: center;
             }
