@@ -14,7 +14,16 @@ import { EmptyStarsPipe } from './empty-stars.pipe';
     templateUrl: './reviews-section.html',
     styleUrl: './reviews-section.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, DatePipe, SwiperSlider, UiButtonDirective, UiHeadingDirective, FloorRatingPipe, FilledStarsPipe, EmptyStarsPipe],
+    imports: [
+        RouterLink,
+        DatePipe,
+        SwiperSlider,
+        UiButtonDirective,
+        UiHeadingDirective,
+        FloorRatingPipe,
+        FilledStarsPipe,
+        EmptyStarsPipe
+    ]
 })
 export class ReviewsSection {
     private readonly _api = inject(ApiService);

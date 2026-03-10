@@ -23,19 +23,19 @@
 </div>
 
 <ng-template #reviewCardTpl let-item>
-    <article class="review-card" [attr.aria-label]="'Review by ' + item.name">
+    <article class="review-card" [attr.aria-label]="'Review by ' + item?.name">
         <header class="card-header">
-            <img [src]="item.avatar" [alt]="item.name" width="79" height="79" class="avatar" loading="lazy" />
+            <img [src]="item.avatar" [alt]="item?.name" width="79" height="79" class="avatar" loading="lazy" />
             <div class="card-header-info">
-                <p class="reviewer-name">{{ item.name }}</p>
+                <p class="reviewer-name">{{ item?.name }}</p>
                 <div class="relative">
-                    <div class="star-rating" role="img" [attr.aria-label]="(item.rating | floorRating) + ' out of 5 stars'">
-                        <span class="rating-text" aria-hidden="true">{{ item.rating | floorRating }}/5</span>
+                    <div class="star-rating" role="img" [attr.aria-label]="(item?.rating | floorRating) + ' out of 5 stars'">
+                        <span class="rating-text" aria-hidden="true">{{ item?.rating | floorRating }}/5</span>
                         <span class="stars" aria-hidden="true">
-                            @for (star of (item.rating | floorRating | filledStars); track star) {
+                            @for (star of (item?.rating | floorRating | filledStars); track star) {
                                 <span class="star star--filled">&#9733;</span>
                             }
-                            @for (star of (item.rating | floorRating | emptyStars); track star) {
+                            @for (star of (item?.rating | floorRating | emptyStars); track star) {
                                 <span class="star star--empty">&#9733;</span>
                             }
                         </span>
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </header>
-        <p class="review-text">{{ item.description }}</p>
-        <p class="review-date">{{ item.createdAt | date: 'd MMMM, y' }}</p>
+        <p class="review-text">{{ item?.description }}</p>
+        <p class="review-date">{{ item?.createdAt | date: 'd MMMM, y' }}</p>
     </article>
 </ng-template>
