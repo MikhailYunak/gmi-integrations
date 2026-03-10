@@ -1,0 +1,33 @@
+<div class="our-clients-header">
+    <h2 uiHeading class="text-gray-900 px-20 lg:px-0">
+        <span uiHeading variant="italic">Restaurants</span>
+		we already work with
+    </h2>
+</div>
+
+<gmi-swiper-slider
+    [slides]="clients()"
+    [slideTemplate]="clientCardTpl"
+    navPrevLabel="Previous client"
+    navNextLabel="Next client"
+/>
+
+<ng-template #clientCardTpl let-item>
+    <article class="client-card">
+        <div class="card-image-wrapper">
+            <img
+                [ngSrc]="item.logo"
+                [alt]="item.title"
+                width="400"
+                height="225"
+                class="card-image"
+                disableOptimizedSrcset
+                loading="lazy"
+            />
+        </div>
+        <div class="card-body">
+            <h5 uiHeading class="uppercase">{{ item.title }}</h5>
+            <p class="card-description">{{ item.description }}</p>
+        </div>
+    </article>
+</ng-template>

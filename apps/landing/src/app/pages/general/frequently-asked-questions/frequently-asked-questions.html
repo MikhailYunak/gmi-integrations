@@ -7,7 +7,7 @@
 </div>
 
 <ui-accordion [multi]="true">
-    @for (item of faqs; track item.question; let index = $index) {
+    @for (item of faqs(); track item.id; let index = $index) {
     <ui-accordion-item #accordionItem="uiAccordionItem">
         <ui-accordion-header [index]="index" [expanded]="accordionItem.expanded" (click)="accordionItem.toggle()">
             @let icon = accordionItem.expanded ? 'remove' : 'add';
@@ -16,7 +16,7 @@
                 <span class="material-symbols-outlined text-green-500">{{ icon }}</span>
             </div>
         </ui-accordion-header>
-        <ui-accordion-body [index]="index">{{ item.answer }}</ui-accordion-body>
+        <ui-accordion-body [index]="index">{{ item.response }}</ui-accordion-body>
     </ui-accordion-item>
     }
 </ui-accordion>

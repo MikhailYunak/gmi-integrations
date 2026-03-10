@@ -38,7 +38,7 @@ const DEFAULT_OPTIONS: SliderOptions = {
         768: {
             slidesPerView: 3.2,
             spaceBetween: 24,
-            centeredSlides: true,
+            centeredSlides: false,
             slidesOffsetBefore: 0,
             slidesOffsetAfter: 0,
         },
@@ -53,12 +53,12 @@ const DEFAULT_OPTIONS: SliderOptions = {
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     imports: [NgTemplateOutlet],
 })
-export class SwiperSlider {
+export class SwiperSlider<T> {
     private readonly _swiperEl = viewChild.required<ElementRef<SwiperElement>>('swiperEl');
 
-    readonly slides = input.required<unknown[]>();
+    readonly slides = input.required<T[]>();
 
-    readonly slideTemplate = input.required<TemplateRef<{ $implicit: unknown }>>();
+    readonly slideTemplate = input.required<TemplateRef<{ $implicit: T }>>();
 
     readonly swiperOptions = input<SliderOptions>({});
 

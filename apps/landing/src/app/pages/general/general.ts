@@ -4,7 +4,7 @@ import { HowToGet } from './how-to-get/how-to-get';
 import { AlreadyInsured } from './already-insured/already-insured';
 import { FrequentlyAskedQuestions } from './frequently-asked-questions/frequently-asked-questions';
 import { ReviewsSection } from './reviews-section/reviews-section';
-import { RestaurantsSlider } from './restaurants-slider/restaurants-slider';
+import { OurClients } from './our-clients/our-clients';
 import { Footer, MarqueeSection } from '@gmi-integrations/shared';
 
 @Component({
@@ -18,7 +18,7 @@ import { Footer, MarqueeSection } from '@gmi-integrations/shared';
         AlreadyInsured,
         FrequentlyAskedQuestions,
         ReviewsSection,
-        RestaurantsSlider,
+        OurClients,
         Footer,
         MarqueeSection
     ]

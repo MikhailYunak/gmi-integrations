@@ -1,58 +1,49 @@
-<ng-template #reviewCardTpl let-item>
-  <article class="review-card" [attr.aria-label]="'Review by ' + _asReview(item).name">
-    <header class="card-header">
-      <img
-        [src]="_asReview(item).avatarSrc"
-        [alt]="_asReview(item).name"
-        width="79"
-        height="79"
-        class="avatar"
-        loading="lazy"
-      />
-      <div class="card-header-info">
-        <p class="reviewer-name">{{ _asReview(item).name }}</p>
-        <div class="relative">
-          <div
-            class="star-rating"
-            role="img"
-            [attr.aria-label]="_asReview(item).rating + ' out of 5 stars'"
-          >
-            <span class="rating-text" aria-hidden="true">{{ _asReview(item).rating }}/5</span>
-            <span class="stars" aria-hidden="true">
-              @for (star of _filledStars(_asReview(item).rating); track star) {
-                <span class="star star--filled">&#9733;</span>
-              }
-              @for (star of _emptyStars(_asReview(item).rating); track star) {
-                <span class="star star--empty">&#9733;</span>
-              }
-            </span>
-          </div>
-        </div>
-      </div>
-    </header>
-    <p class="review-text">{{ _asReview(item).text }}</p>
-    <p class="review-date">{{ _asReview(item).date }}</p>
-  </article>
-</ng-template>
-
 <div class="reviews-header">
-  <div class="flex items-center justify-center gap-x-16 flex-wrap">
-    <h2 uiHeading class="text-white">
-      Overall <span uiHeading variant="italic">Rating</span> &ndash;
-    </h2>
-    <div class="rating-badge">
-      <span>4.7/5</span>
+    <div class="flex items-center justify-center gap-x-16 flex-wrap">
+        <h2 uiHeading class="text-white">
+            Overall
+            <span uiHeading variant="italic">Rating</span>
+            &ndash;
+        </h2>
+        <div class="rating-badge">
+            <span>4.7/5</span>
+        </div>
     </div>
-  </div>
 </div>
 
 <gmi-swiper-slider
-  [slides]="_reviews"
-  [slideTemplate]="reviewCardTpl"
-  navPrevLabel="Previous review"
-  navNextLabel="Next review"
+    [slides]="ratings()"
+    [slideTemplate]="reviewCardTpl"
+    navPrevLabel="Previous review"
+    navNextLabel="Next review"
 />
 
 <div class="reviews-cta">
-  <button type="button" uiButton="primary" [routerLink]="['/insurance']">Get Insurance</button>
+    <button type="button" uiButton="primary" [routerLink]="['/insurance']">Get Insurance</button>
 </div>
+
+<ng-template #reviewCardTpl let-item>
+    <article class="review-card" [attr.aria-label]="'Review by ' + item.name">
+        <header class="card-header">
+            <img [src]="item.avatar" [alt]="item.name" width="79" height="79" class="avatar" loading="lazy" />
+            <div class="card-header-info">
+                <p class="reviewer-name">{{ item.name }}</p>
+                <div class="relative">
+                    <div class="star-rating" role="img" [attr.aria-label]="(item.rating | floorRating) + ' out of 5 stars'">
+                        <span class="rating-text" aria-hidden="true">{{ item.rating | floorRating }}/5</span>
+                        <span class="stars" aria-hidden="true">
+                            @for (star of (item.rating | floorRating | filledStars); track star) {
+                                <span class="star star--filled">&#9733;</span>
+                            }
+                            @for (star of (item.rating | floorRating | emptyStars); track star) {
+                                <span class="star star--empty">&#9733;</span>
+                            }
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <p class="review-text">{{ item.description }}</p>
+        <p class="review-date">{{ item.createdAt | date: 'd MMMM, y' }}</p>
+    </article>
+</ng-template>

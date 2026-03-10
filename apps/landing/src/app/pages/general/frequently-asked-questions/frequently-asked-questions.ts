@@ -1,11 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { UiAccordion, UiAccordionBody, UiAccordionHeader, UiAccordionItem } from '@gmi-integrations/ui-kit';
 import { UiHeadingDirective } from '@gmi-integrations/ui-kit';
-
-type FaqItem = {
-    question: string;
-    answer: string;
-};
+import { ApiService } from '../../../services/api.service';
 
 @Component({
     selector: 'gmi-frequently-asked-questions',
@@ -45,26 +42,7 @@ type FaqItem = {
     imports: [UiAccordion, UiAccordionItem, UiAccordionHeader, UiAccordionBody, UiHeadingDirective]
 })
 export class FrequentlyAskedQuestions {
-    readonly faqs: FaqItem[] = [
-        {
-            question: 'DO I NEED SMALL BUSINESS INSURANCE?',
-            answer: "Very likely you do need small business insurance to secure your investment in your business. Even if you're a home-based business or new business, you likely have assets you want to protect. By speaking with an agent or broker, they can help you better understand if you need insurance coverage, and what specific type of policy (or policies) would be best for you."
-        },
-        {
-            question: 'KEY TAKEAWAYS ABOUT BUSINESS LIABILITY INSURANCE?',
-            answer: 'Business liability insurance protects your company from claims that result from normal business operations. It covers legal costs and any resulting judgments or settlements. Without this coverage, you could face significant financial losses.'
-        },
-        {
-            question: 'WHAT DOES BUSINESS INSURANCE NOT COVER?',
-            answer: "Standard business insurance typically does not cover intentional acts, employee injuries (covered by workers' compensation), professional mistakes (covered by professional liability insurance), or damage from floods and earthquakes (which require separate policies)."
-        },
-        {
-            question: 'WHAT HAPPENS IF I EXPERIENCE A LOSS?',
-            answer: 'If you experience a covered loss, you should contact your insurance provider as soon as possible to file a claim. Document the damage with photos and keep records of all related expenses. An adjuster will be assigned to evaluate the claim and determine the payout.'
-        },
-        {
-            question: 'DO YOU REQUIRE A DEPOSIT FOR PROJECTS?',
-            answer: 'Deposit requirements vary depending on the type and scope of the project. Generally, a deposit may be required to initiate coverage for larger or more complex insurance projects. Contact our team to discuss the specific requirements for your situation.'
-        }
-    ];
+    private readonly _api = inject(ApiService);
+
+    readonly faqs = toSignal(this._api.getFaqs(), { initialValue: [] });
 }

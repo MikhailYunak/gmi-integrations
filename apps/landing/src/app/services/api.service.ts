@@ -3,9 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import type { Observable } from 'rxjs';
 
-import type { Faq, Client, Rating } from '../models';
-
-export type { Faq, Client, Rating };
+import type { Client, Faq, Rating } from '../models';
 
 const API_BASE = 'https://api.allsafe.insure/api';
 
