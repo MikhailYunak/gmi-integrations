@@ -1,22 +1,27 @@
 import {
     ChangeDetectionStrategy,
     Component,
+    computed,
     effect,
     ElementRef,
     inject,
     input,
     output,
-    viewChild,
+    signal,
+    viewChild
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UiButtonDirective, UiCheckbox, UiHeadingDirective, UiInput } from '@gmi-integrations/ui-kit';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { UiButtonDirective, UiCheckbox, UiHeadingDirective, UiInput, UiTextarea } from '@gmi-integrations/ui-kit';
+import { ContactAgentDialogService, isValidationError } from './contact-agent-dialog.service';
 
 @Component({
     selector: 'gmi-contact-agent-dialog',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ReactiveFormsModule, UiInput, UiCheckbox, UiButtonDirective, UiHeadingDirective],
+    imports: [ReactiveFormsModule, UiInput, UiCheckbox, UiButtonDirective, UiHeadingDirective, UiTextarea],
     templateUrl: './contact-agent-dialog.html',
-    styleUrl: './contact-agent-dialog.scss',
+    styleUrl: './contact-agent-dialog.scss'
 })
 export class ContactAgentDialog {
     readonly isOpen = input(false);
@@ -27,13 +32,31 @@ export class ContactAgentDialog {
 
     private readonly _fb = inject(FormBuilder);
 
+    private readonly _service = inject(ContactAgentDialogService);
+
+    protected readonly _isSubmitting = signal(false);
+
+    protected readonly _serverErrors = signal<Record<string, string>>({});
+
     protected readonly _form = this._fb.group({
         fullName: ['', Validators.required],
         phone: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         question: ['', Validators.required],
-        termsAccepted: [false, Validators.requiredTrue],
+        termsAccepted: [false, Validators.requiredTrue]
     });
+
+    protected readonly _isFormInvalid = toSignal(this._form.statusChanges.pipe(map((status) => status === 'INVALID')), {
+        initialValue: this._form.invalid
+    });
+
+    protected readonly _fullNameError = computed(() => this._serverErrors()['fullName'] ?? '');
+
+    protected readonly _phoneError = computed(() => this._serverErrors()['phone'] ?? '');
+
+    protected readonly _emailError = computed(() => this._serverErrors()['email'] ?? '');
+
+    protected readonly _questionError = computed(() => this._serverErrors()['question'] ?? '');
 
     constructor() {
         effect(() => {
@@ -46,6 +69,12 @@ export class ContactAgentDialog {
                 }
             }
         });
+
+        this._form.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => {
+            if (Object.keys(this._serverErrors()).length > 0) {
+                this._serverErrors.set({});
+            }
+        });
     }
 
     protected _handleClose(): void {
@@ -54,11 +83,33 @@ export class ContactAgentDialog {
     }
 
     protected _handleSubmit(): void {
-        if (this._form.valid) {
-            this._handleClose();
-        } else {
+        if (this._form.invalid) {
             this._form.markAllAsTouched();
+            return;
         }
+
+        const { termsAccepted: _terms, ...body } = this._form.getRawValue() as {
+            fullName: string;
+            phone: string;
+            email: string;
+            question: string;
+            termsAccepted: boolean;
+        };
+
+        this._isSubmitting.set(true);
+        this._serverErrors.set({});
+        this._service.createContactRequest(body).subscribe({
+            next: () => {
+                this._isSubmitting.set(false);
+                this._handleClose();
+            },
+            error: (error: unknown) => {
+                this._isSubmitting.set(false);
+                if (isValidationError(error)) {
+                    this._serverErrors.set(error.error.errors);
+                }
+            }
+        });
     }
 
     protected _handleBackdropClick(event: MouseEvent): void {
