@@ -25,29 +25,29 @@ const HELP_ITEMS = [
             </div>
 
             <ul class="flex flex-col gap-y-12 list-none mb-48" role="list">
-                @for (item of _helpItems; track item) {
+                @for (item of _helpItems; track $index) {
                     <li class="flex items-center gap-x-10">
                         <span class="text-gray-800 font-bold lg:text-lg/[24px]">{{ item }}</span>
                     </li>
                 }
             </ul>
 
-            <button type="button" class="w-full lg:w-fit" uiButton (click)="_isDialogOpen.set(true)">Contact An Agent</button>
+            <button type="button" class="w-full lg:w-fit" uiButton (click)="_isDialogOpen.set(true)">
+                Contact An Agent
+            </button>
         </section>
 
         <section class="relative flex-1 min-h-260 max-w-605 lg:min-h-460">
             <img
                 ngSrc="/img/summary-image.png"
                 fill
+                priority
                 alt="Safe.Insure customer support team"
                 class="object-contain object-center lg:object-top-left"
             />
         </section>
 
-        <gmi-contact-agent-dialog
-            [isOpen]="_isDialogOpen()"
-            (closed)="_isDialogOpen.set(false)"
-        />
+        <gmi-contact-agent-dialog [isOpen]="_isDialogOpen()" (closed)="_isDialogOpen.set(false)" />
     `,
     styles: `
         :host {

@@ -8,7 +8,7 @@ import {
     UiInput,
     UiInputHintState,
     UiRadioCard,
-    UiRadioCardGroup
+    UiRadioCardGroup, UiTooltipDirective
 } from '@gmi-integrations/ui-kit';
 import { GeneralLiabilityFormService } from './general-liability-form.service';
 
@@ -34,7 +34,8 @@ import { GeneralLiabilityFormService } from './general-liability-form.service';
         UiRadioCard,
         UiRadioCardGroup,
         UiButtonDirective,
-        UiHeadingDirective
+        UiHeadingDirective,
+        UiTooltipDirective
     ]
 })
 export class GeneralLiability {

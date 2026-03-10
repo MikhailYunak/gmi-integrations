@@ -1,124 +1,129 @@
-// ── Wrapper ───────────────────────────────────────────────────────────────────
-.ui-amount-picker {
-    display: flex;
-    flex-wrap: nowrap;
-    border: 1.5px solid var(--secondary-gray);
-    border-radius: 999px;
-    overflow: hidden;
-}
-
-// ── Shared pill base ──────────────────────────────────────────────────────────
-.ui-amount-pill {
-    flex: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    height: 44px;
-    padding: 0 16px;
-    border: none;
-    border-right: 1.5px solid var(--secondary-gray);
-    background: transparent;
-    cursor: pointer;
-    font-family: var(--font-sans, 'Inter', sans-serif);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--achromatics-grey);
-    transition:
-        background 0.15s ease,
-        color 0.15s ease;
-    white-space: nowrap;
-    user-select: none;
-
-    &:last-child {
-        border-right: none;
-    }
-
-    &:hover:not(.is-selected) {
-        color: var(--primary-black);
-    }
-
-    &:focus-visible {
-        outline: none;
-        box-shadow: inset 0 0 0 2px var(--primary-lime);
-        z-index: 1;
-    }
-
-    // Selected state — solid forest green
-    &.is-selected {
-        background: linear-gradient(var(--gradient-forest-pine));
-        border-right-color: transparent;
-        color: var(--white);
-    }
-
-    // Hide divider before selected item
-    &:has(+ .is-selected) {
-        border-right-color: transparent;
-    }
-
-    // Currency icon circle
-    &__currency {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        border: 1.5px solid currentColor;
-        font-size: 11px;
-        font-weight: 700;
-        flex-shrink: 0;
-        line-height: 1;
-        transition: border-color 0.15s ease;
-    }
-
-    &__label {
-        line-height: 1;
-    }
-}
-
-// ── Custom amount pill ────────────────────────────────────────────────────────
-.ui-amount-pill--custom {
-    cursor: text;
-    min-width: 110px;
-    padding: 0 12px;
-    border-right: 1.5px solid var(--secondary-gray);
-
-    &.is-focused,
-    &:focus-within {
-        box-shadow: inset 0 0 0 2px var(--primary-lime);
-        color: var(--primary-black);
-        z-index: 1;
-    }
-
-    &.is-selected:not(.is-focused):not(:focus-within) {
-        background: linear-gradient(var(--gradient-forest-pine));
-        border-right-color: transparent;
-        color: var(--white);
-    }
-}
-
-.ui-amount-pill__custom-input {
-    flex: 1;
-    min-width: 0;
-    border: none;
-    outline: none;
-    background: transparent;
-    font-family: inherit;
-    font-size: 15px;
-    font-weight: 500;
-    color: inherit;
-    width: 60px;
-
-    &::placeholder {
-        color: var(--secondary-gray);
-    }
-
-    // Hide number arrows
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-    }
-
-    -moz-appearance: textfield;
+@layer ui-components {
+	.ui-amount-picker {
+		display: flex;
+		flex-wrap: nowrap;
+		overflow: hidden;
+	}
+	
+	.ui-amount-pill {
+		flex: 1;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 6px;
+		height: 56px;
+		padding: 0 16px;
+		border: 1px solid var(--primary-forest);
+		outline: 2px solid;
+		outline-color: transparent;
+		outline-offset: -2px;
+		background: transparent;
+		cursor: pointer;
+		font-size: 18px;
+		font-weight: 400;
+		color: var(--achromatics-grey);
+		transition: background 0.3s ease,
+					color 0.3s ease,
+					outline-color 0.3s ease;
+		white-space: nowrap;
+		user-select: none;
+		
+		&:not(:last-child) {
+			border-right: none;
+		}
+		
+		&:first-child {
+			border-top-left-radius: 28px;
+			border-bottom-left-radius: 28px;
+		}
+		
+		&:last-child {
+			border-top-right-radius: 28px;
+			border-bottom-right-radius: 28px;
+		}
+		
+		&:hover:not(.is-selected) {
+			color: var(--primary-forest);
+			outline-color: var(--primary-lime);
+		}
+		
+		// Selected state — solid forest green
+		&.is-selected {
+			background: var(--primary-forest);
+			border-right-color: transparent;
+			color: var(--white);
+		}
+		
+		// Hide divider before selected item
+		&:has(+ .is-selected) {
+			border-right-color: transparent;
+		}
+		
+		// Currency icon circle
+		&__currency {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			color: var(--secondary-gray);
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			border: 1.5px solid var(--secondary-gray);
+			font-size: 11px;
+			font-weight: 700;
+			flex-shrink: 0;
+			line-height: 1;
+			transition: border-color 0.15s ease;
+		}
+		
+		&__label {
+			line-height: 1;
+		}
+	}
+	
+	// ── Custom amount pill ────────────────────────────────────────────────────────
+	.ui-amount-pill--custom {
+		cursor: text;
+		min-width: 110px;
+		padding: 0 12px;
+		border-right: 1.5px solid var(--secondary-gray);
+		
+		&.is-focused,
+		&:focus-within {
+			box-shadow: inset 0 0 0 2px var(--primary-lime);
+			color: var(--primary-black);
+			z-index: 1;
+		}
+		
+		&.is-selected:not(.is-focused):not(:focus-within) {
+			background: linear-gradient(var(--gradient-forest-pine));
+			border-right-color: transparent;
+			color: var(--white);
+		}
+	}
+	
+	.ui-amount-pill__custom-input {
+		flex: 1;
+		min-width: 0;
+		border: none;
+		outline: none;
+		background: transparent;
+		font-family: inherit;
+		font-size: 15px;
+		font-weight: 500;
+		color: inherit;
+		width: 60px;
+		
+		&::placeholder {
+			color: var(--secondary-gray);
+		}
+		
+		// Hide number arrows
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+		}
+		
+		-moz-appearance: textfield;
+	}
 }

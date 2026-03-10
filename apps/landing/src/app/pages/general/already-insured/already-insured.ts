@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit';
+import {RouterLink} from "@angular/router";
 
 @Component({
     selector: 'gmi-already-insured',
@@ -17,11 +18,9 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
                     <span uiHeading variant="italic">Already</span>
                     insured?
                 </h2>
-                <h4 uiHeading class="text-green-500 text-center lg:text-left">
-                    We will help you switch!
-                </h4>
+                <h4 uiHeading class="text-green-500 text-center lg:text-left">We will help you switch!</h4>
             </div>
-            <button uiButton="primary">Fill Out The Form</button>
+            <button uiButton="primary" [routerLink]="['/insurance']">Fill Out The Form</button>
         </div>
     `,
     styles: `
@@ -40,6 +39,6 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
         }
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [NgOptimizedImage, UiButtonDirective, UiHeadingDirective]
+    imports: [NgOptimizedImage, UiButtonDirective, UiHeadingDirective, RouterLink]
 })
 export class AlreadyInsured {}

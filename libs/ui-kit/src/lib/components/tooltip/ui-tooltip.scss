@@ -1,5 +1,6 @@
 @layer ui-components {
     .ui-tooltip {
+	    position: relative;
 	    display: block;
 	    padding: 16px;
 	    background-color: var(--achromatics-grey-forms);
@@ -13,109 +14,39 @@
 	    word-break: break-word;
 	    pointer-events: none;
 	    box-shadow: 0 4px 16px rgba(4, 59, 46, 0.3);
-	    
-	    /* ── Arrow mixin via pseudo ── */
-	    /* shared arrow styles */
-	    &::before,
-	    &::after,
-	    & &-arrow-left::before,
-	    & &-arrow-left::after,
-	    & &-arrow-right::before,
-	    & &-arrow-right::after,
-	    & &-arrow-bottom::before,
-	    & &-arrow-bottom::after {
-		    content: '';
+
+	    &-arrow {
 		    position: absolute;
-		    width: 0;
-		    height: 0;
+		    pointer-events: none;
+		    display: block;
 	    }
-	    
-	    /* ── TOP arrow ── */
-	    /* border (stroke) triangle */
-	    &::before {
-		    top: -14px;
+
+	    /* tooltip is above the element — arrow at bottom, points down */
+	    &[data-arrow="top"] .ui-tooltip-arrow {
+		    bottom: -8px;
 		    left: 50%;
 		    transform: translateX(-50%);
-		    border-left: 12px solid transparent;
-		    border-right: 12px solid transparent;
-		    border-bottom: 14px solid var(--primary-forest);
 	    }
-	    
-	    /* fill triangle (slightly smaller, sits on top) */
-	    &::after {
-		    top: -12px;
+
+	    /* tooltip is below the element — arrow at top, points up */
+	    &[data-arrow="bottom"] .ui-tooltip-arrow {
+		    top: -8px;
 		    left: 50%;
-		    transform: translateX(-50%);
-		    border-left: 11px solid transparent;
-		    border-right: 11px solid transparent;
-		    border-bottom: 13px solid var(--achromatics-grey-forms);
-		    z-index: 1;
+		    transform: translateX(-50%) rotate(180deg);
 	    }
-	    
-	    /* ── BOTTOM arrow ── */
-	    &-arrow-bottom::before {
-		    bottom: -14px;
-		    left: 50%;
-		    transform: translateX(-50%);
-		    border-left: 12px solid transparent;
-		    border-right: 12px solid transparent;
-		    border-top: 14px solid var(--primary-forest);
-	    }
-	    &-arrow-bottom::after {
-		    bottom: -12px;
-		    left: 50%;
-		    transform: translateX(-50%);
-		    border-left: 11px solid transparent;
-		    border-right: 11px solid transparent;
-		    border-top: 13px solid var(--achromatics-grey-forms);
-		    z-index: 1;
-	    }
-	    
-	    /* ── LEFT arrow ── */
-	    &-arrow-left::before {
-		    left: -14px;
-		    top: 50%;
-		    transform: translateY(-50%);
-		    border-top: 12px solid transparent;
-		    border-bottom: 12px solid transparent;
-		    border-right: 14px solid var(--primary-forest);
-	    }
-	    &-arrow-left::after {
-		    left: -12px;
-		    top: 50%;
-		    transform: translateY(-50%);
-		    border-top: 11px solid transparent;
-		    border-bottom: 11px solid transparent;
-		    border-right: 13px solid var(--achromatics-grey-forms);
-		    z-index: 1;
-	    }
-	    
-	    /* ── RIGHT arrow ── */
-	    &-arrow-right::before {
+
+	    /* tooltip is left of the element — arrow at right, points right */
+	    &[data-arrow="left"] .ui-tooltip-arrow {
 		    right: -14px;
 		    top: 50%;
-		    transform: translateY(-50%);
-		    border-top: 12px solid transparent;
-		    border-bottom: 12px solid transparent;
-		    border-left: 14px solid var(--primary-forest);
+		    transform: translateY(-50%) rotate(90deg);
 	    }
-	    &-arrow-right::after {
-		    right: -12px;
+
+	    /* tooltip is right of the element — arrow at left, points left */
+	    &[data-arrow="right"] .ui-tooltip-arrow {
+		    left: -14px;
 		    top: 50%;
-		    transform: translateY(-50%);
-		    border-top: 11px solid transparent;
-		    border-bottom: 11px solid transparent;
-		    border-left: 13px solid var(--achromatics-grey-forms);
-		    z-index: 1;
-	    }
-	    
-	    /* helper divs for left/right/bottom arrows */
-	    &-arrow-bottom,
-	    &-arrow-left,
-	    &-arrow-right {
-		    position: absolute;
-		    inset: 0;
-		    pointer-events: none;
+		    transform: translateY(-50%) rotate(-90deg);
 	    }
     }
 }

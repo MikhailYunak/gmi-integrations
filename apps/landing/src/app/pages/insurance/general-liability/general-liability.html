@@ -5,139 +5,158 @@
 <form class="flex flex-col gap-y-48 w-full" [formGroup]="svc.form" (ngSubmit)="svc.submit()" novalidate>
     <!-- ── GL Coverage Limit ───────────────────────────────────────────── -->
     <section class="flex flex-col gap-y-12">
-        <p class="text-body-medium text-green-900 m-0">
+        <p class="flex items-center gap-2 text-green-900 leading-24">
             For General Liability claims, I want my business to be covered up to the amount of
-            <button
-                type="button"
-                class="inline-flex items-center justify-center w-20 h-20 ml-4 border-none bg-transparent cursor-pointer text-gray-600 align-middle focus-visible:outline-2 focus-visible:outline-lime-400 focus-visible:rounded"
-                title="The maximum amount your policy will pay for a single covered claim"
-                aria-label="The maximum amount your policy will pay for a single covered claim"
+            <span
+                uiTooltip="Your General Liability limit is the max that your insurance company will pay for damages due to slips, trips, falls and damage to someone else’s property.
+If you have a loss that is $750,000 and your General Liability limit is set at only $500,000, you are responsible for paying the additional $250,000.
+So make sure you think about what limits you need!"
+                class="material-symbols-outlined text-gray-500 cursor-help"
+                aria-hidden="true"
             >
-                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">help</span>
-            </button>
+                help
+            </span>
         </p>
 
-        <ui-amount-picker
-            [options]="glLimitOptions"
-            formControlName="glLimit"
-        />
+        <ui-amount-picker [options]="glLimitOptions" formControlName="glLimit" />
 
         <p class="text-sm text-gray-600 m-0">$2M limit is unavailable when Liquor Liability is added</p>
     </section>
 
     <!-- ── Additional Add Ons ─────────────────────────────────────────── -->
-    <section class="flex flex-col gap-y-16 mb-130">
-        <h2 class="form-sub-title text-green-700 text-center">Additional Add Ons</h2>
+    <section class="flex flex-col mb-130">
+        <h2 class="form-sub-title text-green-700 text-center mb-24">Additional Add Ons</h2>
 
-        <!-- Liquor Liability -->
-        <div formGroupName="liquorLiability">
-            <ui-checkbox-card label="Liquor Liability Coverage" formControlName="shouldInclude">
-                <p class="text-sm text-gray-600 m-0 mt-4">Add this coverage if you sell, serve or furnish alcoholic beverages.</p>
+        <div class="flex flex-col gap-y-48">
+            <!-- Liquor Liability -->
+            <div formGroupName="liquorLiability">
+                <ui-checkbox-card class="p-24" label="Liquor Liability Coverage" formControlName="shouldInclude">
+                    <p class="lg:text-lg text-gray-600">
+                        Add this coverage if you sell, serve or furnish alcoholic beverages.
+                    </p>
 
-                @if (svc.showLiquorFields()) {
-                <div class="mt-16">
-                    <p class="text-body-medium text-green-900 m-0 mb-8">What are your annual liquor sales?</p>
-                    <ui-input
-                        placeholder="50,000"
-                        [required]="true"
-                        formControlName="alcoholicBeverageSales"
-                        [hintState]="hintState(svc.form.controls.liquorLiability.controls.alcoholicBeverageSales)"
-                        [hint]="hintMsg(svc.form.controls.liquorLiability.controls.alcoholicBeverageSales)"
+                    @if (svc.showLiquorFields()) {
+                    <div class="mt-16">
+                        <ui-input
+                            label="What are your annual liquor sales?"
+                            placeholder="50,000"
+                            [required]="true"
+                            formControlName="alcoholicBeverageSales"
+                            [hintState]="hintState(svc.form.controls.liquorLiability.controls.alcoholicBeverageSales)"
+                            [hint]="hintMsg(svc.form.controls.liquorLiability.controls.alcoholicBeverageSales)"
+                        >
+                            <span
+                                uiInputPrefix
+                                class="inline-flex items-center py-0 pr-8 pl-12 cursor-default shrink-0 text-gray-600"
+                                aria-hidden="true"
+                            >
+                                <span class="material-symbols-outlined text-[18px]">paid</span>
+                            </span>
+                            <span
+                                uiInputSuffix
+                                class="inline-flex items-center py-0 pl-8 pr-12 shrink-0 text-gray-500 text-sm font-medium"
+                                aria-hidden="true"
+                            >
+                                E.G.
+                            </span>
+                        </ui-input>
+
+                        <p class="lg:text-lg text-gray-600 my-24">
+                            The specific activities listed below would make this business ineligible for a quote.
+                        </p>
+                        <ul class="lg:text-lg text-green-900 list-disc list-outside ml-16 [&_li+li]:mt-2">
+                            <li>Bars, taverns, lounge, or nightclub</li>
+                            <li>Dance floor</li>
+                            <li>Liquor sales of 50% or more of total annual revenues</li>
+                            <li>Live entertainment</li>
+                            <li>DJs</li>
+                            <li>Hookah bars</li>
+                            <li>Oxygen bars</li>
+                            <li>Bring your own bottle (BYOB) establishments</li>
+                            <li>Door staff or bouncers</li>
+                            <li>24-hour operations</li>
+                            <li>Complimentary drinks or all-you-can drink specials</li>
+                            <li>Extended drink promotions</li>
+                            <li>Service of alcoholic drinks more than two hours after food service ends</li>
+                            <li>Sport activities or amusement devices (billiard / pool, darts, boxing etc)</li>
+                            <li>Alcohol production</li>
+                            <li>Wholesale or distribution of alcohol</li>
+                            <li>Membership clubs (golf, civic, fraternal and social clubs)</li>
+                            <li>Catering operations</li>
+                        </ul>
+                    </div>
+                    }
+                </ui-checkbox-card>
+            </div>
+
+            <!-- Cyber Insurance -->
+            <ui-checkbox-card label="Cyber Insurance" formControlName="hasCyberCoverage">
+                <div class="flex flex-col gap-y-24">
+                    <p class="lg:text-lg text-gray-600">
+                        Provides coverage against losses resulting from a cyber attack, security breach, and/or data
+                        loss.
+                    </p>
+                    <p class="text-green-900 font-bold">Per Event Deductible: $1,000</p>
+                </div>
+                @if (svc.showCyberFields()) {
+                <div class="mt-24">
+                    <p class="text-green-900 mb-4">Select your coverage limit:</p>
+                    <ui-radio-card-group
+                        class="flex flex-col gap-y-16"
+                        formControlName="cyberCoverageLimit"
+                        aria-label="Cyber coverage limit"
                     >
-                        <span uiInputPrefix class="inline-flex items-center py-0 pr-8 pl-12 cursor-default shrink-0 text-gray-600" aria-hidden="true">
-                            <span class="material-symbols-outlined text-[18px]">paid</span>
-                        </span>
-                        <span uiInputSuffix class="inline-flex items-center py-0 pl-8 pr-12 shrink-0 text-gray-500 text-sm font-medium" aria-hidden="true">
-                            E.G.
-                        </span>
-                    </ui-input>
+                        <ui-radio-card
+                            title="$50,000 Coverage Form Aggregate / $50,000 Liability Coverage / $25,000 First Party Coverage"
+                            value="25000/50000"
+                        />
+                        <ui-radio-card
+                            title="$100,000 Coverage Form Aggregate / $100,000 Liability Coverage / $50,000 First Party Coverage"
+                            value="50000/100000"
+                        />
+                    </ui-radio-card-group>
+                </div>
+                }
+            </ui-checkbox-card>
 
-                    <p class="text-sm text-gray-600 mt-12 mb-8">The specific activities listed below would make this business ineligible for a quote.</p>
-                    <ul class="text-sm text-gray-600 list-disc list-outside ml-16 [&_li+li]:mt-2">
-                        <li>Bars, taverns, lounge, or nightclub</li>
-                        <li>Dance floor</li>
-                        <li>Liquor sales of 50% or more of total annual revenues</li>
-                        <li>Live entertainment</li>
-                        <li>DJs</li>
-                        <li>Hookah bars</li>
-                        <li>Oxygen bars</li>
-                        <li>Bring your own bottle (BYOB) establishments</li>
-                        <li>Door staff or bouncers</li>
-                        <li>24-hour operations</li>
-                        <li>Complimentary drinks or all-you-can drink specials</li>
-                        <li>Extended drink promotions</li>
-                        <li>Service of alcoholic drinks more than two hours after food service ends</li>
-                        <li>Sport activities or amusement devices (billiard / pool, darts, boxing etc)</li>
-                        <li>Alcohol production</li>
-                        <li>Wholesale or distribution of alcohol</li>
-                        <li>Membership clubs (golf, civic, fraternal and social clubs)</li>
-                        <li>Catering operations</li>
-                    </ul>
+            <!-- EPLI -->
+            <ui-checkbox-card label="Employment Practices Liability Insurance (EPLI)" formControlName="hasEpli">
+                <p class="lg:text-lg text-gray-600">
+                    Provides businesses protection from lawsuits filed by employees alleging wrongful acts that occurred
+                    during the employment process.
+                </p>
+
+                @if (svc.showEpliFields()) {
+                <div class="mt-24 flex flex-col gap-y-24">
+                    <div>
+                        <p class="text-green-900 mb-4">Select your coverage limit:</p>
+                        <ui-radio-card-group
+                            class="flex flex-col gap-y-16"
+                            formControlName="epliLimit"
+                            aria-label="EPLI coverage limit"
+                        >
+                            <ui-radio-card title="$50,000 Per Claim / $50,000 Aggregate" value="50000/50000" />
+                            <ui-radio-card title="$100,000 Per Claim / $100,000 Aggregate" value="100000/100000" />
+                            <ui-radio-card title="$250,000 Per Claim / $250,000 Aggregate" value="250000/250000" />
+                        </ui-radio-card-group>
+                    </div>
+
+                    <div>
+                        <p class="text-green-900 mb-4">Select your retention limit:</p>
+                        <ui-radio-card-group
+                            class="flex flex-col gap-y-16"
+                            formControlName="epliRetention"
+                            aria-label="EPLI retention limit"
+                        >
+                            <ui-radio-card title="$2,500" [value]="2500" />
+                            <ui-radio-card title="$5,000" [value]="5000" />
+                            <ui-radio-card title="$10,000" [value]="10000" />
+                        </ui-radio-card-group>
+                    </div>
                 </div>
                 }
             </ui-checkbox-card>
         </div>
-
-        <!-- Cyber Insurance -->
-        <ui-checkbox-card label="Cyber Insurance" formControlName="hasCyberCoverage">
-            <p class="text-sm text-gray-600 m-0 mt-4">Provides coverage against losses resulting from a cyber attack, security breach, and/or data loss.</p>
-            <p class="text-body-medium text-green-900 font-bold m-0 mt-8">Per Event Deductible: $1,000</p>
-
-            @if (svc.showCyberFields()) {
-            <div class="mt-16">
-                <p class="text-body-medium text-green-900 m-0 mb-8">Select your coverage limit:</p>
-                <ui-radio-card-group
-                    class="flex flex-col gap-8"
-                    formControlName="cyberCoverageLimit"
-                    aria-label="Cyber coverage limit"
-                >
-                    <ui-radio-card
-                        title="$50,000 Coverage Form Aggregate / $50,000 Liability Coverage / $25,000 First Party Coverage"
-                        value="25000/50000"
-                    />
-                    <ui-radio-card
-                        title="$100,000 Coverage Form Aggregate / $100,000 Liability Coverage / $50,000 First Party Coverage"
-                        value="50000/100000"
-                    />
-                </ui-radio-card-group>
-            </div>
-            }
-        </ui-checkbox-card>
-
-        <!-- EPLI -->
-        <ui-checkbox-card label="Employment Practices Liability Insurance (EPLI)" formControlName="hasEpli">
-            <p class="text-sm text-gray-600 m-0 mt-4">Provides businesses protection from lawsuits filed by employees alleging wrongful acts that occurred during the employment process.</p>
-
-            @if (svc.showEpliFields()) {
-            <div class="mt-16 flex flex-col gap-y-16">
-                <div>
-                    <p class="text-body-medium text-green-900 m-0 mb-8">Select your coverage limit:</p>
-                    <ui-radio-card-group
-                        class="flex flex-col gap-8"
-                        formControlName="epliLimit"
-                        aria-label="EPLI coverage limit"
-                    >
-                        <ui-radio-card title="$50,000 Per Claim / $50,000 Aggregate" value="50000/50000" />
-                        <ui-radio-card title="$100,000 Per Claim / $100,000 Aggregate" value="100000/100000" />
-                        <ui-radio-card title="$250,000 Per Claim / $250,000 Aggregate" value="250000/250000" />
-                    </ui-radio-card-group>
-                </div>
-
-                <div>
-                    <p class="text-body-medium text-green-900 m-0 mb-8">Select your retention limit:</p>
-                    <ui-radio-card-group
-                        class="flex flex-col gap-8"
-                        formControlName="epliRetention"
-                        aria-label="EPLI retention limit"
-                    >
-                        <ui-radio-card title="$2,500" [value]="2500" />
-                        <ui-radio-card title="$5,000" [value]="5000" />
-                        <ui-radio-card title="$10,000" [value]="10000" />
-                    </ui-radio-card-group>
-                </div>
-            </div>
-            }
-        </ui-checkbox-card>
     </section>
 
     <!-- ── Footer ────────────────────────────────────────────────────── -->
@@ -145,7 +164,7 @@
         class="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-16 px-16 py-12 bg-green-700 border-t border-gray-500 z-50 lg:px-48 lg:py-16"
     >
         <div class="flex justify-between w-full max-w-664">
-            <button uiButton="outline" type="button" (click)="svc.goBack()">Back</button>
+            <button uiButton type="button" (click)="svc.goBack()">Back</button>
             <button uiButton [loading]="svc.isLoading()" type="submit" [disabled]="svc.form.invalid">Result</button>
         </div>
     </footer>

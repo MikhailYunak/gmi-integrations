@@ -6,57 +6,54 @@
     <!-- ── Financials ──────────────────────────────────────────────────── -->
     <section class="flex flex-col gap-y-24" formGroupName="financials">
         <div>
-            <p class="text-body-medium text-green-900 m-0 mb-12">
-                Annually, my business earns
-                <span class="text-green-500">(before taxes)</span>
-                <button
-                    type="button"
-                    class="inline-flex items-center justify-center w-20 h-20 ml-4 border-none bg-transparent cursor-pointer text-gray-600 align-middle focus-visible:outline-2 focus-visible:outline-lime-400 focus-visible:rounded"
-                    title="Total revenue your business earns before taxes each year"
-                    aria-label="Total revenue your business earns before taxes each year"
-                >
-                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">help</span>
-                </button>
-            </p>
             <ui-input
+                label="Annually, my business earns (before taxes)"
+                tooltip="Select the amount that most closely represents your business's sales, rounding up. If you’re not sure, give your best guess based on last year."
                 placeholder="500,000"
                 [required]="true"
                 formControlName="annualEarnings"
                 [hintState]="hintState(svc.form.controls.financials.controls.annualEarnings)"
                 [hint]="hintMsg(svc.form.controls.financials.controls.annualEarnings)"
             >
-                <span uiInputPrefix class="inline-flex items-center py-0 pr-8 pl-12 cursor-default shrink-0 text-gray-600" aria-hidden="true">
+                <span
+                    uiInputPrefix
+                    class="inline-flex items-center py-0 pr-8 pl-12 cursor-default shrink-0 text-gray-600"
+                    aria-hidden="true"
+                >
                     <span class="material-symbols-outlined text-[18px]">paid</span>
                 </span>
-                <span uiInputSuffix class="inline-flex items-center py-0 pl-8 pr-12 shrink-0 text-gray-500 text-sm font-medium" aria-hidden="true">
+                <span
+                    uiInputSuffix
+                    class="inline-flex items-center py-0 pl-8 pr-12 shrink-0 text-gray-500 text-sm font-medium"
+                    aria-hidden="true"
+                >
                     E.G.
                 </span>
             </ui-input>
         </div>
 
         <div>
-            <p class="text-body-medium text-green-900 m-0 mb-12">
-                Annually, I pay myself and my employees a total of
-                <button
-                    type="button"
-                    class="inline-flex items-center justify-center w-20 h-20 ml-4 border-none bg-transparent cursor-pointer text-gray-600 align-middle focus-visible:outline-2 focus-visible:outline-lime-400 focus-visible:rounded"
-                    title="Total amount paid to yourself and all employees annually, including wages and salaries"
-                    aria-label="Total amount paid to yourself and all employees annually, including wages and salaries"
-                >
-                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">help</span>
-                </button>
-            </p>
             <ui-input
+                label="Annually, I pay myself and my employees a total of"
+                tooltip="Roughly, what do you expect to pay yourself and your employees over the next 12 months?"
                 placeholder="500,000"
                 [required]="true"
                 formControlName="annualPayroll"
                 [hintState]="hintState(svc.form.controls.financials.controls.annualPayroll)"
                 [hint]="hintMsg(svc.form.controls.financials.controls.annualPayroll)"
             >
-                <span uiInputPrefix class="inline-flex items-center py-0 pr-8 pl-12 cursor-default shrink-0 text-gray-600" aria-hidden="true">
+                <span
+                    uiInputPrefix
+                    class="inline-flex items-center py-0 pr-8 pl-12 cursor-default shrink-0 text-gray-600"
+                    aria-hidden="true"
+                >
                     <span class="material-symbols-outlined text-[18px]">paid</span>
                 </span>
-                <span uiInputSuffix class="inline-flex items-center py-0 pl-8 pr-12 shrink-0 text-gray-500 text-sm font-medium" aria-hidden="true">
+                <span
+                    uiInputSuffix
+                    class="inline-flex items-center py-0 pl-8 pr-12 shrink-0 text-gray-500 text-sm font-medium"
+                    aria-hidden="true"
+                >
                     E.G.
                 </span>
             </ui-input>
@@ -70,19 +67,18 @@
         <div formGroupName="primaryLocation">
             <div class="flex items-center gap-6 mb-4">
                 <span class="text-body-medium text-green-900 font-bold">Primary Location Address</span>
-                <button
-                    type="button"
-                    class="inline-flex items-center justify-center w-20 h-20 border-none bg-transparent cursor-pointer text-gray-600 focus-visible:outline-2 focus-visible:outline-lime-400 focus-visible:rounded"
-                    title="The physical address where your business primarily operates"
-                    aria-label="The physical address where your business primarily operates"
+                <span
+                    uiTooltip="We need your street address and zip code (same as your business tax forms) to provide you the right coverage. While we don’t send out much snail mail (we prefer email!), we might occasionally send a second copy of important communications here as well."
+                    class="material-symbols-outlined text-gray-500 cursor-help"
+                    aria-hidden="true"
                 >
-                    <span class="material-symbols-outlined text-[18px]" aria-hidden="true">help</span>
-                </button>
+                    help
+                </span>
             </div>
-            <p class="text-gray-600 text-sm m-0 mb-16">Where is your business located?</p>
 
-            <div class="flex flex-col gap-y-12">
+            <div class="flex flex-col gap-y-24">
                 <ui-input
+                    label="Where is your business located?"
                     placeholder="Enter Street Address"
                     [required]="true"
                     formControlName="street"
@@ -90,7 +86,7 @@
                     [hint]="hintMsg(svc.form.controls.primaryLocation.controls.street)"
                 />
 
-                <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
+                <div class="grid grid-cols-1 gap-24 lg:grid-cols-3">
                     <ui-input
                         placeholder="Enter City"
                         [required]="true"
@@ -136,10 +132,10 @@
         @if (svc.showMailingAddress()) {
         <div formGroupName="mailingAddress">
             <p class="text-body-medium text-green-900 font-bold m-0 mb-4">Mailing Address</p>
-            <p class="text-gray-600 text-sm m-0 mb-16">Where should we send your policy documents?</p>
 
-            <div class="flex flex-col gap-y-12">
+            <div class="flex flex-col gap-y-24">
                 <ui-input
+                    label="Where should we send your policy documents?"
                     placeholder="Enter Street Address"
                     [required]="true"
                     formControlName="street"
@@ -147,7 +143,7 @@
                     [hint]="hintMsg(svc.form.controls.mailingAddress.controls.street)"
                 />
 
-                <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
+                <div class="grid grid-cols-1 gap-24 lg:grid-cols-3">
                     <ui-input
                         placeholder="Enter City"
                         [required]="true"
@@ -181,7 +177,7 @@
         class="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-16 px-16 py-12 bg-green-700 border-t border-gray-500 z-50 lg:px-48 lg:py-16"
     >
         <div class="flex justify-between w-full max-w-664">
-            <button uiButton="outline" type="button" (click)="svc.goBack()">Back</button>
+            <button uiButton type="button" (click)="svc.goBack()">Back</button>
             <button uiButton [loading]="svc.isLoading()" type="submit" [disabled]="svc.form.invalid">Continue</button>
         </div>
     </footer>

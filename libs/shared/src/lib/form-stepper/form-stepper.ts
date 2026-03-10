@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common';
 import { filter, map, startWith } from 'rxjs';
 
 export interface StepperStep {
@@ -19,7 +20,7 @@ interface ComputedStep extends StepperStep {
     templateUrl: './form-stepper.html',
     styleUrl: './form-stepper.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink]
+    imports: [RouterLink, NgOptimizedImage]
 })
 export class FormStepper {
     readonly steps = input.required<StepperStep[]>();

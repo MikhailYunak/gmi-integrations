@@ -8,7 +8,7 @@ import {
     UiInput,
     UiInputHintState,
     UiRadioCard,
-    UiRadioCardGroup,
+    UiRadioCardGroup, UiTooltipDirective,
 } from '@gmi-integrations/ui-kit';
 import { AboutYourRestaurantFormService } from './about-your-restaurant-form.service';
 
@@ -87,7 +87,8 @@ const US_STATES: UiDropdownOption[] = [
         UiRadioCardGroup,
         UiButtonDirective,
         UiHeadingDirective,
-    ],
+        UiTooltipDirective
+    ]
 })
 export class AboutYourRestaurant {
     protected readonly svc = inject(AboutYourRestaurantFormService);

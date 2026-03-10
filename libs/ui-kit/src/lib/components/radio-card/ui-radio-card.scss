@@ -121,8 +121,8 @@
         }
 
         &.is-active {
-            border-width: 2px;
-            border-color: var(--primary-forest);
+	        outline: 2px solid var(--primary-forest);
+	        outline-offset: -2px;
 
             .ui-radio-card__indicator {
                 &:before {
