@@ -5,7 +5,7 @@ import { FormStepper, StepperStep } from '@gmi-integrations/shared';
 const INSURANCE_STEPS: StepperStep[] = [
     { label: 'General Information', route: 'general-information' },
     { label: 'About Your Restaurant', route: 'about-your-restaurant' },
-    { label: 'General Liability', route: 'general-liability' },
+    { label: 'General Liability', route: 'general-liability' }
 ];
 
 const STATUS_TO_COMPLETED: Record<string, string[]> = {

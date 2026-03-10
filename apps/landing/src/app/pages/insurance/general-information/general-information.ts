@@ -113,6 +113,9 @@ export class GeneralInformation {
         if (!control.invalid || !control.touched) {
             return '';
         }
+        if (control.errors?.['serverError']) {
+            return control.errors['serverError'];
+        }
         if (control.errors?.['required']) {
             return 'This field is required';
         }

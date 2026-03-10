@@ -25,6 +25,12 @@ To create a production bundle:
 npx nx build landing
 ```
 
+## Install NODE MODULES
+
+```sh
+npm install --legacy-peer-deps
+```
+
 To see all available targets to run for a project, run:
 
 ```sh

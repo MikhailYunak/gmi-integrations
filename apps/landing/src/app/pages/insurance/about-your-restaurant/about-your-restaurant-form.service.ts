@@ -2,7 +2,9 @@ import { computed, DestroyRef, effect, inject, Injectable, signal } from '@angul
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { merge } from 'rxjs';
+import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { InsuranceApiService } from '../services/insurance-api.service';
 import { InsuranceStorageService } from '../services/insurance-storage.service';
 import { StepTwoModel } from '../models/insurance.models';
@@ -103,8 +105,11 @@ export class AboutYourRestaurantFormService {
                     this.isLoading.set(false);
                     this._router.navigate(['/insurance', 'general-liability']);
                 },
-                error: () => {
+                error: (err: HttpErrorResponse) => {
                     this.isLoading.set(false);
+                    if (isValidationError(err)) {
+                        applyServerErrors(err.error.errors, this.form);
+                    }
                 }
             });
     }

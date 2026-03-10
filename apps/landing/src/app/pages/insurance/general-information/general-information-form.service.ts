@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Dialog } from '@angular/cdk/dialog';
 import { merge, switchMap } from 'rxjs';
 import { ConfirmDialog, ConfirmDialogData } from '@gmi-integrations/shared';
+import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { InsuranceApiService, isConflictError } from '../services/insurance-api.service';
 import { InsuranceStorageService } from '../services/insurance-storage.service';
 import { QuoteApplicationStatus, StepOneModel } from '../models/insurance.models';
@@ -125,6 +126,8 @@ export class GeneralInformationFormService {
                 this.isLoading.set(false);
                 if (isConflictError(err)) {
                     this._openConflictDialog(err.error.activeQuoteUuid, dto);
+                } else if (isValidationError(err)) {
+                    applyServerErrors(err.error.errors, this.form);
                 }
             }
         });
