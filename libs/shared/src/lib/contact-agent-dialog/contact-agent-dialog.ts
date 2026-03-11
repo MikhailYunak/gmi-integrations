@@ -18,10 +18,10 @@ import { ContactAgentDialogService, isValidationError } from './contact-agent-di
 
 @Component({
     selector: 'gmi-contact-agent-dialog',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [ReactiveFormsModule, UiInput, UiCheckbox, UiButtonDirective, UiHeadingDirective, UiTextarea],
     templateUrl: './contact-agent-dialog.html',
-    styleUrl: './contact-agent-dialog.scss'
+    styleUrl: './contact-agent-dialog.scss',
+    imports: [ReactiveFormsModule, UiInput, UiCheckbox, UiButtonDirective, UiHeadingDirective, UiTextarea],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactAgentDialog {
     readonly isOpen = input(false);
