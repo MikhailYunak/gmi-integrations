@@ -36,8 +36,8 @@ type Step = {
                 }
             </div>
 
-            <div class="relative w-full lg:w-570 h-380 lg:h-555 shrink-0">
-                <img ngSrc="/img/how-to-get-container.svg" alt="" fill priority disableOptimizedSrcset />
+            <div class="relative w-343 lg:w-569 h-365 lg:h-608 shrink-0">
+                <img ngSrc="/img/рow-to-quickly-get-insurance.png" alt="" fill priority disableOptimizedSrcset />
             </div>
         </div>
 
