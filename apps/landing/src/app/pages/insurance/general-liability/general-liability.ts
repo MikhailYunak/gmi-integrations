@@ -11,6 +11,7 @@ import {
     UiRadioCardGroup, UiTooltipDirective
 } from '@gmi-integrations/ui-kit';
 import { GeneralLiabilityFormService } from './general-liability-form.service';
+import { GL_LIMIT_OPTIONS } from '../const/gl-limit-options';
 
 @Component({
     selector: 'gmi-general-liability',
@@ -41,7 +42,7 @@ import { GeneralLiabilityFormService } from './general-liability-form.service';
 export class GeneralLiability {
     protected readonly svc = inject(GeneralLiabilityFormService);
 
-    protected readonly glLimitOptions = [300000, 500000, 1000000, 2000000];
+    protected readonly glLimitOptions = GL_LIMIT_OPTIONS;
 
     protected hintState(control: AbstractControl): UiInputHintState {
         this.svc.formChange();

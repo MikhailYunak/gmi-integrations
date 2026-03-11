@@ -10,18 +10,11 @@ import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { InsuranceApiService, isConflictError } from '../services/insurance-api.service';
 import { InsuranceStorageService } from '../services/insurance-storage.service';
 import { QuoteApplicationStatus, StepOneModel } from '../models/insurance.models';
+import { GENERAL_INFORMATION_STATUS_ROUTE } from '../const/status-route';
 
 export type ClaimGroup = {
     claimAmount: FormControl<string>;
     claimDescription: FormControl<string>;
-};
-
-const STATUS_ROUTE: Record<QuoteApplicationStatus, string[]> = {
-    STEP_ONE: ['/insurance', 'general-information'],
-    STEP_TWO: ['/insurance', 'about-your-restaurant'],
-    STEP_THREE: ['/insurance', 'general-liability'],
-    COMPLETED: ['/insurance', 'general-information'],
-    CANCELLED: ['/insurance', 'general-information']
 };
 
 @Injectable()
@@ -120,7 +113,10 @@ export class GeneralInformationFormService {
             next: (app) => {
                 this._storage.save(app);
                 this.isLoading.set(false);
-                this._router.navigate(STATUS_ROUTE[app.status as QuoteApplicationStatus] ?? STATUS_ROUTE.STEP_TWO);
+                this._router.navigate(
+                    GENERAL_INFORMATION_STATUS_ROUTE[app.status as QuoteApplicationStatus] ??
+                        GENERAL_INFORMATION_STATUS_ROUTE.STEP_TWO
+                );
             },
             error: (err: HttpErrorResponse) => {
                 this.isLoading.set(false);
@@ -157,16 +153,22 @@ export class GeneralInformationFormService {
 
     private _continueExisting(uuid: string): void {
         this.isLoading.set(true);
-        this._api.getApplication(uuid).pipe(takeUntilDestroyed(this._destroyRef)).subscribe({
-            next: (app) => {
-                this._storage.save(app);
-                this.isLoading.set(false);
-                this._router.navigate(STATUS_ROUTE[app.status as QuoteApplicationStatus] ?? STATUS_ROUTE.STEP_TWO);
-            },
-            error: () => {
-                this.isLoading.set(false);
-            }
-        });
+        this._api
+            .getApplication(uuid)
+            .pipe(takeUntilDestroyed(this._destroyRef))
+            .subscribe({
+                next: (app) => {
+                    this._storage.save(app);
+                    this.isLoading.set(false);
+                    this._router.navigate(
+                        GENERAL_INFORMATION_STATUS_ROUTE[app.status as QuoteApplicationStatus] ??
+                            GENERAL_INFORMATION_STATUS_ROUTE.STEP_TWO
+                    );
+                },
+                error: () => {
+                    this.isLoading.set(false);
+                }
+            });
     }
 
     private _startOver(uuid: string, dto: StepOneModel): void {
@@ -174,12 +176,15 @@ export class GeneralInformationFormService {
 
         this._api
             .cancelApplication(uuid)
-            .pipe(switchMap(() => this._api.createApplication(dto)), takeUntilDestroyed(this._destroyRef))
+            .pipe(
+                switchMap(() => this._api.createApplication(dto)),
+                takeUntilDestroyed(this._destroyRef)
+            )
             .subscribe({
                 next: (app) => {
                     this._storage.save(app);
                     this.isLoading.set(false);
-                    this._router.navigate(STATUS_ROUTE.STEP_TWO);
+                    this._router.navigate(GENERAL_INFORMATION_STATUS_ROUTE.STEP_TWO);
                 },
                 error: () => {
                     this.isLoading.set(false);

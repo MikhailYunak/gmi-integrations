@@ -37,6 +37,11 @@ export class InsuranceStorageService {
         return this.get()?.step3Data ?? null;
     }
 
+    getCompletedSteps(statusMap: Record<string, string[]>): string[] {
+        const status = this.get()?.status;
+        return statusMap[status ?? ''] ?? [];
+    }
+
     clear(): void {
         localStorage.removeItem(STORAGE_KEY);
     }

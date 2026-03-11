@@ -7,16 +7,8 @@ import { merge, switchMap } from 'rxjs';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { InsuranceApiService } from '../services/insurance-api.service';
 import { InsuranceStorageService } from '../services/insurance-storage.service';
-import { QuoteApplicationStatus, StepThreeModel } from '../models/insurance.models';
+import { StepThreeModel } from '../models/insurance.models';
 import { QuoteStateService } from '../../state/quote-state.service';
-
-const STATUS_ROUTE: Record<QuoteApplicationStatus, string[]> = {
-    STEP_ONE: ['/insurance', 'general-information'],
-    STEP_TWO: ['/insurance', 'about-your-restaurant'],
-    STEP_THREE: ['/insurance', 'general-liability'],
-    COMPLETED: ['/summary'],
-    CANCELLED: ['/insurance', 'general-information']
-};
 
 @Injectable()
 export class GeneralLiabilityFormService {

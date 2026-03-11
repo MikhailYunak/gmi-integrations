@@ -1,0 +1,1 @@
+export const GL_LIMIT_OPTIONS: number[] = [300000, 500000, 1000000, 2000000];
