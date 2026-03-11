@@ -14,7 +14,7 @@ import {
 const API_BASE = 'https://quote.allsafe.insure/api';
 
 @Injectable({ providedIn: 'root' })
-export class InsuranceApiService {
+export class StepsApiService {
     private readonly _http = inject(HttpClient);
 
     createApplication(stepOne: StepOneModel): Observable<QuoteApplicationFull> {

@@ -7,7 +7,7 @@ import { Dialog } from '@angular/cdk/dialog';
 import { merge, switchMap } from 'rxjs';
 import { ConfirmDialog, ConfirmDialogData } from '@gmi-integrations/shared';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
-import { InsuranceApiService, isConflictError } from '../services/insurance-api.service';
+import { StepsApiService, isConflictError } from '../services/steps-api.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { QuoteApplicationStatus, StepOneModel } from '../models/insurance.models';
 import { GENERAL_INFORMATION_STATUS_ROUTE } from '../const/status-route';
@@ -21,7 +21,7 @@ export type ClaimGroup = {
 export class StepOneFormService {
     private readonly _fb = inject(FormBuilder);
 
-    private readonly _api = inject(InsuranceApiService);
+    private readonly _api = inject(StepsApiService);
 
     private readonly _storage = inject(LocalStorageService);
 

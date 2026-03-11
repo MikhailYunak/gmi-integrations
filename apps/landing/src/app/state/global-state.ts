@@ -1,8 +1,8 @@
 import { Injectable, signal } from '@angular/core';
-import { QuoteResult } from '../steps/models/insurance.models';
+import { QuoteResult } from '../pages/steps/models/insurance.models';
 
 @Injectable({ providedIn: 'root' })
-export class QuoteStateService {
+export class GlobalState {
     readonly quoteResult = signal<QuoteResult | null>(null);
 
     set(result: QuoteResult): void {

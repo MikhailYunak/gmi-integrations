@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { merge } from 'rxjs';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
-import { InsuranceApiService } from '../services/insurance-api.service';
+import { StepsApiService } from '../services/steps-api.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { StepTwoModel } from '../models/insurance.models';
 
@@ -13,7 +13,7 @@ import { StepTwoModel } from '../models/insurance.models';
 export class StepTwoFormService {
     private readonly _fb = inject(FormBuilder);
 
-    private readonly _api = inject(InsuranceApiService);
+    private readonly _api = inject(StepsApiService);
 
     private readonly _storage = inject(LocalStorageService);
 

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { UiHeadingDirective } from '@gmi-integrations/ui-kit';
 import { RouterLink } from '@angular/router';
 import { PricingCard, BillingCycle } from '@gmi-integrations/shared';
-import { QuoteStateService } from '../../state/quote-state.service';
+import { GlobalState } from '../../../state/global-state';
 import {WINDOW} from "@gmi-integrations/cdk";
 
 @Component({
@@ -65,7 +65,7 @@ import {WINDOW} from "@gmi-integrations/cdk";
     imports: [UiHeadingDirective, RouterLink, PricingCard]
 })
 export class QuotesSubHeader {
-    private readonly _quoteState = inject(QuoteStateService);
+    private readonly _quoteState = inject(GlobalState);
 
     private readonly _window = inject(WINDOW).window;
 
