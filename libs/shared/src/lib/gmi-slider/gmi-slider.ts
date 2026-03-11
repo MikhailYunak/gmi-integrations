@@ -9,7 +9,8 @@ import {
     viewChild,
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
-import { register } from 'swiper/element/bundle';
+import { register } from 'swiper/element';
+import { Navigation } from 'swiper/modules';
 
 register();
 
@@ -70,7 +71,7 @@ export class SwiperSlider<T> {
         effect(() => {
             const el = this._swiperEl().nativeElement;
             if (el) {
-                Object.assign(el, { ...DEFAULT_OPTIONS, ...this.swiperOptions() });
+                Object.assign(el, { modules: [Navigation], ...DEFAULT_OPTIONS, ...this.swiperOptions() });
                 el.initialize();
             }
         });
