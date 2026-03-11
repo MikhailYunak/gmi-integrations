@@ -35,7 +35,7 @@ import {WINDOW} from "@gmi-integrations/cdk";
                 }
                 <p class="text-white text-sm lg:text-lg">
                     This quotes are customized using the information you provided, public, and third-party data. You can
-                    <a [routerLink]="['/insurance']" class="underline hover:italic hover:font-(--font-primary)">
+                    <a [routerLink]="['/steps']" class="underline hover:italic hover:font-(--font-primary)">
                         review your application
                     </a>
                     and make edits if needed.

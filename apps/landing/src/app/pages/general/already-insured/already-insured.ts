@@ -20,7 +20,7 @@ import {RouterLink} from "@angular/router";
                 </h2>
                 <h4 uiHeading class="text-green-500 text-center lg:text-left">We will help you switch!</h4>
             </div>
-            <button uiButton="primary" [routerLink]="['/insurance']">Fill Out The Form</button>
+            <button uiButton="primary" [routerLink]="['/steps']">Fill Out The Form</button>
         </div>
     `,
     styles: `

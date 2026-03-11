@@ -12,12 +12,12 @@ import {
     UiRadioCardGroup,
     UiTextarea
 } from '@gmi-integrations/ui-kit';
-import { GeneralInformationFormService } from './general-information-form.service';
+import { StepOneFormService } from './step-one-form.service';
 import { US_STATES } from '../const/us-states';
 
 @Component({
-    selector: 'gmi-general-information',
-    templateUrl: './general-information.html',
+    selector: 'gmi-step-one',
+    templateUrl: './step-one.html',
     styles: `
         :host {
             display: flex;
@@ -28,7 +28,7 @@ import { US_STATES } from '../const/us-states';
         }
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [GeneralInformationFormService],
+    providers: [StepOneFormService],
     imports: [
         ReactiveFormsModule,
         UiInput,
@@ -42,8 +42,8 @@ import { US_STATES } from '../const/us-states';
         UiLinkComponent
     ]
 })
-export class GeneralInformation {
-    protected readonly svc = inject(GeneralInformationFormService);
+export class StepOne {
+    protected readonly svc = inject(StepOneFormService);
 
     protected readonly states = US_STATES;
 

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Footer } from '@gmi-integrations/shared';
-import { InsuranceStorageService } from '../insurance/services/insurance-storage.service';
+import { InsuranceStorageService } from '../steps/services/insurance-storage.service';
 import { SummarySubHeader } from './sub-header/summary-sub-header';
 import {HelpBlock} from "./help-block/help-block.component";
 

@@ -5,9 +5,9 @@ import { InsuranceStorageService } from './services/insurance-storage.service';
 import { STATUS_TO_COMPLETED } from './const/insurance-steps-status';
 
 const INSURANCE_STEPS: StepperStep[] = [
-    { label: 'General Information', route: 'general-information' },
-    { label: 'About Your Restaurant', route: 'about-your-restaurant' },
-    { label: 'General Liability', route: 'general-liability' }
+    { label: 'General Information', route: 'step-one' },
+    { label: 'About Your Restaurant', route: 'step-two' },
+    { label: 'General Liability', route: 'step-three' }
 ];
 
 @Component({
@@ -35,7 +35,7 @@ const INSURANCE_STEPS: StepperStep[] = [
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterOutlet, FormStepper]
 })
-export class Insurance {
+export class Steps {
     private readonly _storage = inject(InsuranceStorageService);
 
     readonly steps = INSURANCE_STEPS;

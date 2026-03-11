@@ -10,12 +10,12 @@ import {
     UiRadioCard,
     UiRadioCardGroup, UiTooltipDirective
 } from '@gmi-integrations/ui-kit';
-import { GeneralLiabilityFormService } from './general-liability-form.service';
+import { StepThreeFormService } from './step-three-form.service';
 import { GL_LIMIT_OPTIONS } from '../const/gl-limit-options';
 
 @Component({
-    selector: 'gmi-general-liability',
-    templateUrl: './general-liability.html',
+    selector: 'gmi-step-three',
+    templateUrl: './step-three.html',
     styles: `
         :host {
             display: flex;
@@ -26,7 +26,7 @@ import { GL_LIMIT_OPTIONS } from '../const/gl-limit-options';
         }
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [GeneralLiabilityFormService],
+    providers: [StepThreeFormService],
     imports: [
         ReactiveFormsModule,
         UiAmountPicker,
@@ -39,8 +39,8 @@ import { GL_LIMIT_OPTIONS } from '../const/gl-limit-options';
         UiTooltipDirective
     ]
 })
-export class GeneralLiability {
-    protected readonly svc = inject(GeneralLiabilityFormService);
+export class StepThree {
+    protected readonly svc = inject(StepThreeFormService);
 
     protected readonly glLimitOptions = GL_LIMIT_OPTIONS;
 

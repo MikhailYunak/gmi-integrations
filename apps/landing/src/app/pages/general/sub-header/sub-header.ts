@@ -23,7 +23,7 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
                     spam. No hidden fees.
                 </p>
             </div>
-            <button type="button" uiButton="primary" [routerLink]="['/insurance']">Get Insurance</button>
+            <button type="button" uiButton="primary" [routerLink]="['/steps']">Get Insurance</button>
         </div>
 
         <div class="relative self-center shrink-0 w-full lg:w-573 h-299 lg:h-500">

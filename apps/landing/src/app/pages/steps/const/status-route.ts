@@ -1,15 +1,15 @@
 import { QuoteApplicationStatus } from '../models/insurance.models';
 
 const BASE_STATUS_ROUTE: Omit<Record<QuoteApplicationStatus, string[]>, 'COMPLETED'> = {
-    STEP_ONE: ['/insurance', 'general-information'],
-    STEP_TWO: ['/insurance', 'about-your-restaurant'],
-    STEP_THREE: ['/insurance', 'general-liability'],
-    CANCELLED: ['/insurance', 'general-information']
+    STEP_ONE: ['/steps', 'step-one'],
+    STEP_TWO: ['/steps', 'step-two'],
+    STEP_THREE: ['/steps', 'step-three'],
+    CANCELLED: ['/steps', 'step-one']
 };
 
 export const GENERAL_INFORMATION_STATUS_ROUTE: Record<QuoteApplicationStatus, string[]> = {
     ...BASE_STATUS_ROUTE,
-    COMPLETED: ['/insurance', 'general-information']
+    COMPLETED: ['/steps', 'step-one']
 };
 
 export const GENERAL_LIABILITY_STATUS_ROUTE: Record<QuoteApplicationStatus, string[]> = {

@@ -23,7 +23,7 @@ import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@g
                         <gmi-language-switcher />
 
                         @if (_isGeneral) {
-                            <button class="hidden lg:inline-flex" type="button" uiButton="primary" [routerLink]="['/insurance']">Get insurance</button>
+                            <button class="hidden lg:inline-flex" type="button" uiButton="primary" [routerLink]="['/steps']">Get insurance</button>
 
                             <gmi-hamburger-button
                                 #hamburgerButtonRef="hamburger-button"

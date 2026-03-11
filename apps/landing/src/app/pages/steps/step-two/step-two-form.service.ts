@@ -10,7 +10,7 @@ import { InsuranceStorageService } from '../services/insurance-storage.service';
 import { StepTwoModel } from '../models/insurance.models';
 
 @Injectable()
-export class AboutYourRestaurantFormService {
+export class StepTwoFormService {
     private readonly _fb = inject(FormBuilder);
 
     private readonly _api = inject(InsuranceApiService);
@@ -78,7 +78,7 @@ export class AboutYourRestaurantFormService {
     }
 
     goBack(): void {
-        this._router.navigate(['/insurance', 'general-information']);
+        this._router.navigate(['/steps', 'step-one']);
     }
 
     submit(): void {
@@ -89,7 +89,7 @@ export class AboutYourRestaurantFormService {
 
         const uuid = this._storage.getUuid();
         if (!uuid) {
-            this._router.navigate(['/insurance', 'general-information']);
+            this._router.navigate(['/steps', 'step-one']);
             return;
         }
 
@@ -103,7 +103,7 @@ export class AboutYourRestaurantFormService {
                 next: (app) => {
                     this._storage.save(app);
                     this.isLoading.set(false);
-                    this._router.navigate(['/insurance', 'general-liability']);
+                    this._router.navigate(['/steps', 'step-three']);
                 },
                 error: (err: HttpErrorResponse) => {
                     this.isLoading.set(false);

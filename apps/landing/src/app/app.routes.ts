@@ -8,9 +8,9 @@ export const LANDING_ROUTES: Routes = [
         loadComponent: (): Promise<Type<unknown>> => import('./pages/general/general').then((c) => c.General)
     },
     {
-        path: 'insurance',
-        loadComponent: (): Promise<Type<unknown>> => import('./pages/insurance/insurance').then((c) => c.Insurance),
-        loadChildren: () => import('./pages/insurance/insurance.routes').then((r) => r.INSURANCE_ROUTES)
+        path: 'steps',
+        loadComponent: (): Promise<Type<unknown>> => import('./pages/steps/steps').then((c) => c.Steps),
+        loadChildren: () => import('./pages/steps/steps.routes').then((r) => r.INSURANCE_ROUTES)
     },
     {
         path: 'summary',

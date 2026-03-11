@@ -9,12 +9,12 @@ import {
     UiRadioCard,
     UiRadioCardGroup, UiTooltipDirective,
 } from '@gmi-integrations/ui-kit';
-import { AboutYourRestaurantFormService } from './about-your-restaurant-form.service';
+import { StepTwoFormService } from './step-two-form.service';
 import { US_STATES } from '../const/us-states';
 
 @Component({
-    selector: 'gmi-about-your-restaurant',
-    templateUrl: './about-your-restaurant.html',
+    selector: 'gmi-step-two',
+    templateUrl: './step-two.html',
     styles: `
         :host {
             display: flex;
@@ -25,7 +25,7 @@ import { US_STATES } from '../const/us-states';
         }
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [AboutYourRestaurantFormService],
+    providers: [StepTwoFormService],
     imports: [
         ReactiveFormsModule,
         UiInput,
@@ -37,8 +37,8 @@ import { US_STATES } from '../const/us-states';
         UiTooltipDirective
     ]
 })
-export class AboutYourRestaurant {
-    protected readonly svc = inject(AboutYourRestaurantFormService);
+export class StepTwo {
+    protected readonly svc = inject(StepTwoFormService);
 
     protected readonly states = US_STATES;
 

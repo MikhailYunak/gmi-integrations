@@ -42,7 +42,7 @@ type Step = {
         </div>
 
         <div class="flex justify-center">
-            <button type="button" uiButton="primary" [routerLink]="['/insurance']">Get Insurance</button>
+            <button type="button" uiButton="primary" [routerLink]="['/steps']">Get Insurance</button>
         </div>
     `,
     styles: `

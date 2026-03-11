@@ -11,7 +11,7 @@ import { StepThreeModel } from '../models/insurance.models';
 import { QuoteStateService } from '../../state/quote-state.service';
 
 @Injectable()
-export class GeneralLiabilityFormService {
+export class StepThreeFormService {
     private readonly _fb = inject(FormBuilder);
 
     private readonly _api = inject(InsuranceApiService);
@@ -103,7 +103,7 @@ export class GeneralLiabilityFormService {
     }
 
     goBack(): void {
-        this._router.navigate(['/insurance', 'about-your-restaurant']);
+        this._router.navigate(['/steps', 'step-two']);
     }
 
     submit(): void {
@@ -114,7 +114,7 @@ export class GeneralLiabilityFormService {
 
         const uuid = this._storage.getUuid();
         if (!uuid) {
-            this._router.navigate(['/insurance', 'general-information']);
+            this._router.navigate(['/steps', 'step-one']);
             return;
         }
 

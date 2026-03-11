@@ -18,7 +18,7 @@ export type ClaimGroup = {
 };
 
 @Injectable()
-export class GeneralInformationFormService {
+export class StepOneFormService {
     private readonly _fb = inject(FormBuilder);
 
     private readonly _api = inject(InsuranceApiService);
