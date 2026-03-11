@@ -14,5 +14,5 @@ export const GENERAL_INFORMATION_STATUS_ROUTE: Record<QuoteApplicationStatus, st
 
 export const GENERAL_LIABILITY_STATUS_ROUTE: Record<QuoteApplicationStatus, string[]> = {
     ...BASE_STATUS_ROUTE,
-    COMPLETED: ['/summary']
+    COMPLETED: ['/quotes']
 };

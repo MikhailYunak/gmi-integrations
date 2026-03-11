@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { QuoteApplicationFull, StepOneModel, StepThreeModel, StepTwoModel } from '../models/insurance.models';
+import { QuoteApplicationFull, StepOneModel, StepThreeModel, StepTwoModel } from '../pages/steps/models/insurance.models';
 
 const STORAGE_KEY = 'quoteApplication';
 
 @Injectable({ providedIn: 'root' })
-export class InsuranceStorageService {
+export class LocalStorageService {
 
     save(application: QuoteApplicationFull): void {
         try {

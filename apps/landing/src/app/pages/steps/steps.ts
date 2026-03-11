@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormStepper, StepperStep } from '@gmi-integrations/shared';
-import { InsuranceStorageService } from './services/insurance-storage.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 import { STATUS_TO_COMPLETED } from './const/insurance-steps-status';
 
 const INSURANCE_STEPS: StepperStep[] = [
@@ -36,7 +36,7 @@ const INSURANCE_STEPS: StepperStep[] = [
     imports: [RouterOutlet, FormStepper]
 })
 export class Steps {
-    private readonly _storage = inject(InsuranceStorageService);
+    private readonly _storage = inject(LocalStorageService);
 
     readonly steps = INSURANCE_STEPS;
     readonly completedSteps = signal<string[]>(this._storage.getCompletedSteps(STATUS_TO_COMPLETED));

@@ -6,7 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { merge, switchMap } from 'rxjs';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { InsuranceApiService } from '../services/insurance-api.service';
-import { InsuranceStorageService } from '../services/insurance-storage.service';
+import { LocalStorageService } from '../../../services/local-storage.service';
 import { StepThreeModel } from '../models/insurance.models';
 import { QuoteStateService } from '../../state/quote-state.service';
 
@@ -16,7 +16,7 @@ export class StepThreeFormService {
 
     private readonly _api = inject(InsuranceApiService);
 
-    private readonly _storage = inject(InsuranceStorageService);
+    private readonly _storage = inject(LocalStorageService);
 
     private readonly _router = inject(Router);
 
@@ -134,7 +134,7 @@ export class StepThreeFormService {
                 next: (result) => {
                     this._quoteState.set(result);
                     this.isLoading.set(false);
-                    this._router.navigate(['/summary']);
+                    this._router.navigate(['/quotes']);
                 },
                 error: (err: HttpErrorResponse) => {
                     this.isLoading.set(false);

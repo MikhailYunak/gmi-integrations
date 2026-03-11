@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Footer } from '@gmi-integrations/shared';
-import { InsuranceStorageService } from '../steps/services/insurance-storage.service';
-import { SummarySubHeader } from './sub-header/summary-sub-header';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { QuotesSubHeader } from './sub-header/quotes-sub-header';
 import {HelpBlock} from "./help-block/help-block.component";
 
 type BillingCycle = 'monthly' | 'yearly';
@@ -12,18 +12,18 @@ type CoterieQuote = {
 };
 
 @Component({
-    selector: 'gmi-summary',
-    templateUrl: './summary.html',
-    styleUrl: './summary.scss',
+    selector: 'gmi-quotes',
+    templateUrl: './quotes.html',
+    styleUrl: './quotes.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         Footer,
-        SummarySubHeader,
+        QuotesSubHeader,
         HelpBlock
     ]
 })
-export class Summary {
-    private readonly _storage = inject(InsuranceStorageService);
+export class Quotes {
+    private readonly _storage = inject(LocalStorageService);
 
     protected readonly _billingCycle = signal<BillingCycle>('monthly');
 

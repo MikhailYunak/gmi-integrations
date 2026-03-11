@@ -72,7 +72,7 @@ const HELP_ITEMS = [
         }
     `,
     host: {
-        class: 'sub-summary-sub-header'
+        class: 'sub-quotes-sub-header'
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [UiHeadingDirective, NgOptimizedImage, UiButtonDirective, ContactAgentDialog]

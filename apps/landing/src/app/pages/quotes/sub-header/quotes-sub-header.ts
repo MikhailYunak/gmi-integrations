@@ -6,7 +6,7 @@ import { QuoteStateService } from '../../state/quote-state.service';
 import {WINDOW} from "@gmi-integrations/cdk";
 
 @Component({
-    selector: 'gmi-summary-sub-header',
+    selector: 'gmi-quotes-sub-header',
     template: `
         @let pricing = _pricing();
         <section class="flex flex-col gap-y-28">
@@ -59,12 +59,12 @@ import {WINDOW} from "@gmi-integrations/cdk";
         }
     `,
     host: {
-        class: 'sub-summary-sub-header'
+        class: 'sub-quotes-sub-header'
     },
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [UiHeadingDirective, RouterLink, PricingCard]
 })
-export class SummarySubHeader {
+export class QuotesSubHeader {
     private readonly _quoteState = inject(QuoteStateService);
 
     private readonly _window = inject(WINDOW).window;

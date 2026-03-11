@@ -6,7 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { merge } from 'rxjs';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { InsuranceApiService } from '../services/insurance-api.service';
-import { InsuranceStorageService } from '../services/insurance-storage.service';
+import { LocalStorageService } from '../../../services/local-storage.service';
 import { StepTwoModel } from '../models/insurance.models';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class StepTwoFormService {
 
     private readonly _api = inject(InsuranceApiService);
 
-    private readonly _storage = inject(InsuranceStorageService);
+    private readonly _storage = inject(LocalStorageService);
 
     private readonly _router = inject(Router);
 

@@ -8,7 +8,7 @@ import { merge, switchMap } from 'rxjs';
 import { ConfirmDialog, ConfirmDialogData } from '@gmi-integrations/shared';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { InsuranceApiService, isConflictError } from '../services/insurance-api.service';
-import { InsuranceStorageService } from '../services/insurance-storage.service';
+import { LocalStorageService } from '../../../services/local-storage.service';
 import { QuoteApplicationStatus, StepOneModel } from '../models/insurance.models';
 import { GENERAL_INFORMATION_STATUS_ROUTE } from '../const/status-route';
 
@@ -23,7 +23,7 @@ export class StepOneFormService {
 
     private readonly _api = inject(InsuranceApiService);
 
-    private readonly _storage = inject(InsuranceStorageService);
+    private readonly _storage = inject(LocalStorageService);
 
     private readonly _router = inject(Router);
 
