@@ -2,14 +2,13 @@
 @forward '../../../libs/tailwind/tailwind.css';
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 main {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  max-width: calc(var(--spacing) * 1440);
-  width: 100%;
-  min-width: 0;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }

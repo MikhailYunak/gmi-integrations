@@ -26,11 +26,14 @@ const LEGAL_LINKS = [
             --ui-link-color: var(--primary-forest);
 
             display: block;
-            background: var(--achromatics-grey-forms);
-            padding: 24px 16px 54px;
+            padding-inline: calc(var(--spacing) * 16) /* 16px */;
+            padding-bottom: 28px;
+            width: 100%;
+            max-width: calc(var(--spacing) * 1440);
 
             @media (width >= 64rem) {
-                padding: 40px 48px;
+                padding-inline: calc(var(--spacing) * 48) /* 48px */;
+                padding-bottom: 54px;
             }
         }
     `,

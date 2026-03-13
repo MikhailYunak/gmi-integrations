@@ -36,14 +36,14 @@ const DEFAULT_OPTIONS: SliderOptions = {
     slidesOffsetBefore: 16,
     slidesOffsetAfter: 16,
     breakpoints: {
-        768: {
+        1024: {
             slidesPerView: 3.2,
             spaceBetween: 24,
             centeredSlides: false,
             slidesOffsetBefore: 0,
-            slidesOffsetAfter: 0,
-        },
-    },
+            slidesOffsetAfter: 0
+        }
+    }
 };
 
 @Component({

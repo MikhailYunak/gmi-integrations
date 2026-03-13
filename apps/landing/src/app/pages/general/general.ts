@@ -10,7 +10,14 @@ import { Footer, MarqueeSection } from '@gmi-integrations/shared';
 @Component({
     selector: 'gmi-general',
     templateUrl: './general.html',
-    styleUrls: ['./general.scss'],
+    styles: `
+        :host {
+            display: flex;
+            flex-direction: column;
+            margin-top: -82px;
+            width: 100%;
+        }
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         SubHeader,

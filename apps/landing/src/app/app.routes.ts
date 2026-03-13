@@ -4,8 +4,9 @@ import { NotFoundPage } from '@gmi-integrations/shared';
 
 export const LANDING_ROUTES: Routes = [
     {
-        path: 'general',
-        loadComponent: (): Promise<Type<unknown>> => import('./pages/general/general').then((c) => c.General)
+        path: '',
+        loadComponent: (): Promise<Type<unknown>> => import('./pages/general/general').then((c) => c.General),
+        title: 'Safe.Insure'
     },
     {
         path: 'steps',

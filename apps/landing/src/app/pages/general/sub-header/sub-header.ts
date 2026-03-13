@@ -35,8 +35,15 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
             display: flex;
             flex-direction: column;
             row-gap: 24px;
+            padding-inline: calc(var(--spacing) * 16) /* 16px */;
+            margin-top: calc(var(--spacing) * 128) /* 128px */;
+            margin-bottom: calc(var(--spacing) * 73) /* 73px */;
+            max-width: calc(var(--spacing) * 1440);
+            width: 100%;
 
             @media (width >= 64rem) {
+                padding-inline: calc(var(--spacing) * 48) /* 48px */;
+                margin-top: calc(var(--spacing) * 164) /* 164px */;
                 flex-direction: row;
                 align-items: center;
             }

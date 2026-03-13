@@ -15,6 +15,7 @@
       var(--secondary-lilac) calc(100% - 2rem),
       transparent
   );
+	max-width: calc(var(--spacing) * 1440);
 
   .marquee-wrapper {
     display: flex;

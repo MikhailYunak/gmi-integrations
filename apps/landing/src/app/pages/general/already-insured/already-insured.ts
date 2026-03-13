@@ -30,11 +30,15 @@ import {RouterLink} from "@angular/router";
             align-items: center;
             row-gap: 24px;
             width: 100%;
+            padding-inline: calc(var(--spacing) * 16) /* 16px */;
+            max-width: calc(var(--spacing) * 1440);
+            overflow: hidden;
 
-            @media (width >= 64rem /* 768px */) {
+            @media (width >= 64rem /* 1024px */) {
                 flex-direction: row;
                 justify-content: center;
                 column-gap: 100px;
+                padding-inline: calc(var(--spacing) * 48) /* 48px */;
             }
         }
     `,

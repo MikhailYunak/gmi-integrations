@@ -50,13 +50,19 @@ type Step = {
             display: flex;
             flex-direction: column;
             row-gap: 24px;
+            padding-inline: calc(var(--spacing) * 16) /* 16px */;
             padding-top: 48px;
             padding-bottom: 48px;
+            scroll-margin-top: calc(var(--spacing) * 70) /* 70px */;
+            max-width: calc(var(--spacing) * 1440);
+            width: 100%;
 
             @media (width >= 64rem) {
                 row-gap: 0;
+                padding-inline: calc(var(--spacing) * 48) /* 48px */;
                 padding-top: 80px;
                 padding-bottom: 116px;
+                scroll-margin-top: calc(var(--spacing) * 90) /* 90px */;
             }
         }
     `,

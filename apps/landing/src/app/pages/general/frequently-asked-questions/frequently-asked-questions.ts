@@ -13,15 +13,31 @@ import { ApiService } from '../../../services/api.service';
             flex-direction: column;
             row-gap: 32px;
             width: 100%;
+            padding-inline: calc(var(--spacing) * 16) /* 16px */;
             padding-top: 48px;
             padding-bottom: 80px;
+            max-width: calc(var(--spacing) * 1440);
+            scroll-margin-top: calc(var(--spacing) * 70) /* 70px */;
+            overflow: hidden;
+            background-image: url(/img/radial-violet.svg), url(/img/circle-violet.svg), url(/img/circles-yellow.svg);
+            background-repeat: no-repeat;
+            background-position:
+                -10px 174px,
+                -18px 164px,
+                top 500px right -24px;
 
-            @media (width >= 64rem) {
+            @media (width >= 64rem /* 1024px */) {
                 flex-direction: row;
                 column-gap: 32px;
                 justify-content: space-between;
+                padding-inline: calc(var(--spacing) * 48) /* 48px */;
                 padding-top: 110px;
                 padding-bottom: 110px;
+                scroll-margin-top: calc(var(--spacing) * 90) /* 90px */;
+                background-position:
+                    124px 148px,
+                    102px 142px,
+                    top 440px left 516px;
             }
 
             .frequently-asked-questions-left {
@@ -30,7 +46,7 @@ import { ApiService } from '../../../services/api.service';
                 row-gap: 16px;
                 text-align: center;
 
-                @media (width >= 64rem /* 768px */) {
+                @media (width >= 64rem /* 1024px */) {
                     padding-left: calc(163px - 48px);
                     text-align: left;
                     justify-content: center;

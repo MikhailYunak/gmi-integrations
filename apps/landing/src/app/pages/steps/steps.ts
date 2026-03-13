@@ -26,7 +26,7 @@ const INSURANCE_STEPS: StepperStep[] = [
             padding-left: 16px;
             padding-right: 16px;
 
-            @media (width >= 64rem /* 768px */) {
+            @media (width >= 64rem /* 1024px */) {
                 padding-left: 48px;
                 padding-right: 48px;
             }
