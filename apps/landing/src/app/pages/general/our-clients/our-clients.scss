@@ -1,12 +1,11 @@
-:host {
-    display: flex;
-    flex-direction: column;
+:host.our-clients {
+    display: grid;
     width: 100%;
     padding-bottom: 64px;
     row-gap: 38px;
-	max-width: calc(var(--spacing) * 1440);
+	max-width: 1440px;
 	scroll-margin-top: calc(var(--spacing) * 70) /* 70px */;
-	overflow-x: hidden;
+	overflow: hidden;
 	background-image:
 			url(/img/circles-yellow.svg), url(/img/figure/radial-yellow-medium.svg), url(/img/radial-violet.svg),
 			url(/img/circle-violet.svg);
@@ -27,8 +26,8 @@
         row-gap: 48px;
 	    scroll-margin-top: calc(var(--spacing) * 90) /* 90px */;
 	    background-position:
-			    102px 62px,
-			    170px 78px,
+			    102px 38px,
+			    170px 54px,
 			    top 416px right 152px,
 			    top 433px right 156px;
     }
@@ -53,7 +52,7 @@
     border-radius: 16px;
     overflow: hidden;
 	max-width: 310px;
-    height: 100%;
+	width: 100%;
 
     @media (width >= 64rem /* 1024px */) {
 	    max-width: 410px;

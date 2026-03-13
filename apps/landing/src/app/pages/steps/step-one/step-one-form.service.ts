@@ -9,7 +9,7 @@ import { ConfirmDialog, ConfirmDialogData } from '@gmi-integrations/shared';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { StepsApiService, isConflictError } from '../services/steps-api.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
-import { QuoteApplicationStatus, StepOneModel } from '../models/insurance.models';
+import { QuoteApplicationStatus, StepOneModel } from '../models/steps.models';
 import { GENERAL_INFORMATION_STATUS_ROUTE } from '../const/status-route';
 
 export type ClaimGroup = {

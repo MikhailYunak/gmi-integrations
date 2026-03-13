@@ -16,7 +16,7 @@
             <button
                 class="stepper__circle"
                 type="button"
-                [routerLink]="step.isNavigable ? ['/insurance', step.route] : null"
+                [routerLink]="step.isNavigable ? ['/steps', step.route] : null"
                 [attr.aria-current]="step.isActive ? 'step' : null"
                 [attr.aria-disabled]="!step.isNavigable || null"
                 [attr.aria-label]="'Step ' + (i + 1) + ': ' + step.label + (step.isCompleted ? ', completed' : '') + (step.isActive ? ', current step' : '')"

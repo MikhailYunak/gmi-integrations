@@ -14,7 +14,9 @@ import { AverageRatingPipe } from './average-rating.pipe';
     selector: 'gmi-reviews-section',
     templateUrl: './reviews-section.html',
     styleUrl: './reviews-section.scss',
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        class: 'reviews-section'
+    },
     imports: [
         RouterLink,
         DatePipe,
@@ -25,7 +27,8 @@ import { AverageRatingPipe } from './average-rating.pipe';
         FilledStarsPipe,
         EmptyStarsPipe,
         AverageRatingPipe
-    ]
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReviewsSection {
     private readonly _api = inject(ApiService);

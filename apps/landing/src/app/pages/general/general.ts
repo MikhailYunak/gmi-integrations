@@ -12,9 +12,7 @@ import { Footer, MarqueeSection } from '@gmi-integrations/shared';
     templateUrl: './general.html',
     styles: `
         :host {
-            display: flex;
-            flex-direction: column;
-            margin-top: -82px;
+            display: block;
             width: 100%;
         }
     `,

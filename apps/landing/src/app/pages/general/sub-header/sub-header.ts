@@ -27,7 +27,7 @@ import { UiButtonDirective, UiHeadingDirective } from '@gmi-integrations/ui-kit'
         </div>
 
         <div class="relative self-center shrink-0 w-full lg:w-573 h-299 lg:h-500">
-            <img ngSrc="/img/united-radial.svg" alt="" fill priority disableOptimizedSrcset />
+            <img ngSrc="/img/united-radial.svg" alt="radial" fill priority disableOptimizedSrcset />
         </div>
     `,
     styles: `

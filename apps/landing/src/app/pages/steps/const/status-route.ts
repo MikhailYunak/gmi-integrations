@@ -1,4 +1,4 @@
-import { QuoteApplicationStatus } from '../models/insurance.models';
+import { QuoteApplicationStatus } from '../models/steps.models';
 
 const BASE_STATUS_ROUTE: Omit<Record<QuoteApplicationStatus, string[]>, 'COMPLETED'> = {
     STEP_ONE: ['/steps', 'step-one'],

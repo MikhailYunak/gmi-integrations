@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { QuoteResult } from '../pages/steps/models/insurance.models';
+import { QuoteResult } from '../pages/steps/models/steps.models';
 
 @Injectable({ providedIn: 'root' })
 export class GlobalState {

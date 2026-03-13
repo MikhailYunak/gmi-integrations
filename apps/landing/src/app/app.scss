@@ -1,33 +1,39 @@
 :host {
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+	margin-top: -90px;
+	
+	@media (width >= 64rem /* 1024px */) {
+		margin-top: -102px;
+	}
 }
 
 .header-end-desktop {
-  display: flex;
-  gap: 24px;
-  align-items: center;
+    display: flex;
+    gap: 24px;
+    align-items: center;
 }
 
 .hamburger-btn {
-  display: none;
+    display: none;
 
-  .material-symbols-outlined {
-    font-variation-settings:
-      'FILL' 0,
-      'wght' 700,
-      'GRAD' 200,
-      'opsz' 24;
-  }
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 700,
+            'GRAD' 200,
+            'opsz' 24;
+    }
 }
 
-@media (max-width: 767px) {
-  .header-end-desktop {
-    display: none;
-  }
+@media (max-width: 1024px) {
+    .header-end-desktop {
+        display: none;
+    }
 
-  .hamburger-btn {
-    display: flex;
-  }
+    .hamburger-btn {
+        display: flex;
+    }
 }

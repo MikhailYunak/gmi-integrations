@@ -4,7 +4,7 @@ import {
     StepOneModel,
     StepThreeModel,
     StepTwoModel
-} from '../pages/steps/models/insurance.models';
+} from '../pages/steps/models/steps.models';
 
 const STORAGE_KEY = 'quoteApplication';
 

@@ -8,6 +8,9 @@ import { ApiService } from '../../../services';
     selector: 'gmi-our-clients',
     templateUrl: './our-clients.html',
     styleUrl: './our-clients.scss',
+    host: {
+        class: 'our-clients',
+    },
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [SwiperSlider, UiHeadingDirective]
 })

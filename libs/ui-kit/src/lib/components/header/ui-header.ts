@@ -11,24 +11,26 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
  * </ui-header>
  */
 @Component({
-  selector: 'ui-header',
-  template: `
-    <div class="ui-header-start">
-      <ng-content select="[slot=start]" />
-    </div>
-    <div class="ui-header-center">
-      <ng-content select="[slot=center]" />
-    </div>
-    <div class="ui-header-end">
-      <ng-content select="[slot=end]" />
-    </div>
-  `,
-  host: {
-    class: 'ui-header',
-    role: 'banner',
-  },
-  styleUrl: './ui-header.scss',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'ui-header',
+    template: `
+        <section class="ui-header-container">
+            <div class="ui-header-start">
+                <ng-content select="[slot=start]" />
+            </div>
+            <div class="ui-header-center">
+                <ng-content select="[slot=center]" />
+            </div>
+            <div class="ui-header-end">
+                <ng-content select="[slot=end]" />
+            </div>
+        </section>
+    `,
+    host: {
+        class: 'ui-header',
+        role: 'banner'
+    },
+    styleUrl: './ui-header.scss',
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiHeader {}

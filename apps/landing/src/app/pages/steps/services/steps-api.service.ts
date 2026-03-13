@@ -9,7 +9,7 @@ import {
     StepOneModel,
     StepThreeModel,
     StepTwoModel
-} from '../models/insurance.models';
+} from '../models/steps.models';
 
 const API_BASE = 'https://quote.allsafe.insure/api';
 

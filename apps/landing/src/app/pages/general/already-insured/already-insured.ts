@@ -7,7 +7,7 @@ import {RouterLink} from "@angular/router";
     selector: 'gmi-already-insured',
     template: `
         <!-- Image side -->
-        <div class="order-2 lg:order-1 relative w-full lg:w-1/2 h-290 lg:h-480 shrink-0">
+        <div class="order-2 lg:order-1 relative w-full lg:w-1/2 h-290 lg:h-480 shrink-0 overflow-hidden">
             <img ngSrc="/img/already-insured-img.png" alt="Woman with umbrella" fill priority disableOptimizedSrcset />
         </div>
 

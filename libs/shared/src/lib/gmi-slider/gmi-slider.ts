@@ -15,7 +15,7 @@ import { Navigation } from 'swiper/modules';
 register();
 
 interface SwiperElement extends HTMLElement {
-    swiper: { slidePrev: () => void; slideNext: () => void };
+    swiper: { slidePrev: () => void; slideNext: () => void; initialized: boolean; update: () => void };
     initialize: () => void;
 }
 
@@ -26,6 +26,7 @@ export interface SliderOptions {
     slidesOffsetBefore?: number;
     slidesOffsetAfter?: number;
     loop?: boolean;
+    breakpointsBase?: 'container' | 'window' | string;
     breakpoints?: Record<number, Omit<SliderOptions, 'breakpoints'>>;
 }
 
@@ -36,7 +37,7 @@ const DEFAULT_OPTIONS: SliderOptions = {
     slidesOffsetBefore: 16,
     slidesOffsetAfter: 16,
     breakpoints: {
-        1024: {
+        768: {
             slidesPerView: 3.2,
             spaceBetween: 24,
             centeredSlides: false,
@@ -73,6 +74,14 @@ export class SwiperSlider<T> {
             if (el) {
                 Object.assign(el, { modules: [Navigation], ...DEFAULT_OPTIONS, ...this.swiperOptions() });
                 el.initialize();
+            }
+        });
+
+        effect(() => {
+            this.slides();
+            const el = this._swiperEl().nativeElement;
+            if (el?.swiper?.initialized) {
+                el.swiper.update();
             }
         });
     }

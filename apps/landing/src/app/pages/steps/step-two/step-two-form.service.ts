@@ -7,7 +7,7 @@ import { merge } from 'rxjs';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { StepsApiService } from '../services/steps-api.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
-import { StepTwoModel } from '../models/insurance.models';
+import { StepTwoModel } from '../models/steps.models';
 
 @Injectable()
 export class StepTwoFormService {

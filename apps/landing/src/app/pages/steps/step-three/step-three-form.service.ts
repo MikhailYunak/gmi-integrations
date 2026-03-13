@@ -7,7 +7,7 @@ import { merge, switchMap } from 'rxjs';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { StepsApiService } from '../services/steps-api.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
-import { StepThreeModel } from '../models/insurance.models';
+import { StepThreeModel } from '../models/steps.models';
 import { GlobalState } from '../../../state/global-state';
 
 @Injectable()
