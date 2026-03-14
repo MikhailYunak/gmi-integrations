@@ -23,6 +23,7 @@ import {WINDOW} from "@gmi-integrations/cdk";
             <div class="flex flex-col items-center gap-y-34 max-w-654">
                 @if (pricing) {
                     <gmi-pricing-card
+                        class="slide-up"
                         logoSrc="/img/coterie-logo.png"
                         logoAlt="Coterie"
                         [monthlyPrice]="pricing!.monthlyPremium"
@@ -56,6 +57,21 @@ import {WINDOW} from "@gmi-integrations/cdk";
                 padding-bottom: 116px;
                 row-gap: 80px;
             }
+        }
+
+        @keyframes slide-up {
+            from {
+                opacity: 0;
+                translate: 0 48px;
+            }
+            to {
+                opacity: 1;
+                translate: 0 0;
+            }
+        }
+
+        .slide-up {
+            animation: slide-up 1s cubic-bezier(0.4, 0, 0.2, 1) both;
         }
     `,
     host: {

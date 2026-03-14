@@ -1,7 +1,6 @@
 :host {
     display: flex;
     flex-direction: column;
-    margin-top: -82px;
     max-width: calc(var(--spacing) * 1440);
     width: 100%;
 
@@ -13,7 +12,7 @@
         background-repeat: no-repeat;
 	    background-position:
 			    -25px 648px,
-			    right 38px top 284px,
+			    right 98px top 284px,
 			    0 0;
 
         @media (width >= 64rem /* 1024px */) {

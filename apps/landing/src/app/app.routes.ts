@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { Type } from '@angular/core';
 import { NotFoundPage } from '@gmi-integrations/shared';
+import { quotesGuard } from './pages/quotes/quotes.guard';
 
 export const LANDING_ROUTES: Routes = [
     {
@@ -15,11 +16,12 @@ export const LANDING_ROUTES: Routes = [
     },
     {
         path: 'quotes',
+        canActivate: [quotesGuard],
         loadComponent: (): Promise<Type<unknown>> => import('./pages/quotes/quotes').then((c) => c.Quotes)
     },
     {
         path: '',
-        redirectTo: 'general',
+        redirectTo: '',
         pathMatch: 'full'
     },
     { path: '**', component: NotFoundPage }
