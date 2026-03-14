@@ -1,0 +1,188 @@
+@use '../../breakpoint-mixins' as bp;
+
+$_snackbar-width: 22rem;
+$_snackbar-offset: 1.5rem;
+$_enter-duration: 280ms;
+$_leave-duration: 200ms;
+
+.snackbar-container {
+  position: fixed;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+  width: calc(100vw - #{$_snackbar-offset * 2});
+
+  @include bp.screen-md {
+    width: $_snackbar-width;
+  }
+
+  // --- Vertical positioning ---
+  &[data-position^='top'] {
+    top: $_snackbar-offset;
+  }
+
+  &[data-position^='bottom'] {
+    bottom: $_snackbar-offset;
+    flex-direction: column-reverse;
+  }
+
+  // --- Horizontal positioning ---
+  &[data-position$='right'] {
+    right: $_snackbar-offset;
+  }
+
+  &[data-position$='left'] {
+    left: $_snackbar-offset;
+  }
+
+  &[data-position$='center'] {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+// --- Enter / leave animations per origin side ---
+
+// Right-side positions
+.snackbar-container[data-position$='right'] .snackbar-item {
+  animation: snackbar-enter-right $_enter-duration cubic-bezier(0.2, 0, 0, 1) both;
+
+  &[data-leaving='true'] {
+    animation: snackbar-leave-right $_leave-duration cubic-bezier(0.4, 0, 1, 1) both;
+  }
+}
+
+// Left-side positions
+.snackbar-container[data-position$='left'] .snackbar-item {
+  animation: snackbar-enter-left $_enter-duration cubic-bezier(0.2, 0, 0, 1) both;
+
+  &[data-leaving='true'] {
+    animation: snackbar-leave-left $_leave-duration cubic-bezier(0.4, 0, 1, 1) both;
+  }
+}
+
+// Center positions
+.snackbar-container[data-position$='center'] .snackbar-item {
+  animation: snackbar-enter-center $_enter-duration cubic-bezier(0.2, 0, 0, 1) both;
+
+  &[data-leaving='true'] {
+    animation: snackbar-leave-center $_leave-duration cubic-bezier(0.4, 0, 1, 1) both;
+  }
+}
+
+// --- Snackbar item ---
+
+.snackbar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  pointer-events: all;
+  box-shadow: 0 4px 24px hsla(165, 7%, 27%, 0.18);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--white);
+
+  &[data-type='success'] {
+    background: var(--primary-forest);
+
+    .snackbar-icon {
+      color: var(--primary-lime);
+    }
+  }
+
+  &[data-type='error'] {
+    background: var(--red-500);
+
+    .snackbar-icon {
+      color: var(--red-100);
+    }
+  }
+
+  &[data-type='warning'] {
+    background: hsla(38, 92%, 50%, 1);
+
+    .snackbar-icon {
+      color: hsla(47, 100%, 85%, 1);
+    }
+  }
+}
+
+.snackbar-icon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.snackbar-message {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+}
+
+.snackbar-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  opacity: 0.7;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition:
+    opacity 0.2s ease,
+    background-color 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+    background-color: hsla(0, 0%, 100%, 0.15);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    opacity: 1;
+  }
+
+  .material-symbols-outlined {
+    font-size: 1.125rem;
+  }
+}
+
+// --- Keyframes ---
+
+@keyframes snackbar-enter-right {
+  from { opacity: 0; transform: translateX(110%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes snackbar-leave-right {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(110%); }
+}
+
+@keyframes snackbar-enter-left {
+  from { opacity: 0; transform: translateX(-110%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes snackbar-leave-left {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-110%); }
+}
+
+@keyframes snackbar-enter-center {
+  from { opacity: 0; transform: translateY(-1rem) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes snackbar-leave-center {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(-1rem) scale(0.95); }
+}

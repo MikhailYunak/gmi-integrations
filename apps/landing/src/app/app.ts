@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
-import { UiButtonDirective, UiHeader } from '@gmi-integrations/ui-kit';
+import { UiButtonDirective, UiHeader, UiSnackbarComponent} from '@gmi-integrations/ui-kit';
 import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@gmi-integrations/shared';
 
 @Component({
@@ -54,6 +54,7 @@ import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@g
         }
 
         <router-outlet />
+        <ui-snackbar />
     `,
     styleUrl: 'app.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -66,7 +67,8 @@ import { HamburgerButton, LanguageSwitcher, Logo, MobileMenu, NavMenu } from '@g
         Logo,
         NavMenu,
         MobileMenu,
-        HamburgerButton
+        HamburgerButton,
+        UiSnackbarComponent
     ]
 })
 export class App {

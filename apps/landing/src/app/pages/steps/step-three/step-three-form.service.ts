@@ -9,6 +9,7 @@ import { StepsApiService } from '../services/steps-api.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { StepThreeModel } from '../models/steps.models';
 import { GlobalState } from '../../../state/global-state';
+import {UiSnackbarService} from "@gmi-integrations/ui-kit";
 
 @Injectable()
 export class StepThreeFormService {
@@ -21,6 +22,8 @@ export class StepThreeFormService {
     private readonly _router = inject(Router);
 
     private readonly _quoteState = inject(GlobalState);
+
+    private readonly _snackbar = inject(UiSnackbarService);
 
     private readonly _destroyRef = inject(DestroyRef);
 
@@ -142,6 +145,12 @@ export class StepThreeFormService {
                     this.isLoading.set(false);
                     if (isValidationError(err)) {
                         applyServerErrors(err.error.errors, this.form);
+                    }
+                    const messages: unknown = err.error?.message;
+                    if (Array.isArray(messages)) {
+                        messages.forEach((msg) => this._snackbar.error(String(msg)));
+                    } else if (typeof messages === 'string' && messages) {
+                        this._snackbar.error(messages);
                     }
                 }
             });

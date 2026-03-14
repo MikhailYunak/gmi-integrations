@@ -2,7 +2,7 @@
     <h1 uiHeading class="text-[36px] lg:text-[56px]">General Liability</h1>
 </header>
 
-<form class="flex flex-col gap-y-48 w-full" [formGroup]="svc.form" (ngSubmit)="svc.submit()" novalidate>
+<form class="flex flex-col gap-y-48 w-full" [formGroup]="_svc.form" (ngSubmit)="_svc.submit()" novalidate>
     <!-- ── GL Coverage Limit ───────────────────────────────────────────── -->
     <section class="flex flex-col gap-y-12">
         <p class="flex items-center gap-2 text-green-900 leading-24">
@@ -18,7 +18,7 @@ So make sure you think about what limits you need!"
             </span>
         </p>
 
-        <ui-amount-picker [options]="glLimitOptions" formControlName="glLimit" />
+        <ui-amount-picker [options]="_glLimitOptions" formControlName="glLimit" />
 
         <p class="text-sm text-gray-600 m-0">$2M limit is unavailable when Liquor Liability is added</p>
     </section>
@@ -35,15 +35,15 @@ So make sure you think about what limits you need!"
                         Add this coverage if you sell, serve or furnish alcoholic beverages.
                     </p>
 
-                    @if (svc.showLiquorFields()) {
+                    @if (_svc.showLiquorFields()) {
                     <div class="mt-16">
                         <ui-input
                             label="What are your annual liquor sales?"
                             placeholder="50,000"
                             [required]="true"
                             formControlName="alcoholicBeverageSales"
-                            [hintState]="hintState(svc.form.controls.liquorLiability.controls.alcoholicBeverageSales)"
-                            [hint]="hintMsg(svc.form.controls.liquorLiability.controls.alcoholicBeverageSales)"
+                            [hintState]="_hintState(_svc.form.controls.liquorLiability.controls.alcoholicBeverageSales)"
+                            [hint]="_hintMsg(_svc.form.controls.liquorLiability.controls.alcoholicBeverageSales)"
                         >
                             <span
                                 uiInputPrefix
@@ -98,7 +98,7 @@ So make sure you think about what limits you need!"
                     </p>
                     <p class="text-green-900 font-bold">Per Event Deductible: $1,000</p>
                 </div>
-                @if (svc.showCyberFields()) {
+                @if (_svc.showCyberFields()) {
                 <div class="mt-24">
                     <p class="text-green-900 mb-4">Select your coverage limit:</p>
                     <ui-radio-card-group
@@ -126,7 +126,7 @@ So make sure you think about what limits you need!"
                     during the employment process.
                 </p>
 
-                @if (svc.showEpliFields()) {
+                @if (_svc.showEpliFields()) {
                 <div class="mt-24 flex flex-col gap-y-24">
                     <div>
                         <p class="text-green-900 mb-4">Select your coverage limit:</p>
@@ -164,8 +164,8 @@ So make sure you think about what limits you need!"
         class="fixed bottom-0 left-0 right-0 flex items-center justify-center gap-16 px-16 py-12 bg-green-700 border-t border-gray-500 z-50 lg:px-48 lg:py-16"
     >
         <div class="flex justify-between w-full max-w-664">
-            <button uiButton type="button" (click)="svc.goBack()">Back</button>
-            <button uiButton [loading]="svc.isLoading()" type="submit" [disabled]="svc.form.invalid">Result</button>
+            <button uiButton type="button" (click)="_svc.goBack()">Back</button>
+            <button uiButton [loading]="_svc.isLoading()" type="submit" [disabled]="_svc.form.invalid">Result</button>
         </div>
     </footer>
 </form>

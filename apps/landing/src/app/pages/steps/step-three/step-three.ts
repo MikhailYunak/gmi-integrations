@@ -8,7 +8,8 @@ import {
     UiInput,
     UiInputHintState,
     UiRadioCard,
-    UiRadioCardGroup, UiTooltipDirective
+    UiRadioCardGroup,
+    UiTooltipDirective
 } from '@gmi-integrations/ui-kit';
 import { StepThreeFormService } from './step-three-form.service';
 import { GL_LIMIT_OPTIONS } from '../const/gl-limit-options';
@@ -40,17 +41,17 @@ import { GL_LIMIT_OPTIONS } from '../const/gl-limit-options';
     ]
 })
 export class StepThree {
-    protected readonly svc = inject(StepThreeFormService);
+    protected readonly _svc = inject(StepThreeFormService);
 
-    protected readonly glLimitOptions = GL_LIMIT_OPTIONS;
+    protected readonly _glLimitOptions = GL_LIMIT_OPTIONS;
 
-    protected hintState(control: AbstractControl): UiInputHintState {
-        this.svc.formChange();
+    protected _hintState(control: AbstractControl): UiInputHintState {
+        this._svc.formChange();
         return control.invalid && control.touched ? 'error' : 'default';
     }
 
-    protected hintMsg(control: AbstractControl): string {
-        this.svc.formChange();
+    protected _hintMsg(control: AbstractControl): string {
+        this._svc.formChange();
         if (!control.invalid || !control.touched) {
             return '';
         }
