@@ -1,50 +1,51 @@
 :root {
-  // Primary
-  --primary-forest: hsla(163, 86%, 20%, 1);
+    // Primary
+    --primary-forest: hsla(163, 86%, 20%, 1);
 
-  --forest-500: hsla(166, 88%, 13%, 1);
-  --forest-900: hsla(160, 10%, 16%, 1);
+    --forest-500: hsla(166, 88%, 13%, 1);
+    --forest-900: hsla(160, 10%, 16%, 1);
 
-  --primary-forest-600: hsla(166, 87%, 12%, 0.9);
-  --primary-forest-700: hsla(166, 87%, 12%, 1);
+    --primary-forest-600: hsla(166, 87%, 12%, 0.9);
+    --primary-forest-700: hsla(166, 87%, 12%, 1);
 
+    --primary-lime: hsla(119, 75%, 76%, 1);
+    --primary-black: hsla(168, 7%, 27%, 1);
 
-  --primary-lime: hsla(119, 75%, 76%, 1);
-  --primary-black: hsla(168, 7%, 27%, 1);
+    --lime-150: hsla(160, 100%, 92%, 1);
+    --lime-opacity-400: hsla(119, 75%, 76%, 0.4);
+    --lime-opacity-200: hsla(119, 75%, 76%, 0.2);
 
-  --lime-150: hsla(160, 100%, 92%, 1);
-  --lime-opacity-400: hsla(119, 75%, 76%, 0.4);
-  --lime-opacity-200: hsla(119, 75%, 76%, 0.2);
+    --red-100: hsla(0, 100%, 84%, 1);
+    --red-300: hsla(0, 100%, 61%, 1);
+    --red-500: hsla(0, 100%, 50%, 1);
 
-  --red-100: hsla(0, 100%, 84%, 1);
-  --red-300: hsla(0, 100%, 61%, 1);
-  --red-500: hsla(0, 100%, 50%, 1);
+    // Secondary
+    --secondary-lime: hsla(61, 90%, 55%, 1);
+    --secondary-mint: hsla(160, 64%, 62%, 1);
+    --secondary-lilac: hsla(263, 100%, 89%, 1);
 
-  // Secondary
-  --secondary-lime: hsla(61, 90%, 55%, 1);
-  --secondary-mint: hsla(160, 64%, 62%, 1);
-  --secondary-lilac: hsla(263, 100%, 89%, 1);
+    --yellow-100: hsla(47, 90%, 91%, 1);
 
-  --yellow-100: hsla(47, 90%, 91%, 1);
+    --mint-200: hsla(160, 64%, 62%, 1);
 
-  --mint-200: hsla(160, 64%, 62%, 1);
+    // Achromatic Colors
+    --white: hsla(0, 0%, 100%, 1);
+    --achromatics-grey-forms: hsla(158, 100%, 96%, 1);
+    --achromatics-light-grey: #c2c2c2;
+    --achromatics-grey: hsla(166, 7%, 46%, 1);
+    --achromatics-shadow: hsla(165, 7%, 27%, 1);
+    --achromatics-black: #191919;
 
-  // Achromatic Colors
-  --white: hsla(0, 0%, 100%, 1);
-  --achromatics-grey-forms: hsla(158, 100%, 96%, 1);
-  --achromatics-light-grey: #C2C2C2;
-  --achromatics-grey: hsla(166, 7%, 46%, 1);
-  --achromatics-shadow: hsla(165, 7%, 27%, 1);
-  --achromatics-black: #191919;
+    // Disabled
+    --disabled-bg: #a0b0ac33;
+    --secondary-gray: hsla(165, 9%, 66%, 1);
 
-  // Disabled
-  --disabled-bg: #A0B0AC33;
-  --secondary-gray: hsla(165, 9%, 66%, 1);
+    // Gradient
+    --gradient-bg: 90.16deg, var(--lime-150) 0.07%, var(--yellow-100) 99.79%;
+    --gradient-mint: 90.15deg, var(--mint-200) 0.16%, var(--primary-lime) 99.9%;
+    --gradient-mint-revers: 90.15deg, #97f095 0.16%, #5fdcb2 99.9%;
+    --gradient-forest-pine: 180deg, var(--primary-forest) 0%, var(--primary-forest-700) 100%;
+    --gradient-forest-pine-revers: 90.15deg, var(--primary-forest) 0.16%, var(--primary-forest-700) 99.9%;
 
-  // Gradient
-  --gradient-bg: 90.16deg, var(--lime-150) 0.07%, var(--yellow-100) 99.79%;
-  --gradient-mint: 90.15deg, var(--mint-200) 0.16%, var(--primary-lime) 99.9%;
-  --gradient-mint-revers: 90.15deg, #97F095 0.16%, #5FDCB2 99.9%;
-  --gradient-forest-pine: 180deg, var(--primary-forest) 0%, var(--primary-forest-700) 100%;
-  --gradient-forest-pine-revers: 90.15deg, var(--primary-forest) 0.16%, var(--primary-forest-700) 99.9%;
+    --main-logo-loading-gradient: conic-gradient(from 0deg at 49.59% 49.59%, #5fdcb2 0deg, #97f095 360deg);
 }
