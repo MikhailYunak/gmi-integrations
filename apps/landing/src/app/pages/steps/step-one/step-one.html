@@ -16,8 +16,8 @@
                 placeholder="Full Name"
                 [required]="true"
                 formControlName="fullName"
-                [hintState]="hintState(svc.form.controls.generalInfo.controls.fullName)"
-                [hint]="hintMsg(svc.form.controls.generalInfo.controls.fullName)"
+                [hintState]="_hintState(svc.form.controls.generalInfo.controls.fullName)"
+                [hint]="_hintMsg(svc.form.controls.generalInfo.controls.fullName)"
             />
         </div>
 
@@ -27,15 +27,15 @@
                 placeholder="Email"
                 [required]="true"
                 formControlName="email"
-                [hintState]="hintState(svc.form.controls.generalInfo.controls.email)"
-                [hint]="hintMsg(svc.form.controls.generalInfo.controls.email)"
+                [hintState]="_hintState(svc.form.controls.generalInfo.controls.email)"
+                [hint]="_hintMsg(svc.form.controls.generalInfo.controls.email)"
             />
             <ui-input
                 placeholder="000 000 0000"
                 [required]="true"
                 formControlName="phone"
-                [hintState]="hintState(svc.form.controls.generalInfo.controls.phone)"
-                [hint]="hintMsg(svc.form.controls.generalInfo.controls.phone)"
+                [hintState]="_hintState(svc.form.controls.generalInfo.controls.phone)"
+                [hint]="_hintMsg(svc.form.controls.generalInfo.controls.phone)"
             >
                 <span uiInputPrefix class="inline-flex items-center gap-4 py-0 pr-4 pl-12 cursor-pointer shrink-0">
                     <span class="text-[18px] leading-none" aria-hidden="true">🇺🇸</span>
@@ -68,8 +68,8 @@
                 tooltip="The legal entity is who the policy covers for its operations and property. Examples include a corporation, LLC, LLP, sole proprietorship, etc.
 This will print as the Named Insured on the policy."
                 formControlName="legalBusinessName"
-                [hintState]="hintState(svc.form.controls.businessInfo.controls.legalBusinessName)"
-                [hint]="hintMsg(svc.form.controls.businessInfo.controls.legalBusinessName)"
+                [hintState]="_hintState(svc.form.controls.businessInfo.controls.legalBusinessName)"
+                [hint]="_hintMsg(svc.form.controls.businessInfo.controls.legalBusinessName)"
             />
         </div>
 
@@ -83,8 +83,8 @@ This will print as the Named Insured on the policy."
             label="DBA Name"
             placeholder="Enter your DBA / operating name"
             formControlName="dba"
-            [hintState]="hintState(svc.form.controls.businessInfo.controls.dba)"
-            [hint]="hintMsg(svc.form.controls.businessInfo.controls.dba)"
+            [hintState]="_hintState(svc.form.controls.businessInfo.controls.dba)"
+            [hint]="_hintMsg(svc.form.controls.businessInfo.controls.dba)"
         />
         }
 
@@ -96,8 +96,8 @@ This will print as the Named Insured on the policy."
                 [required]="true"
                 [options]="states"
                 formControlName="businessState"
-                [hintState]="hintState(svc.form.controls.businessInfo.controls.businessState)"
-                [hint]="hintMsg(svc.form.controls.businessInfo.controls.businessState)"
+                [hintState]="_hintState(svc.form.controls.businessInfo.controls.businessState)"
+                [hint]="_hintMsg(svc.form.controls.businessInfo.controls.businessState)"
             />
             <ui-input
                 class="max-w-166 lg:max-w-204"
@@ -105,8 +105,8 @@ This will print as the Named Insured on the policy."
                 placeholder="MM/YYYY"
                 [required]="true"
                 formControlName="businessStartDate"
-                [hintState]="hintState(svc.form.controls.businessInfo.controls.businessStartDate)"
-                [hint]="hintMsg(svc.form.controls.businessInfo.controls.businessStartDate)"
+                [hintState]="_hintState(svc.form.controls.businessInfo.controls.businessStartDate)"
+                [hint]="_hintMsg(svc.form.controls.businessInfo.controls.businessStartDate)"
             />
         </div>
 
@@ -126,8 +126,8 @@ This does not include independent contractors which work for your business on a 
                 placeholder="Business Zip Code"
                 [required]="true"
                 formControlName="businessZipCode"
-                [hintState]="hintState(svc.form.controls.businessInfo.controls.businessZipCode)"
-                [hint]="hintMsg(svc.form.controls.businessInfo.controls.businessZipCode)"
+                [hintState]="_hintState(svc.form.controls.businessInfo.controls.businessZipCode)"
+                [hint]="_hintMsg(svc.form.controls.businessInfo.controls.businessZipCode)"
             />
         </div>
     </section>
@@ -181,8 +181,8 @@ This does not include independent contractors which work for your business on a 
                             placeholder="Claim Amount"
                             [required]="true"
                             formControlName="claimAmount"
-                            [hintState]="hintState(claim.controls.claimAmount)"
-                            [hint]="hintMsg(claim.controls.claimAmount)"
+                            [hintState]="_hintState(claim.controls.claimAmount)"
+                            [hint]="_hintMsg(claim.controls.claimAmount)"
                         >
                             <span uiInputPrefix class="material-symbols-outlined text-gray-500" aria-hidden="true">
                                 paid
@@ -196,8 +196,8 @@ This does not include independent contractors which work for your business on a 
                             [required]="true"
                             [maxLength]="180"
                             formControlName="claimDescription"
-                            [hintState]="hintState(claim.controls.claimDescription)"
-                            [hint]="hintMsg(claim.controls.claimDescription)"
+                            [hintState]="_hintState(claim.controls.claimDescription)"
+                            [hint]="_hintMsg(claim.controls.claimDescription)"
                         />
                     </div>
                 </div>

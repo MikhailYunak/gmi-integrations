@@ -64,7 +64,7 @@ export class StepTwo {
             if (control === zip || control === mailingZip) {
                 return 'Enter a 5-digit zip code';
             }
-            return 'Enter a valid number (e.g. 500000)';
+            return 'Enter a valid number (e.g. 500,000)';
         }
         return 'Invalid value';
     }

@@ -3,7 +3,7 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { merge, switchMap } from 'rxjs';
+import { filter, map, merge, switchMap } from 'rxjs';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { StepsApiService } from '../services/steps-api.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
@@ -62,7 +62,7 @@ export class StepThreeFormService {
         effect(() => {
             const salesCtrl = this.form.controls.liquorLiability.controls.alcoholicBeverageSales;
             if (this._liquorSelected()) {
-                salesCtrl.setValidators([Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]);
+                salesCtrl.setValidators([Validators.required, Validators.pattern(/^\d{1,3}(,\d{3})*(\.\d{1,2})?$/)]);
                 if (this.form.controls.glLimit.value === 2000000) {
                     this.form.controls.glLimit.setValue(1000000);
                 }
@@ -95,6 +95,8 @@ export class StepThreeFormService {
             limitCtrl.updateValueAndValidity();
             retentionCtrl.updateValueAndValidity();
         });
+
+        this._initMasks();
 
         const saved = this._storage.getStep3Data();
         if (saved) {
@@ -145,6 +147,25 @@ export class StepThreeFormService {
             });
     }
 
+    private _initMasks(): void {
+        const salesCtrl = this.form.controls.liquorLiability.controls.alcoholicBeverageSales;
+
+        salesCtrl.valueChanges
+            .pipe(
+                map((val) => ({ formatted: this._applyNumberMask(val), val })),
+                filter(({ val, formatted }) => formatted !== val),
+                takeUntilDestroyed(this._destroyRef)
+            )
+            .subscribe(({ formatted }) => salesCtrl.setValue(formatted, { emitEvent: false }));
+    }
+
+    private _applyNumberMask(value: string): string {
+        const cleaned = value.replace(/[^\d.]/g, '');
+        const [intPart, ...rest] = cleaned.split('.');
+        const dec = rest.length > 0 ? '.' + rest.join('').slice(0, 2) : '';
+        return intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + dec;
+    }
+
     private _buildModel(): StepThreeModel {
         const raw = this.form.getRawValue();
 
@@ -162,7 +183,7 @@ export class StepThreeFormService {
             liquorLiability: {
                 shouldInclude: raw.liquorLiability.shouldInclude,
                 alcoholicBeverageSales: raw.liquorLiability.shouldInclude
-                    ? Number(raw.liquorLiability.alcoholicBeverageSales)
+                    ? Number(raw.liquorLiability.alcoholicBeverageSales.replace(/,/g, ''))
                     : 0,
                 liquorLiabLimitEachOccurrence: raw.glLimit
             }
@@ -175,7 +196,7 @@ export class StepThreeFormService {
             liquorLiability: {
                 shouldInclude: data.liquorLiability.shouldInclude,
                 alcoholicBeverageSales: data.liquorLiability.shouldInclude
-                    ? String(data.liquorLiability.alcoholicBeverageSales)
+                    ? this._applyNumberMask(String(data.liquorLiability.alcoholicBeverageSales))
                     : ''
             },
             hasCyberCoverage: data.cyberCoverage !== null,

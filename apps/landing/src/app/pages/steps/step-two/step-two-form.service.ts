@@ -3,7 +3,7 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { merge } from 'rxjs';
+import { filter, map, merge } from 'rxjs';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
 import { StepsApiService } from '../services/steps-api.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
@@ -23,8 +23,8 @@ export class StepTwoFormService {
 
     readonly form = this._fb.group({
         financials: this._fb.nonNullable.group({
-            annualEarnings: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
-            annualPayroll: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]]
+            annualEarnings: ['', [Validators.required, Validators.pattern(/^\d{1,3}(,\d{3})*(\.\d{1,2})?$/)]],
+            annualPayroll: ['', [Validators.required, Validators.pattern(/^\d{1,3}(,\d{3})*(\.\d{1,2})?$/)]]
         }),
         primaryLocation: this._fb.nonNullable.group({
             street: ['', [Validators.required]],
@@ -70,6 +70,8 @@ export class StepTwoFormService {
             mailing.state.updateValueAndValidity();
             mailing.zip.updateValueAndValidity();
         });
+
+        this._initMasks();
 
         const saved = this._storage.getStep2Data();
         if (saved) {
@@ -120,8 +122,8 @@ export class StepTwoFormService {
 
         return {
             financials: {
-                annualEarnings: Number(raw.financials.annualEarnings),
-                annualPayroll: Number(raw.financials.annualPayroll)
+                annualEarnings: Number(raw.financials.annualEarnings.replace(/,/g, '')),
+                annualPayroll: Number(raw.financials.annualPayroll.replace(/,/g, ''))
             },
             primaryLocation: {
                 street: raw.primaryLocation.street,
@@ -146,11 +148,32 @@ export class StepTwoFormService {
         };
     }
 
+    private _initMasks(): void {
+        const { annualEarnings, annualPayroll } = this.form.controls.financials.controls;
+
+        merge(
+            annualEarnings.valueChanges.pipe(map((val) => ({ ctrl: annualEarnings, formatted: this._applyNumberMask(val), val }))),
+            annualPayroll.valueChanges.pipe(map((val) => ({ ctrl: annualPayroll, formatted: this._applyNumberMask(val), val })))
+        )
+            .pipe(
+                filter(({ val, formatted }) => formatted !== val),
+                takeUntilDestroyed(this._destroyRef)
+            )
+            .subscribe(({ ctrl, formatted }) => ctrl.setValue(formatted, { emitEvent: false }));
+    }
+
+    private _applyNumberMask(value: string): string {
+        const cleaned = value.replace(/[^\d.]/g, '');
+        const [intPart, ...rest] = cleaned.split('.');
+        const dec = rest.length > 0 ? '.' + rest.join('').slice(0, 2) : '';
+        return intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + dec;
+    }
+
     private _patchForm(data: StepTwoModel): void {
         this.form.patchValue({
             financials: {
-                annualEarnings: String(data.financials.annualEarnings),
-                annualPayroll: String(data.financials.annualPayroll)
+                annualEarnings: this._applyNumberMask(String(data.financials.annualEarnings)),
+                annualPayroll: this._applyNumberMask(String(data.financials.annualPayroll))
             },
             primaryLocation: {
                 street: data.primaryLocation.street,

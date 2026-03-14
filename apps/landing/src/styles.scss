@@ -5,6 +5,10 @@ html {
     scroll-behavior: smooth;
 }
 
+html, body {
+	height: 100%;
+}
+
 main {
     display: flex;
     position: relative;

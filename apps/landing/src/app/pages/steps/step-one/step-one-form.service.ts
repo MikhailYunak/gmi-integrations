@@ -4,10 +4,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Dialog } from '@angular/cdk/dialog';
-import { merge, switchMap } from 'rxjs';
+import { filter, map, merge, switchMap } from 'rxjs';
 import { ConfirmDialog, ConfirmDialogData } from '@gmi-integrations/shared';
 import { applyServerErrors, isValidationError } from '@gmi-integrations/cdk';
-import { StepsApiService, isConflictError } from '../services/steps-api.service';
+import { isConflictError, StepsApiService } from '../services/steps-api.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { QuoteApplicationStatus, StepOneModel } from '../models/steps.models';
 import { GENERAL_INFORMATION_STATUS_ROUTE } from '../const/status-route';
@@ -35,7 +35,7 @@ export class StepOneFormService {
         generalInfo: this._fb.nonNullable.group({
             fullName: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
-            phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]]
+            phone: ['', [Validators.required, Validators.pattern(/^\d{3} \d{3} \d{4}$/)]]
         }),
         businessInfo: this._fb.group({
             legalBusinessName: this._fb.nonNullable.control('', [Validators.required]),
@@ -81,6 +81,8 @@ export class StepOneFormService {
                 this.claims.set([]);
             }
         });
+
+        this._initMasks();
 
         const saved = this._storage.getStep1Data();
         if (saved) {
@@ -212,7 +214,7 @@ export class StepOneFormService {
             generalInfo: {
                 fullName: raw.generalInfo.fullName,
                 email: raw.generalInfo.email,
-                phone: `+1${raw.generalInfo.phone}`
+                phone: `+1${raw.generalInfo.phone.replace(/\s/g, '')}`
             },
             businessInfo: {
                 legalBusinessName: raw.businessInfo.legalBusinessName,
@@ -262,6 +264,42 @@ export class StepOneFormService {
                 });
             });
         }
+    }
+
+    private _initMasks(): void {
+        const { phone } = this.form.controls.generalInfo.controls;
+        const { businessStartDate } = this.form.controls.businessInfo.controls;
+
+        merge(
+            phone.valueChanges.pipe(map((val) => ({ ctrl: phone, formatted: this._applyPhoneMask(val), val }))),
+            businessStartDate.valueChanges.pipe(
+                map((val) => ({ ctrl: businessStartDate, formatted: this._applyDateMask(val), val }))
+            )
+        )
+            .pipe(
+                filter(({ val, formatted }) => formatted !== val),
+                takeUntilDestroyed(this._destroyRef)
+            )
+            .subscribe(({ ctrl, formatted }) => ctrl.setValue(formatted, { emitEvent: false }));
+    }
+
+    private _applyPhoneMask(value: string): string {
+        const digits = value.replace(/\D/g, '').slice(0, 10);
+        if (digits.length <= 3) {
+            return digits;
+        }
+        if (digits.length <= 6) {
+            return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+        }
+        return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+    }
+
+    private _applyDateMask(value: string): string {
+        const digits = value.replace(/\D/g, '').slice(0, 6);
+        if (digits.length <= 2) {
+            return digits;
+        }
+        return `${digits.slice(0, 2)}/${digits.slice(2)}`;
     }
 
     private _toIsoDate(value: string): string {

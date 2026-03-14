@@ -49,12 +49,12 @@ export class StepOne {
 
     // ── Validation helpers (reads formChange to stay reactive in OnPush) ───────
 
-    protected hintState(control: AbstractControl): UiInputHintState {
+    protected _hintState(control: AbstractControl): UiInputHintState {
         this.svc.formChange();
         return control.invalid && control.touched ? 'error' : 'default';
     }
 
-    protected hintMsg(control: AbstractControl): string {
+    protected _hintMsg(control: AbstractControl): string {
         this.svc.formChange();
         if (!control.invalid || !control.touched) {
             return '';
@@ -70,7 +70,7 @@ export class StepOne {
         }
         if (control.errors?.['pattern']) {
             if (control === this.svc.form.controls.generalInfo.controls.phone) {
-                return 'Enter 10 digits, no spaces (e.g. 2125551234)';
+                return 'Enter 10 digits (e.g. 212 555 1234)';
             }
             if (control === this.svc.form.controls.businessInfo.controls.businessStartDate) {
                 return 'Use MM/YYYY format (e.g. 01/2020)';

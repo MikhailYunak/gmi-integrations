@@ -6,8 +6,8 @@ import {RouterLink} from "@angular/router";
 @Component({
     selector: 'gmi-not-found-page',
     template: `
-        <section class="flex flex-col justify-between not-found-page-figure">
-            <section class="flex flex-col items-center mt-128 mb-73 flex-1 pt-60 lg:mt-164 text-center gap-y-32">
+        <section class="not-found-page-figure">
+            <section class="flex flex-col w-full items-center mt-128 mb-73 flex-1 pt-60 lg:mt-164 text-center gap-y-32">
                 <h1 uiHeading class="text-green-500">
                     <span uiHeading variant="italic">Oooops!</span>
                     <br />
@@ -26,13 +26,17 @@ import {RouterLink} from "@angular/router";
     `,
     styles: `
         :host {
-            display: block;
+            display: flex;
+            flex-direction: column;
             width: 100%;
-            height: 100vh;
+            min-height: 100dvh;
             background-image: linear-gradient(var(--achromatics-grey-forms));
 
             .not-found-page-figure {
-                height: 100%;
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                width: 100%;
                 margin-inline: auto;
                 max-width: calc(var(--spacing) * 1440);
                 background-image:
